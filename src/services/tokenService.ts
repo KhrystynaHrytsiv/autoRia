@@ -1,0 +1,35 @@
+import type {ITokenPayload, TokenPair} from "../interfaces/IToken";
+import jwt from "jsonwebtoken";
+import {config} from "../configs/config";
+import {TokenEnum} from "../enums/tokenEnum";
+import {apiError} from "../error/apiError";
+import {StatusCodes} from "../enums/statusCodes";
+
+class TokenService{
+    public generateTokens(payload:ITokenPayload):TokenPair{
+        const accessToken = jwt.sign(payload, config.JWT_ACCESS_SECRET, {expiresIn: config.JWT_ACCESS_LIFETIME});
+        const refreshToken = jwt.sign(payload, config.JWT_REFRESH_SECRET, {expiresIn: config.JWT_REFRESH_LIFETIME});
+        return {accessToken, refreshToken}
+    }
+
+    public verifyTokens(token:string, type:TokenEnum):ITokenPayload{
+       try{
+           let secret:string
+           switch (type){
+               case TokenEnum.ACCESS:
+                   secret = config.JWT_ACCESS_SECRET
+                   break;
+               case TokenEnum.REFRESH:
+                   secret = config.JWT_REFRESH_SECRET
+                   break
+               default:
+                   throw new apiError('Invalid token type ', StatusCodes.BAD_REQUEST)
+           }
+           return jwt.verify(token, secret) as ITokenPayload;
+       }catch (e) {
+          throw new apiError("Invalid token", StatusCodes.UNAUTHORIZED)
+       }
+    }
+
+}
+export const tokenService = new TokenService();
