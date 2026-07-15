@@ -1,13 +1,23 @@
-import express from "express";
-import * as mongoose from "mongoose";
+import express, {NextFunction, Response, Request} from "express";
+import mongoose from "mongoose";
 import {config} from "./configs/config";
 import {apiRouter} from "./routs/apiRouter";
+import {apiError} from "./error/apiError";
 
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended:true}))
 
-app.use('/', apiRouter)
+app.use('/', apiRouter);
+app.use((err: apiError, req: Request, res: Response, next: NextFunction) => {
+    const status = err.status || 500;
+    const message = err.message ?? "Something went wrong";
+    res.status(status).json({ status, message });
+});
+process.on("uncaughtException", (err) => {
+    console.log("uncaughtException", err);
+    process.exit(1);
+});
 
 
 const connection = async () =>{
@@ -28,7 +38,7 @@ const start = async () =>{
     try{
         await connection();
         app.listen(config.port, () =>{
-            `Database is listening on ${config.port} port`
+            console.log(`Database is listening on ${config.port} port`);
         })
     } catch (e) {
         console.log(e);

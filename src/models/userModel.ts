@@ -10,11 +10,13 @@ const userSchema = new Schema({
     accountType: {type:String, default: 'basic'}
 
 },
-    {timestamps:true, versionKey:false, toJSON:{
+    {timestamps:true, versionKey:false,
+        toJSON:{
         transform: (doc:any, ret:any)=>{
             delete (ret as any).password;
             return ret
         }
-        }}
+        }
+    }
     );
 export const User = model<IUser> ('user', userSchema)

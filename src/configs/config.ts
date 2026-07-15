@@ -12,8 +12,8 @@ interface IConfig{
 }
 
 export const config:IConfig = {
-    port: process.env.PORT,
-    mongo_uri: process.env.MONGO_URI,
+    port: process.env.PORT!,
+    mongo_uri: process.env.MONGO_URI!,
     JWT_ACCESS_SECRET: process.env.JWT_ACCESS_SECRET!,
     JWT_REFRESH_SECRET: process.env.JWT_REFRESH_SECRET!,
     JWT_ACCESS_LIFETIME: process.env.JWT_ACCESS_LIFETIME!,
