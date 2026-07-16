@@ -1,0 +1,53 @@
+import {Request, Response, NextFunction} from "express"
+import {advertService} from "../services/advertService";
+import {StatusCodes} from "../enums/statusCodes";
+
+class AdvertController {
+    public async create (req:Request, res:Response, next:NextFunction){
+        try{
+            const dto = req.body;
+            const advert = await advertService.create(dto);
+            res.status(StatusCodes.CREATED).json(advert)
+        }catch (e) {
+          next(e)
+        }
+    }
+    public async getAll (req:Request, res:Response, next:NextFunction){
+        try{
+            const adverts = await advertService.getAll();
+            res.status(StatusCodes.CREATED).json(adverts)
+        }catch (e) {
+            next(e)
+        }
+    }
+    public async getById (req:Request, res:Response, next:NextFunction){
+        try{
+            const id = req.params.id as string;
+            const advert = await advertService.getById(id);
+            res.status(StatusCodes.CREATED).json(advert)
+        }catch (e) {
+            next(e)
+        }
+    }
+    public async update (req:Request, res:Response, next:NextFunction){
+        try{
+            const id = req.params.id as string;
+            const dto = req.body;
+            const advert = await advertService.update(id, dto);
+            res.status(StatusCodes.CREATED).json(advert)
+        }catch (e) {
+            next(e)
+        }
+    }
+    public async delete (req:Request, res:Response, next:NextFunction){
+        try{
+            const id = req.params.id as string;
+            const advert = await advertService.delete(id);
+            res.status(StatusCodes.CREATED).json(advert)
+        }catch (e) {
+            next(e)
+        }
+    }
+
+}
+export const advertController = new AdvertController();
