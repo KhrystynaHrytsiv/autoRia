@@ -14,12 +14,23 @@ class ModelController {
     }
     public async create(req:Request, res:Response, next:NextFunction){
         try{
-            const { brandId } = req.params;
-            const model = await modelService.create({...req.body, brandId});
+            const data = req.body;
+            const brandId = req.params.brandId as string;
+            const model = await modelService.create({...data, brandId});
             res.status(StatusCodes.CREATED).json(model)
         }catch (e) {
             next(e)
         }
     }
+    public async delete(req:Request, res:Response, next:NextFunction){
+        try{
+            const id = req.params.id as string;
+            await modelService.delete(id);
+            res.status(StatusCodes.NO_CONTENT).end()
+        }catch (e) {
+            next(e)
+        }
+    }
+
 }
 export const modelController = new ModelController();

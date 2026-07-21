@@ -8,3 +8,4 @@ export const modelRouter = Router({
 });
 modelRouter.get('', modelController.getAll)
 modelRouter.post('', validateMiddleware.validateBody(CarValidator.createModel), modelController.create)
+modelRouter.delete('/:id', modelController.delete)

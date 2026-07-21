@@ -20,5 +20,14 @@ class BrandController{
             next(e)
         }
     }
+    public  async delete (req:Request, res:Response, next:NextFunction){
+        try{
+            const id = req.params.id as string;
+            await brandService.delete(id)
+            res.status(StatusCodes.NO_CONTENT).end()
+        }catch (e) {
+            next(e)
+        }
+    }
 }
 export const brandController = new BrandController();

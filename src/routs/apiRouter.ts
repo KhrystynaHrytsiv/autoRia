@@ -9,5 +9,5 @@ export const apiRouter = Router();
 
 apiRouter.use('/auth', authRouter)
 apiRouter.use('/adverts', advertRouter)
+apiRouter.use('/brands/:brandId/models',validateMiddleware.isValidId("brandId"), modelRouter)
 apiRouter.use('/brands', brandRouter)
-apiRouter.use('/brands/:brandId/models', validateMiddleware.isValidId('brandId'), modelRouter)

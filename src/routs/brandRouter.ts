@@ -6,4 +6,4 @@ import {CarValidator} from "../validators/carValidator";
 export const brandRouter = Router();
 brandRouter.get('', brandController.getAll);
 brandRouter.post ('', validateMiddleware.validateBody(CarValidator.createBrand), brandController.create)
-
+brandRouter.delete('/:id', brandController.delete)

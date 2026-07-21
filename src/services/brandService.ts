@@ -14,5 +14,13 @@ class BrandService {
         }
         return brand
     }
+
+    public async delete (id:string):Promise<void>{
+        const brand = await brandRepository.getById(id);
+        if(!brand){
+            throw new apiError('Brand not found', StatusCodes.NOT_FOUND)
+        }
+        await brandRepository.delete(id)
+    }
 }
 export const brandService = new BrandService();

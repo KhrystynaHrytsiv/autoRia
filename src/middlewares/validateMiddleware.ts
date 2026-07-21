@@ -19,7 +19,7 @@ class ValidateMiddleware{
     public isValidId(key:string){
         return (req: Request, res:Response, next:NextFunction) =>{
             try {
-                const id = req.body[key];
+                const id = req.params[key];
                 if (!isObjectIdOrHexString(id)){
                     throw new apiError(`${key}: ${id} invalid Id`, StatusCodes.BAD_REQUEST );
                 }

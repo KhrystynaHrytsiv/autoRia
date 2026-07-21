@@ -8,6 +8,12 @@ class ModelRepository{
     public create (dto:CreateModelDto):Promise<IModel>{
         return Model.create(dto)
     }
+    public getById(id:string):Promise<IModel | null>{
+        return Model.findById(id)
+    }
+    public delete (id:string):Promise<IModel | null>{
+        return Model.findByIdAndDelete(id)
+    }
 }
 
 export const modelRepository = new ModelRepository();

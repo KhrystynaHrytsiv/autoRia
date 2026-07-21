@@ -14,5 +14,12 @@ class ModelService{
         }
         return model
     }
+    public async delete(id:string):Promise<void>{
+        const model = await modelRepository.getById(id);
+        if(!model){
+            throw new apiError("Model not found", StatusCodes.NOT_FOUND)
+        }
+        await modelRepository.delete(id);
+    }
 }
 export const modelService = new ModelService();
