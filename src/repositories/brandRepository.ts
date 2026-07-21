@@ -5,7 +5,7 @@ class BrandRepository{
     public getAll():Promise<IBrand[]>{
         return Brand.find()
     }
-    public create(dto:Partial<IBrand>):Promise<IBrand>{
+    public create(dto: {name:string}):Promise<IBrand>{
         return Brand.create(dto)
     }
 }

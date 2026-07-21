@@ -1,11 +1,11 @@
-import {IModel} from "../interfaces/IBrand";
+import {CreateModelDto, IModel} from "../interfaces/IBrand";
 import {Model} from "../models/modelModel";
 
 class ModelRepository{
-    getAll ():Promise<IModel[]>{
-        return Model.find()
+    getAll (brandId:string):Promise<IModel[]>{
+        return Model.find({brandId})
     }
-    public create (dto:Partial<IModel>):Promise<IModel>{
+    public create (dto:CreateModelDto):Promise<IModel>{
         return Model.create(dto)
     }
 }

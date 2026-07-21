@@ -1,12 +1,18 @@
-import {IModel} from "../interfaces/IBrand";
+import {CreateModelDto, IModel} from "../interfaces/IBrand";
 import {modelRepository} from "../repositories/modelRepository";
+import {apiError} from "../error/apiError";
+import {StatusCodes} from "../enums/statusCodes";
 
 class ModelService{
-    getAll ():Promise<IModel[]>{
-        return modelRepository.getAll()
+    getAll (brandId:string):Promise<IModel[]>{
+        return modelRepository.getAll(brandId)
     }
-    create (dto:Partial<IModel>):Promise<IModel>{
-        return modelRepository.create(dto)
+    async create (dto:CreateModelDto):Promise<IModel>{
+        const model = await modelRepository.create(dto);
+        if(!model){
+            throw new apiError("Model not found", StatusCodes.NOT_FOUND)
+        }
+        return model
     }
 }
 export const modelService = new ModelService();

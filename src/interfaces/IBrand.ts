@@ -8,5 +8,6 @@ interface IModel{
     name:string,
     brandId:string
 }
+type CreateModelDto = Pick<IModel, "name" | "brandId">;
 
-export {IBrand, IModel}
+export type {IBrand, IModel, CreateModelDto}
