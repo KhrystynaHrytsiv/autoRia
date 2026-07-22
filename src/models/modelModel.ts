@@ -3,7 +3,7 @@ import {Brand} from "./brandModel";
 import {IModel} from "../interfaces/IBrand";
 
 const modelSchema = new Schema({
-    name: {type:String, requireManualDestroy:true},
+    name: {type:String, required:true},
     brandId:{type: Schema.Types.ObjectId, required:true, ref: Brand}
 },
     {timestamps:false, versionKey:false});

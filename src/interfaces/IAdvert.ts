@@ -1,5 +1,5 @@
-// import {CurrencyEnum} from "../enums/currencyEnum";
 import {AdvertStatus} from "../enums/advertStatus";
+import {IPrice} from "./IPrice";
 
 interface IAdvert {
     id:string,
@@ -7,11 +7,7 @@ interface IAdvert {
     title:string,
     brand:string,
     model:string,
-    // price:{
-    //     value:number,
-    //     currency: CurrencyEnum
-    // },
-    price:number,
+    price:IPrice
     year:number,
     description:string,
     status: AdvertStatus
