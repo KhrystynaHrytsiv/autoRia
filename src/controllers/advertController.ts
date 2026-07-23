@@ -1,12 +1,14 @@
 import {Request, Response, NextFunction} from "express"
 import {advertService} from "../services/advertService";
 import {StatusCodes} from "../enums/statusCodes";
+import {ITokenPayload} from "../interfaces/IToken";
 
 class AdvertController {
     public async create (req:Request, res:Response, next:NextFunction){
         try{
+            const {userId} = res.locals.tokenPayload as ITokenPayload;
             const dto = req.body;
-            const advert = await advertService.create(dto);
+            const advert = await advertService.create({...dto, userId});
             res.status(StatusCodes.CREATED).json(advert)
         }catch (e) {
           next(e)
