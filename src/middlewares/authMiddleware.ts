@@ -9,13 +9,13 @@ class AuthMiddleware{
         try{
             const authorization = req.headers.authorization;
             if(!authorization){
-                throw new apiError('no token provided', StatusCodes.UNAUTHORIZED)
+                throw new apiError('No token provided', StatusCodes.UNAUTHORIZED)
             }
             const jwtToken = authorization.split(" ")[1];
             const tokenPayload = tokenService.verifyTokens(jwtToken, TokenEnum.ACCESS);
             const isTokenExists = await tokenService.isTokenExist(jwtToken, TokenEnum.ACCESS);
             if(!isTokenExists){
-                throw new apiError('invalid token', StatusCodes.UNAUTHORIZED)
+                throw new apiError('Invalid token', StatusCodes.UNAUTHORIZED)
             }
             res.locals.tokenPayload = tokenPayload;
             next()
