@@ -2,10 +2,13 @@ import {createAdvertDto, IAdvert, updateAdvertDto} from "../interfaces/IAdvert";
 import {advertRepository} from "../repositories/advertRepository";
 import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
+import {currencyService} from "./currencyService";
+
 
 class AdvertService {
-    public create(dto:createAdvertDto):Promise<IAdvert>{
-        return advertRepository.create(dto)
+    public async create(dto:createAdvertDto):Promise<IAdvert>{
+        const price = await currencyService.convertCurrency(dto.price);
+        return advertRepository.create({...dto, price});
     }
     public getAll():Promise<IAdvert[]>{
         return advertRepository.getAll()

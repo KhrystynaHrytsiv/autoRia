@@ -15,4 +15,6 @@ export interface IPrice {
         usd: number;
         eur: number;
     };
+
 }
+export type createPriceDto = Pick<IPrice, "original">

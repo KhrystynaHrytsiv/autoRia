@@ -1,6 +1,6 @@
 import {model, Schema} from "mongoose";
 import {IAdvert} from "../interfaces/IAdvert";
-import {User} from "./userModel";
+// import {User} from "./userModel";
 import {Brand} from "./brandModel";
 import {Model} from "./modelModel";
 import {AdvertStatus} from "../enums/advertStatus";
@@ -9,8 +9,8 @@ import {CurrencyEnum} from "../enums/currencyEnum";
 const advertSchema = new Schema({
     title: {type: String, required:true },
     description: {type: String, required:true },
-    brand: {type: Schema.Types.ObjectId, required:true, ref: Brand},
-    model: {type:Schema.Types.ObjectId, required: true, ref: Model},
+    brand: {type: String, required:true, ref: Brand.name},
+    model: {type:Schema.Types.ObjectId, required: true, ref: Model.name},
     price: {
         original:{
             value: {type: Number, required:true},
@@ -29,8 +29,10 @@ const advertSchema = new Schema({
     },
     year: {type: Number, required:true },
     status: {type: String, enum: AdvertStatus, required: true, default: AdvertStatus.pending},
-    userId: {type:Schema.Types.ObjectId, required: true, ref: User},
+    // userId: {type:Schema.Types.ObjectId, required: true, ref: User},
 },
     {timestamps: true, versionKey:false});
 
+
 export const Advertisement = model<IAdvert>('advert', advertSchema);
+
