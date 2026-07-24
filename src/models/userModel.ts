@@ -7,7 +7,8 @@ const userSchema = new Schema({
     email: {type:String, require:true},
     password: {type:String, require:true},
     role: {type: String, enum: RolesEnum, required: true, default: RolesEnum.CLIENT},
-    accountType: {type:String, default: 'basic'}
+    accountType: {type:String, default: 'basic'},
+    isActive: {type:Boolean, default: true},
 
 },
     {timestamps:true, versionKey:false,

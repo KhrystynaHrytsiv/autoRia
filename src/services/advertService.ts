@@ -3,6 +3,7 @@ import {advertRepository} from "../repositories/advertRepository";
 import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
 import {currencyService} from "./currencyService";
+import {RolesEnum} from "../enums/rolesEnum";
 
 
 class AdvertService {
@@ -20,16 +21,25 @@ class AdvertService {
         }
         return advert
     }
-
-    public async update(id:string, dto:updateAdvertDto):Promise<IAdvert | null>{
-        const advert = await advertRepository.update(id, dto);
+    public async checkAdvertPermission (advertId: string, userId: string, role: RolesEnum){
+        const advert = await advertRepository.getById(advertId);
         if (!advert){
             throw new apiError("Advertisement not found", StatusCodes.NOT_FOUND)
         }
-        return advert
+        const isOwner = advert.userId === userId;
+        const hasPermission = role === RolesEnum.MANAGER || role === RolesEnum.ADMIN;
+        if (!isOwner && !hasPermission){
+            throw new apiError('No have permission', StatusCodes.FORBIDDEN)
+        }
     }
 
-    public async delete (id:string):Promise<void>{
+    public async update(id:string, userId:string, dto:updateAdvertDto, role:RolesEnum):Promise<IAdvert | null>{
+        await this.checkAdvertPermission(id, userId, role);
+        return await advertRepository.update(id, dto);
+    }
+
+    public async delete (id:string, userId:string, role:RolesEnum):Promise<void>{
+        await this.checkAdvertPermission(id, userId, role);
         await advertRepository.delete(id);
     }
 }

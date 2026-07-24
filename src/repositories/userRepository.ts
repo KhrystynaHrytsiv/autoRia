@@ -1,5 +1,6 @@
 import type {IUser, IUserCreateDto} from "../interfaces/IUser";
 import {User} from "../models/userModel";
+import {RolesEnum} from "../enums/rolesEnum";
 
 class UserRepository {
     getAllUsers ():Promise<IUser[]>{
@@ -11,9 +12,15 @@ class UserRepository {
     public async getByEmail(email:string):Promise<IUser | null>{
         return User.findOne({email})
     }
-    public async create (user:IUserCreateDto):Promise<IUser>{
+    public async create (user:IUserCreateDto & {role:RolesEnum}):Promise<IUser>{
         return User.create(user)
     }
+   public async blockUser (id:string):Promise<IUser | null>{
+        return User.findByIdAndUpdate(id, {isActive: false}, { returnDocument: "after" })
+   }
+   public async unBlockUser (id:string):Promise<IUser | null>{
+        return User.findByIdAndUpdate(id, {isActive: true}, { returnDocument: "after" })
+   }
 
 }
 export const userRepository = new UserRepository();

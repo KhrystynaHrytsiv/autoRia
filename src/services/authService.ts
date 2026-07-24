@@ -8,12 +8,11 @@ import {userService} from "./userService";
 import {IAuth} from "../interfaces/IAuth";
 import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
+import {RolesEnum} from "../enums/rolesEnum";
 
 class AuthService{
     public async register (user:IUserCreateDto):Promise<{user:IUser, tokens:TokenPair}>{
-      await userService.isEmailUniq(user.email);
-        const password = await passwordService.hashPassword(user.password);
-        const newUser = await userRepository.create({...user, password});
+        const newUser = await userService.createWithRole(user, RolesEnum.SELLER);
         const tokenPair = tokenService.generateTokens({userId: newUser.id, role: newUser.role});
         await tokenRepository.create({...tokenPair, userId: newUser.id});
         return {user:newUser, tokens:tokenPair}

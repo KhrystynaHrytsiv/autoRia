@@ -6,7 +6,8 @@ interface IUser{
     email:string,
     password:string,
     role: RolesEnum,
-    accountType: 'basic' | 'premium'
+    accountType: 'basic' | 'premium',
+    isActive:boolean;
 }
 
 type IUserCreateDto = Pick<IUser, "name" | "email" | "password">

@@ -3,6 +3,8 @@ import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
 import {tokenService} from "../services/tokenService";
 import {TokenEnum} from "../enums/tokenEnum";
+import {ITokenPayload} from "../interfaces/IToken";
+import {RolesEnum} from "../enums/rolesEnum";
 
 class AuthMiddleware{
     public async checkAccess(req:Request, res:Response, next:NextFunction){
@@ -21,6 +23,29 @@ class AuthMiddleware{
             next()
         }catch (e) {
             next(e)
+        }
+    }
+
+    public isAdmin (req: Request, res: Response, next: NextFunction){
+        try {
+            const {role} = res.locals.tokenPayload as ITokenPayload;
+            if(role !== RolesEnum.ADMIN){
+                throw new apiError('No has permission', StatusCodes.FORBIDDEN)
+            }
+            next()
+        }catch (e) {
+            next(e);
+        }
+    }
+    public hasPermission(req: Request, res: Response, next: NextFunction){
+        try{
+            const {role} = res.locals.tokenPayload as ITokenPayload;
+            if(role !== RolesEnum.ADMIN && role !== RolesEnum.MANAGER){
+                throw new apiError('No has permission', StatusCodes.FORBIDDEN)
+            }
+            next()
+        }catch (e) {
+            next(e);
         }
     }
 }
