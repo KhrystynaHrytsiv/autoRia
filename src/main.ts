@@ -1,8 +1,9 @@
-import express, {NextFunction, Response, Request} from "express";
+import express, {NextFunction, Request, Response} from "express";
 import mongoose from "mongoose";
 import {config} from "./configs/config";
 import {apiRouter} from "./routs/apiRouter";
 import {apiError} from "./error/apiError";
+import {cronRunner} from "./crons";
 
 const app = express();
 app.use(express.json());
@@ -37,8 +38,9 @@ const connection = async () =>{
 const start = async () =>{
     try{
         await connection();
-        app.listen(config.port, () =>{
+        app.listen(config.port, async () =>{
             console.log(`Database is listening on ${config.port} port`);
+            await cronRunner()
         })
     } catch (e) {
         console.log(e);
