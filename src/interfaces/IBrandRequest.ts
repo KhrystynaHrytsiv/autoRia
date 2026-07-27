@@ -15,4 +15,7 @@ export interface IModelRequest {
     status:RequestStatus
 }
 export type createBrandReq = Pick<IBrandRequest, "name">
-export type createModelReq = Pick<IModelRequest, "name"| "brandId">
+export interface createModelReq {
+    brand:string;
+    name:string;
+}

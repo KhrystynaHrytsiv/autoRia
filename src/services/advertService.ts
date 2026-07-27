@@ -13,11 +13,12 @@ import {AccountTypeEnum} from "../enums/accountTypeEnum";
 class AdvertService {
     public async prepareAdvert (dto: createAdvertDto| updateAdvertDto) {
         const data: any = {...dto};
-        if (dto.brand) {
-            data.brand = await brandService.getIdByName(dto.brand);
-        }
-        if (dto.model) {
-            data.model = await modelService.getIdByName(dto.model);
+        if(dto.brand){
+            const brandId = await brandService.getIdByName(dto.brand);
+            data.brand = brandId;
+            if(dto.model){
+                data.model = await modelService.getIdByName(dto.model, brandId);
+            }
         }
         if (dto.price) {
             data.price = await currencyService.convertCurrency(dto.price)

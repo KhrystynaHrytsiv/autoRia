@@ -5,6 +5,8 @@
     import {modelRouter} from "./modelRouter";
     import {validateMiddleware} from "../middlewares/validateMiddleware";
     import {userRouter} from "./userRouter";
+    import {requestRouter} from "./requestRouter";
+    import {authMiddleware} from "../middlewares/authMiddleware";
 
     export const apiRouter = Router();
 
@@ -13,3 +15,4 @@
     apiRouter.use('/adverts', advertRouter)
     apiRouter.use('/brands/:brandId/models',validateMiddleware.isValidId("brandId"), modelRouter)
     apiRouter.use('/brands', brandRouter)
+    apiRouter.use('/requests', authMiddleware.checkAccess, requestRouter)

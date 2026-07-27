@@ -2,13 +2,15 @@ import {IBrand} from "../interfaces/IBrand";
 import {brandRepository} from "../repositories/brandRepository";
 import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
+import {textService} from "./textService";
 
 class BrandService {
     public getAll ():Promise<IBrand[]>{
         return brandRepository.getAll()
     }
     public async create (dto:{name:string}):Promise<IBrand>{
-        const brand = await brandRepository.create(dto);
+        const name = textService.unifyWords(dto.name);
+        const brand = await brandRepository.create({name});
         if (!brand){
             throw new apiError("Brand fot found ", StatusCodes.NOT_FOUND)
         }
@@ -17,7 +19,7 @@ class BrandService {
     public async getIdByName(name:string):Promise<string>{
         const brand = await brandRepository.getByName(name);
         if(!brand){
-            throw new apiError("Brand fot found ", StatusCodes.NOT_FOUND)
+            throw new apiError("Brand not found ", StatusCodes.NOT_FOUND)
         }
         return brand.id.toString()
     }

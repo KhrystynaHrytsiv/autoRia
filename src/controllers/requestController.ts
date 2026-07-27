@@ -24,5 +24,40 @@ class RequestController {
             next(e)
         }
     }
+    public async getAllBrandRequests (req:Request, res:Response, next:NextFunction){
+        try{
+         const requests = await requestService.getAllBrandRequests();
+         res.status(StatusCodes.OK).json(requests)
+        }catch(e){
+            next(e)
+        }
+    }
+    public async getAllModelRequests (req:Request, res:Response, next:NextFunction){
+        try{
+            const requests = await requestService.getAllModelRequests();
+            res.status(StatusCodes.OK).json(requests)
+        }catch(e){
+            next(e)
+        }
+    }
+
+    public async approveBrandRequest (req:Request, res:Response, next:NextFunction){
+        try{
+           const id = req.params.id as string;
+           const brand = await requestService.approveBrandRequest(id);
+           res.status(StatusCodes.OK).json(brand)
+        }catch (e) {
+            next(e)
+        }
+    }
+    public async approveModelRequest (req:Request, res:Response, next:NextFunction){
+        try{
+            const id = req.params.id as string;
+            const model = await requestService.approveModelRequest(id);
+            res.status(StatusCodes.OK).json(model)
+        }catch (e) {
+            next(e)
+        }
+    }
 }
 export const requestController = new RequestController();
