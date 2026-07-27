@@ -11,6 +11,9 @@ class BrandRepository{
     public getById(id:string):Promise<IBrand | null>{
         return Brand.findById(id)
     }
+    public async getByName(name:string):Promise<IBrand | null>{
+        return Brand.findOne({name});
+    }
     public delete (id:string):Promise<IBrand | null>{
         return  Brand.findByIdAndDelete(id)
     }

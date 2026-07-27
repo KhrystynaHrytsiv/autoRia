@@ -4,15 +4,18 @@ import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
 
 class ModelService{
-    getAll (brandId:string):Promise<IModel[]>{
+    public getAll (brandId:string):Promise<IModel[]>{
         return modelRepository.getAll(brandId)
     }
-    async create (dto:CreateModelDto):Promise<IModel>{
-        const model = await modelRepository.create(dto);
+    public async create (dto:CreateModelDto):Promise<IModel>{
+        return await modelRepository.create(dto);
+    }
+    public async getIdByName(name:string):Promise<string>{
+        const model = await modelRepository.getByName(name);
         if(!model){
             throw new apiError("Model not found", StatusCodes.NOT_FOUND)
         }
-        return model
+        return model.id.toString()
     }
     public async delete(id:string):Promise<void>{
         const model = await modelRepository.getById(id);

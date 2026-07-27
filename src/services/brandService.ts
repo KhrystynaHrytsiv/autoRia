@@ -14,6 +14,13 @@ class BrandService {
         }
         return brand
     }
+    public async getIdByName(name:string):Promise<string>{
+        const brand = await brandRepository.getByName(name);
+        if(!brand){
+            throw new apiError("Brand fot found ", StatusCodes.NOT_FOUND)
+        }
+        return brand.id.toString()
+    }
 
     public async delete (id:string):Promise<void>{
         const brand = await brandRepository.getById(id);

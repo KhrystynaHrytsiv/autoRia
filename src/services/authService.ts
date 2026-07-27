@@ -27,7 +27,7 @@ class AuthService{
         if (!isPasswordExist){
             throw new apiError("Invalid email or password", StatusCodes.UNAUTHORIZED)
         }
-        const tokenPair = tokenService.generateTokens({userId: user.id, role: user.role});
+        const tokenPair = tokenService.generateTokens({userId: user.id, role:user.role});
         await tokenRepository.create({...tokenPair, userId: user.id});
         return {user, tokens:tokenPair}
     }

@@ -1,22 +1,9 @@
 import {createAdvertDto, IAdvert, updateAdvertDto} from "../interfaces/IAdvert";
 import {Advertisement} from "../models/advertModel";
-import {Brand} from "../models/brandModel";
-import {apiError} from "../error/apiError";
-import {StatusCodes} from "../enums/statusCodes";
-import {Model} from "../models/modelModel";
 
 class AdvertRepository{
     public async create(dto:createAdvertDto):Promise<IAdvert>{
-        const brand = await Brand.findOne({ name: dto.brand });
-        if(!brand){
-            throw new apiError('Brand not found', StatusCodes.NOT_FOUND)
-        }
-        const model = await Model.findOne({name: dto.model});
-        if (!model){
-            throw new apiError("Invalid model", StatusCodes.BAD_REQUEST)
-        }
-        return  await Advertisement.create({...dto, brand: brand.id, model: model.id});
-        // return Advertisement.create(dto)
+        return  await Advertisement.create(dto);
     }
     public getById(id:string):Promise<IAdvert | null>{
         return Advertisement.findById(id)
@@ -29,6 +16,9 @@ class AdvertRepository{
     }
     public delete (id:string):Promise<IAdvert | null>{
         return Advertisement.findByIdAndDelete(id);
+    }
+    public countAdverts(userId:string):Promise<number>{
+        return Advertisement.countDocuments({userId})
     }
 }
 export const advertRepository = new AdvertRepository();

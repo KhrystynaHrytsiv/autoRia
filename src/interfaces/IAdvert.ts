@@ -1,4 +1,4 @@
-import {AdvertStatus} from "../enums/advertStatus";
+import {RequestStatus} from "../enums/requestStatus";
 import {createPriceDto, IPrice} from "./IPrice";
 
 
@@ -11,7 +11,7 @@ interface IAdvert {
     price:IPrice
     year:number,
     description:string,
-    status: AdvertStatus
+    status: RequestStatus
 }
 
 interface createAdvertDto {
