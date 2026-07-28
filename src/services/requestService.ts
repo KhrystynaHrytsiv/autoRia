@@ -21,11 +21,11 @@ class RequestService {
         if (!brand) {
             throw new apiError("Brand not found from create request", StatusCodes.NOT_FOUND);
         }
-        const isExist = await modelRepository.getByName(dto.name, brand.id.toString());
+        const isExist = await modelRepository.getByName(dto.name);
         if (isExist) {
             throw new apiError("Model already exists", StatusCodes.BAD_REQUEST)
         }
-        return requestRepository.createModelRequest(userId,  {brand: brand.id.toString(), name: dto.name})
+        return requestRepository.createModelRequest(userId,  {brand: brand.name, name: dto.name})
     }
 
     public async getAllBrandRequests ():Promise<IBrandRequest[]>{
@@ -52,12 +52,38 @@ class RequestService {
         if (!request){
             throw new apiError("Request not found", StatusCodes.NOT_FOUND)
         }
+         const brand = await brandRepository.getByName(request.brand);
+         if(!brand) {
+             throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
+         }
         if(request.status !== RequestStatus.pending){
             throw new apiError("Request already processed", StatusCodes.BAD_REQUEST)
         }
-        const model = await modelRepository.create({name: request.name,  brandId: request.brandId});
+        const model = await modelRepository.create({name: request.name,   brandId:brand.id.toString()});
         await requestRepository.updateModelRequest(id, {status:RequestStatus.approved});
         return model
+     }
+
+     public async rejectBrandRequest (id:string):Promise<IBrandRequest | null>{
+        const request = await requestRepository.getBrandRequestById(id);
+        if (!request){
+            throw new apiError("Request not found", StatusCodes.NOT_FOUND)
+        }
+         if(request.status !== RequestStatus.pending){
+             throw new apiError("Request already processed", StatusCodes.BAD_REQUEST)
+         }
+          return  await requestRepository.updateBrandRequest(id, {status: RequestStatus.rejected});
+     }
+
+     public async rejectModelRequest (id:string):Promise<IModelRequest | null>{
+        const request = await requestRepository.getModelRequestById(id);
+         if (!request){
+             throw new apiError("Request not found", StatusCodes.NOT_FOUND)
+         }
+         if(request.status !== RequestStatus.pending){
+             throw new apiError("Request already processed", StatusCodes.BAD_REQUEST)
+         }
+         return await requestRepository.updateModelRequest(id, {status: RequestStatus.rejected})
      }
 }
 

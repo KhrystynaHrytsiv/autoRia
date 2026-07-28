@@ -2,18 +2,21 @@ import {CreateModelDto, IModel} from "../interfaces/IBrand";
 import {modelRepository} from "../repositories/modelRepository";
 import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
-import {textService} from "./textService";
+import {brandRepository} from "../repositories/brandRepository";
 
 class ModelService{
     public getAll (brandId:string):Promise<IModel[]>{
         return modelRepository.getAll(brandId)
     }
     public async create (dto:CreateModelDto):Promise<IModel>{
-        const name = textService.unifyWords(dto.name)
-        return await modelRepository.create({...dto, name});
+        const brand = await brandRepository.getByName(dto.brand);
+        if(!brand){
+            throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
+        }
+        return modelRepository.create({name:dto.name, brandId:brand.id.toString()});
     }
-    public async getIdByName(name:string, brandId:string):Promise<string>{
-        const model = await modelRepository.getByName(name, brandId);
+    public async getIdByName(name:string):Promise<string>{
+        const model = await modelRepository.getByName(name);
         if(!model){
             throw new apiError("Model not found", StatusCodes.NOT_FOUND)
         }

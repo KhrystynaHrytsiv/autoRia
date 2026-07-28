@@ -1,6 +1,6 @@
 import {model, Schema} from "mongoose";
-import {Brand} from "./brandModel";
 import {IModel} from "../interfaces/IBrand";
+import {Brand} from "./brandModel";
 
 const modelSchema = new Schema({
     name: {type:String, required:true},

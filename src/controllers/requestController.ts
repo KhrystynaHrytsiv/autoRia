@@ -59,5 +59,23 @@ class RequestController {
             next(e)
         }
     }
+    public async rejectBrandRequest(req:Request, res:Response, next:NextFunction){
+        try{
+            const id = req.params.id as string;
+            const request = await requestService.rejectBrandRequest(id);
+            res.status(StatusCodes.OK).json(request)
+        }catch (e) {
+            next(e)
+        }
+    }
+    public async rejectModelRequest(req:Request, res:Response, next:NextFunction){
+        try{
+            const id = req.params.id as string;
+            const request = await requestService.rejectModelRequest(id);
+            res.status(StatusCodes.OK).json(request)
+        }catch (e) {
+            next(e)
+        }
+    }
 }
 export const requestController = new RequestController();

@@ -24,10 +24,10 @@ class RequestRepository {
     }
 
     public updateBrandRequest (id:string, dto:Partial<IBrandRequest>):Promise<IBrandRequest | null>{
-        return BrandRequest.findByIdAndUpdate(id, dto)
+        return BrandRequest.findByIdAndUpdate(id, dto, {returnDocument: "after"})
     }
     public updateModelRequest (id:string, dto:Partial<IModelRequest>):Promise<IModelRequest | null>{
-        return ModelRequest.findByIdAndUpdate(id, dto)
+        return ModelRequest.findByIdAndUpdate(id, dto, {returnDocument: "after"})
     }
 }
 

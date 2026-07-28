@@ -8,6 +8,9 @@ interface IModel{
     name:string,
     brandId:string
 }
-type CreateModelDto = Pick<IModel, "name" | "brandId">;
-
-export type {IBrand, IModel, CreateModelDto}
+type CreateModelDto = {
+    name:string,
+    brand:string
+}
+type CreateModelDbDto = Pick<IModel, "name" | "brandId">
+export type {IBrand, IModel, CreateModelDto, CreateModelDbDto}

@@ -14,11 +14,10 @@ class AdvertService {
     public async prepareAdvert (dto: createAdvertDto| updateAdvertDto) {
         const data: any = {...dto};
         if(dto.brand){
-            const brandId = await brandService.getIdByName(dto.brand);
-            data.brand = brandId;
-            if(dto.model){
-                data.model = await modelService.getIdByName(dto.model, brandId);
-            }
+            data.brand = await brandService.getIdByName(dto.brand);
+        }
+        if(dto.model){
+            data.model = await modelService.getIdByName(dto.model);
         }
         if (dto.price) {
             data.price = await currencyService.convertCurrency(dto.price)
@@ -76,7 +75,7 @@ class AdvertService {
         }
         const counts = await advertRepository.countAdverts(userId);
         if (counts >= 1){
-            throw new apiError("Basic account can crete only one advertisment", StatusCodes.FORBIDDEN)
+            throw new apiError("Basic account can crete only one advertisement", StatusCodes.FORBIDDEN)
         }
 
     }

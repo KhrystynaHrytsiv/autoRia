@@ -2,15 +2,13 @@ import {IBrand} from "../interfaces/IBrand";
 import {brandRepository} from "../repositories/brandRepository";
 import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
-import {textService} from "./textService";
 
 class BrandService {
     public getAll ():Promise<IBrand[]>{
         return brandRepository.getAll()
     }
     public async create (dto:{name:string}):Promise<IBrand>{
-        const name = textService.unifyWords(dto.name);
-        const brand = await brandRepository.create({name});
+        const brand = await brandRepository.create(dto);
         if (!brand){
             throw new apiError("Brand fot found ", StatusCodes.NOT_FOUND)
         }

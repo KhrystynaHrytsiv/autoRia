@@ -10,12 +10,9 @@ export interface IBrandRequest {
 export interface IModelRequest {
     id:string,
     userId:string,
-    brandId:string,
+    brand:string,
     name:string,
     status:RequestStatus
 }
 export type createBrandReq = Pick<IBrandRequest, "name">
-export interface createModelReq {
-    brand:string;
-    name:string;
-}
+export type createModelReq = Pick<IModelRequest, "brand" | "name">
