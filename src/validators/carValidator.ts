@@ -9,6 +9,7 @@ export class CarValidator{
     })
 
     public static createModel = joi.object({
-        name: this.model.required()
+        name: this.model.required(),
+        brand: this.brand.required()
     })
 }

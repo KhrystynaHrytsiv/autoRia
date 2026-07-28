@@ -1,4 +1,5 @@
 import {RolesEnum} from "../enums/rolesEnum";
+import {AccountTypeEnum} from "../enums/accountTypeEnum";
 
 interface IUser{
     id:string,
@@ -6,7 +7,7 @@ interface IUser{
     email:string,
     password:string,
     role: RolesEnum,
-    accountType: 'basic' | 'premium',
+    accountType: AccountTypeEnum,
     isActive:boolean;
 }
 
