@@ -8,6 +8,9 @@ import {brandService} from "./brandService";
 import {modelService} from "./modelService";
 import {userService} from "./userService";
 import {AccountTypeEnum} from "../enums/accountTypeEnum";
+import {textModerationService} from "./textModerationService";
+import {AdvertStatus} from "../enums/advertStatus";
+import {notificationService} from "./notificationService";
 
 
 class AdvertService {
@@ -24,11 +27,18 @@ class AdvertService {
         }
         return data
     }
+
     public async create(userId:string, dto:createAdvertDto):Promise<IAdvert>{
         await this.checkAdvertLimit(userId)
-        const advertData = await this.prepareAdvert(dto)
-        return advertRepository.create(advertData);
+        const advertData = await this.prepareAdvert(dto);
+        advertData.userId = userId;
+        const status = textModerationService.check(`${dto.title} ${dto.description}`)
+            ? advertData.status = AdvertStatus.pending
+            : advertData.status = AdvertStatus.active;
+
+        return advertRepository.create(userId, {...advertData, status});
     }
+
     public getAll():Promise<IAdvert[]>{
         return advertRepository.getAll()
     }
@@ -49,12 +59,29 @@ class AdvertService {
             throw new apiError('No have permission as is owner', StatusCodes.FORBIDDEN)
         }
     }
-    public async update(id:string, userId:string, dto:updateAdvertDto, role:RolesEnum):Promise<IAdvert | null>{
+    public async update(id:string, userId:string, dto:Partial<IAdvert>, role:RolesEnum):Promise<IAdvert | null>{
         if (role !== RolesEnum.ADMIN) {
             await this.isOwner(id, userId);
         }
-        const advertData = await this.prepareAdvert(dto)
-        return advertRepository.update(id, advertData);
+        const advert = await advertRepository.getById(id);
+        if(!advert){
+            throw new apiError("Advertisement not found", StatusCodes.NOT_FOUND);
+        }
+        const advertData = await this.prepareAdvert(dto);
+        const hasBadWords = textModerationService.check(`${dto.title} ${dto.description}`);
+        if(hasBadWords){
+            const attempts = advert.attempts ?? 0;
+            const newAttempt = attempts + 1;
+            if(newAttempt >= 3){
+                const updatedAdvert = await advertRepository.update(id, {...advertData, status: AdvertStatus.inactive, attempts: newAttempt});
+                if (updatedAdvert){
+                    await notificationService.sendToManager(updatedAdvert);
+                }
+                throw new apiError("Advertisement blocked after 3 attempts", StatusCodes.BAD_REQUEST);
+            }
+            return advertRepository.update(id, {...advertData, status:AdvertStatus.needsEdit, attempts: newAttempt});
+        }
+        return advertRepository.update(id, {...advertData,  status:AdvertStatus.active,  attempts: advert.attempts});
     }
 
     public async delete (id:string, userId:string, role:RolesEnum):Promise<void>{

@@ -4,7 +4,7 @@ import {CurrencyEnum} from "../enums/currencyEnum";
 export class AdvertValidator{
     private static title = joi.string().min(1).max(20);
     private static description = joi.string().min(3).max(200);
-    private static brand = joi.string().min(1).max(24);
+    private static brand = joi.string().min(3).max(24);
     private static model = joi.string().min(1).max(24);
     private static year = joi.number().min(1980).max(new Date().getFullYear());
     private static price = joi.object({

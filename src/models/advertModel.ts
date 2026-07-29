@@ -30,6 +30,7 @@ const advertSchema = new Schema({
     },
     year: {type: Number, required:true },
     status: {type: String, enum: RequestStatus, required: true, default: RequestStatus.pending},
+    attempts:{type:Number, default: 0},
 },
     {timestamps: true, versionKey:false});
 

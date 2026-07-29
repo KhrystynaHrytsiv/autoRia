@@ -1,9 +1,9 @@
-import {createAdvertDto, IAdvert, updateAdvertDto} from "../interfaces/IAdvert";
+import {createAdvertDto, IAdvert} from "../interfaces/IAdvert";
 import {Advertisement} from "../models/advertModel";
 
 class AdvertRepository{
-    public async create(dto:createAdvertDto):Promise<IAdvert>{
-        return  await Advertisement.create(dto);
+    public async create(userId:string, dto:createAdvertDto):Promise<IAdvert>{
+        return  await Advertisement.create({...dto, userId});
     }
     public getById(id:string):Promise<IAdvert | null>{
         return Advertisement.findById(id)
@@ -11,7 +11,7 @@ class AdvertRepository{
     public getAll():Promise<IAdvert[]>{
         return Advertisement.find()
     }
-    public update(id:string, dto:updateAdvertDto):Promise<IAdvert | null>{
+    public update(id:string, dto:Partial<IAdvert>):Promise<IAdvert | null>{
         return Advertisement.findByIdAndUpdate(id, dto, {returnDocument:"after"})
     }
     public delete (id:string):Promise<IAdvert | null>{
