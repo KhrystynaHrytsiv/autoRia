@@ -15,6 +15,9 @@ class UserRepository {
     public async create (user:IUserCreateDto & {role:RolesEnum}):Promise<IUser>{
         return User.create(user)
     }
+    public async update (id:string, dto:Partial<IUser>):Promise<IUser | null>{
+        return User.findByIdAndUpdate(id, dto)
+    }
    public async blockUser (id:string):Promise<IUser | null>{
         return User.findByIdAndUpdate(id, {isActive: false}, { returnDocument: "after" })
    }

@@ -4,6 +4,8 @@ import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
 import {RolesEnum} from "../enums/rolesEnum";
 import {passwordService} from "./passwordService";
+import {AccountTypeEnum} from "../enums/accountTypeEnum";
+import {notificationService} from "./notificationService";
 
 class UserService{
     async getAll ():Promise<IUser[]>{
@@ -46,6 +48,14 @@ class UserService{
         }
         return user
 
+    }
+    public async changeToPremiumAccount (id:string):Promise<IUser | null>{
+        const user = await userRepository.update(id, {accountType: AccountTypeEnum.PREMIUM});
+        if (!user){
+            throw new apiError("User not found", StatusCodes.NOT_FOUND)
+        }
+        await notificationService.premiumAccount(user);
+        return user
     }
 }
 export const userService = new UserService();

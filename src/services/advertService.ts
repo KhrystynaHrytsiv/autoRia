@@ -11,6 +11,7 @@ import {AccountTypeEnum} from "../enums/accountTypeEnum";
 import {textModerationService} from "./textModerationService";
 import {AdvertStatus} from "../enums/advertStatus";
 import {notificationService} from "./notificationService";
+import {advertViewRepository} from "../repositories/advertViewRepository";
 
 
 class AdvertService {
@@ -47,6 +48,8 @@ class AdvertService {
         if(!advert){
             throw new apiError("Advertisement not found", StatusCodes.NOT_FOUND)
         }
+        await advertRepository.incrementViews(id);
+        await advertViewRepository.create(id);
         return advert
     }
     public async isOwner (advertId: string, userId: string){

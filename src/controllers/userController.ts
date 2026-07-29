@@ -57,5 +57,14 @@ class UserController{
             next(e)
         }
     }
+    public async changeToPremiumAccount (req:Request, res:Response, next:NextFunction){
+        try{
+            const {userId} = res.locals.tokenPayload as ITokenPayload;
+            const user = await userService.changeToPremiumAccount(userId);
+            res.status(StatusCodes.OK).json(user)
+        }catch (e) {
+            next(e)
+        }
+    }
 }
 export const userController = new UserController();

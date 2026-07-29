@@ -20,5 +20,8 @@ class AdvertRepository{
     public countAdverts(userId:string):Promise<number>{
         return Advertisement.countDocuments({userId})
     }
+    public incrementViews (advertId:string){
+        return Advertisement.findByIdAndUpdate(advertId, {$inc:{views: 1}}, {returnDocument: "after"});
+    }
 }
 export const advertRepository = new AdvertRepository();

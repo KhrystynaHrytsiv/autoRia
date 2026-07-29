@@ -2,6 +2,7 @@ import {NextFunction, Request, Response} from "express"
 import {advertService} from "../services/advertService";
 import {StatusCodes} from "../enums/statusCodes";
 import {ITokenPayload} from "../interfaces/IToken";
+import {statisticService} from "../services/statisticService";
 
 class AdvertController {
     public async create (req:Request, res:Response, next:NextFunction){
@@ -48,6 +49,15 @@ class AdvertController {
             const id = req.params.id as string;
             const advert = await advertService.delete(id, userId, role);
             res.status(StatusCodes.NO_CONTENT).json(advert)
+        }catch (e) {
+            next(e)
+        }
+    }
+    public async getStatistics (req:Request, res:Response, next:NextFunction){
+        try {
+            const id = req.params.id as string;
+            const views = await statisticService.getStatistics(id);
+            res.status(StatusCodes.OK).json(views)
         }catch (e) {
             next(e)
         }

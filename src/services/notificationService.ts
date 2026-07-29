@@ -8,6 +8,7 @@ import {config} from "../configs/config";
 import {userRepository} from "../repositories/userRepository";
 import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
+import {IUser} from "../interfaces/IUser";
 
 class NotificationService {
     public async sendCreateRequest (userId:string, request:IBrandRequest | IModelRequest){
@@ -23,7 +24,11 @@ class NotificationService {
         if(!manager){
             throw new apiError("Manager not found", StatusCodes.NOT_FOUND)
         }
-       await emailService.sendEmail(manager.email, emailConstants[EmailEnum.blockedAdvert], {name:manager.name ,advert: advert.id})
+       await emailService.sendEmail(manager.email, emailConstants[EmailEnum.invalidAdvert], {name:manager.name ,advert: advert.id})
+    }
+
+    public async premiumAccount (user:IUser){
+        await emailService.sendEmail(user.email, emailConstants[EmailEnum.premium], {name: user.name})
     }
 }
 export const notificationService = new NotificationService();

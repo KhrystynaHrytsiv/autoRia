@@ -29,9 +29,9 @@ export const emailConstants: IEmailConstants <typeof EmailEnum> = {
         subject: "Unblocked Account",
         template: 'unblocked'
     },
-    [EmailEnum.blockedAdvert]:{
-        subject: 'Advertisement blocked',
-        template: 'blockedAdvert'
+    [EmailEnum.invalidAdvert]:{
+        subject: 'Invalid Advertisement',
+        template: 'invalidAdvert'
     },
 }
 export type { EmailDataType, IEmailConstants };

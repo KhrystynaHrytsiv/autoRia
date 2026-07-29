@@ -4,6 +4,6 @@ export enum EmailEnum {
     statusRequest="statusRequest",
     blockedAccount="blockedAccount",
     unblockedAccount="unblockedAccount",
-    blockedAdvert="blockedAdvert"
+    invalidAdvert="invalidAdvert"
 
 }

@@ -1,4 +1,4 @@
-import {createPriceDto, IPrice} from "./IPrice";
+import {IPrice} from "./IPrice";
 import {AdvertStatus} from "../enums/advertStatus";
 
 
@@ -11,18 +11,16 @@ interface IAdvert {
     price:IPrice
     year:number,
     description:string,
+    location:{
+        region:string,
+        country:string
+    },
     status: AdvertStatus,
-    attempts:number
+    attempts:number,
+    views:number
 }
 
-interface createAdvertDto {
-    title: string;
-    brand: string;
-    model: string;
-    year: number;
-    price: createPriceDto;
-    description: string;
-}
+type createAdvertDto = Pick<IAdvert, "title" | "description" | "brand" | "model" | "year" | "price" | "location">
 
 type updateAdvertDto = Partial <createAdvertDto>;
 export type{createAdvertDto, updateAdvertDto, IAdvert}

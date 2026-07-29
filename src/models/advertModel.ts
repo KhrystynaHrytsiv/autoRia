@@ -3,8 +3,8 @@ import {IAdvert} from "../interfaces/IAdvert";
 import {User} from "./userModel";
 import {Brand} from "./brandModel";
 import {Model} from "./modelModel";
-import {RequestStatus} from "../enums/requestStatus";
 import {CurrencyEnum} from "../enums/currencyEnum";
+import {AdvertStatus} from "../enums/advertStatus";
 
 const advertSchema = new Schema({
     userId: {type:Schema.Types.ObjectId, required: true, ref: User},
@@ -29,8 +29,13 @@ const advertSchema = new Schema({
         },
     },
     year: {type: Number, required:true },
-    status: {type: String, enum: RequestStatus, required: true, default: RequestStatus.pending},
+    location: {
+        region: {type:String, required:true},
+        country: {type:String, default: "Ukraine"},
+    },
+    status: {type: String, enum:AdvertStatus , required: true, default:AdvertStatus.pending},
     attempts:{type:Number, default: 0},
+    views:{type:Number, default:0}
 },
     {timestamps: true, versionKey:false});
 
