@@ -1,0 +1,410 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="56ed94be-a6fb-4f2c-8957-89235fae4bbc" name="Changes" comment="connect docker">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/6a6b8080d88a300f0d0f8f1d_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/6a6b80818fa5fe1140108cf0_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/6a6b80825e36328cff969e8b_log" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/config" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/mongosh_repl_history" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTiger" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTiger.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTiger.turtle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTiger.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTigerHS.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/_mdb_catalog.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTiger" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTiger.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTiger.turtle" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTiger.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTigerHS.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-1999cde0-c1ba-4f55-a0d3-a39363971e31.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-34368551-73ad-42d2-8993-32840bcb762b.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-4239558c-02a8-46a2-ae40-4974030b9ed3.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-4ff948d7-1f53-4560-b3a9-d82895b82141.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-5f9ca8dc-4406-4c7b-a1dc-e155093dba1e.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-6406e0ac-257c-40b9-84bf-c0397a7c985a.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-6cb8d5c3-c763-4f5a-9172-28df305b344a.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-74e2ac7c-d31f-425e-a718-6757ffb0f03d.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-79938e14-980d-4a21-9e59-80ef79db858b.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-8d04ffce-9b89-4c8a-a0bb-af3f640f86b1.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-91427b7b-d607-4f7a-9309-f8a318f533d0.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-a6085ab9-04f1-4d37-8430-0879610b1923.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/collection-efb70984-29bf-4868-84f6-33471dff69fb.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T16-49-04Z-00000" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T16-49-28Z-00000" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T16-52-03Z-00000" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T17-08-43Z-00000" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T17-29-30Z-00000" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.interim" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-19398f93-b04d-4a7e-8419-4cbc9c8e2ba5.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-20400bba-e074-4da1-946b-79699da34606.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-685623bb-a113-4a4f-b9fb-78ea659151b9.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-7a209193-047f-415a-aa77-7e5fd8cf95ef.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-8853e4c1-40a6-46e0-8c8b-88c9c3d9de5a.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-8fade90b-8ed8-4987-9a62-329feca40e9c.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-8faf6144-28d0-4a85-8d53-03fcd8e3006c.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-a3f5341d-75cd-4a25-9929-afcd8d9e2fd6.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-db93a27b-d4a3-4bc4-9a6d-e63b7b7c3ad7.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-df6fecae-2fdb-4993-9817-15d064e5470e.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-e1528cdc-28f7-4b0b-86c7-0f26d7947043.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-f42ba1ac-fa55-4970-87e3-af0b6db89524.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-fa8d5638-79c5-4da1-a8bf-eafcca7ecc5c.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-fbefb12d-6fe9-4f0a-93d6-7d6d4a98a235.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/index-fd97c102-a1bf-4241-a7e9-a20dfabbb7a2.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/journal/WiredTigerLog.0000000005" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/journal/WiredTigerPreplog.0000000001" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/mongod.lock" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/sizeStorer.wt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/mongo-db/storage.bson" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="TypeScript JSX File" />
+        <option value="TypeScript File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;KhrystynaHrytsiv&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/KhrystynaHrytsiv/autoRia.git&quot;,
+    &quot;accountId&quot;: &quot;545db27f-e338-48a8-b09e-2c31aedc1e58&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3GUMh7yCWlqBcFJJNt6SMrQ9WTv" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.tokenService.ts.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.15.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.13.3&quot;,
+    &quot;js.last.introduce.type&quot;: &quot;CONST&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/Христина&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Projects\\autoRia\\backend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;
+    ]
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\Projects\autoRia\backend" />
+      <recent name="D:\Projects\autoRia\src" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="tokenService.ts" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/backend/src/services/tokenService.ts" typescript-loader="bundled" working-dir="$PROJECT_DIR$/backend/src/services">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Node.js.tokenService.ts" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-d6986cc7102b-e768b9ed790e-JavaScript-WS-243.21565.180" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="56ed94be-a6fb-4f2c-8957-89235fae4bbc" name="Changes" comment="" />
+      <created>1784021812039</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1784021812039</updated>
+      <workItem from="1784021812876" duration="12949000" />
+      <workItem from="1784111260134" duration="601000" />
+      <workItem from="1784134326612" duration="11250000" />
+      <workItem from="1784187324102" duration="7112000" />
+      <workItem from="1784276324541" duration="355000" />
+      <workItem from="1784616875801" duration="12353000" />
+      <workItem from="1784635795045" duration="7139000" />
+      <workItem from="1784743689113" duration="8220000" />
+      <workItem from="1784795397528" duration="12992000" />
+      <workItem from="1784830294217" duration="452000" />
+      <workItem from="1784833002052" duration="1542000" />
+      <workItem from="1784877987008" duration="11142000" />
+      <workItem from="1784907819276" duration="8100000" />
+      <workItem from="1784920401750" duration="153000" />
+      <workItem from="1784921261051" duration="357000" />
+      <workItem from="1784922621403" duration="1326000" />
+      <workItem from="1785142182153" duration="7128000" />
+      <workItem from="1785149675935" duration="14619000" />
+      <workItem from="1785167369877" duration="11805000" />
+      <workItem from="1785222738541" duration="5767000" />
+      <workItem from="1785228545654" duration="1491000" />
+      <workItem from="1785230068842" duration="531000" />
+      <workItem from="1785230942231" duration="12948000" />
+      <workItem from="1785318605214" duration="8722000" />
+      <workItem from="1785327651223" duration="2365000" />
+      <workItem from="1785338389063" duration="9469000" />
+      <workItem from="1785409691676" duration="12989000" />
+      <workItem from="1785426037980" duration="3797000" />
+      <workItem from="1785430033958" duration="2887000" />
+    </task>
+    <task id="LOCAL-00001" summary="create userModel">
+      <option name="closed" value="true" />
+      <created>1784037701232</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1784037701232</updated>
+    </task>
+    <task id="LOCAL-00002" summary="authorization">
+      <option name="closed" value="true" />
+      <created>1784148536845</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1784148536845</updated>
+    </task>
+    <task id="LOCAL-00003" summary="authorization">
+      <option name="closed" value="true" />
+      <created>1784148660895</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1784148660895</updated>
+    </task>
+    <task id="LOCAL-00004" summary="start with advertisement">
+      <option name="closed" value="true" />
+      <created>1784194111068</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1784194111068</updated>
+    </task>
+    <task id="LOCAL-00005" summary="start with advertisement">
+      <option name="closed" value="true" />
+      <created>1784195346736</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1784195346736</updated>
+    </task>
+    <task id="LOCAL-00006" summary="work with brands and models">
+      <option name="closed" value="true" />
+      <created>1784626690468</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1784626690468</updated>
+    </task>
+    <task id="LOCAL-00007" summary="update models module">
+      <option name="closed" value="true" />
+      <created>1784629571680</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1784629571680</updated>
+    </task>
+    <task id="LOCAL-00008" summary="added crud operations">
+      <option name="closed" value="true" />
+      <created>1784645083596</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1784645083596</updated>
+    </task>
+    <task id="LOCAL-00009" summary="work at currencyService.ts">
+      <option name="closed" value="true" />
+      <created>1784751968027</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1784751968028</updated>
+    </task>
+    <task id="LOCAL-00010" summary="correct create advert">
+      <option name="closed" value="true" />
+      <created>1784806123441</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1784806123441</updated>
+    </task>
+    <task id="LOCAL-00011" summary="add authorization for advertisement">
+      <option name="closed" value="true" />
+      <created>1784809551786</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1784809551786</updated>
+    </task>
+    <task id="LOCAL-00012" summary="fixed error with userId">
+      <option name="closed" value="true" />
+      <created>1784830724687</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1784830724687</updated>
+    </task>
+    <task id="LOCAL-00013" summary="add currency cron">
+      <option name="closed" value="true" />
+      <created>1784885252399</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1784885252400</updated>
+    </task>
+    <task id="LOCAL-00014" summary="add currency cron">
+      <option name="closed" value="true" />
+      <created>1784885367460</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1784885367460</updated>
+    </task>
+    <task id="LOCAL-00015" summary="work ar roles and requests">
+      <option name="closed" value="true" />
+      <created>1785167416165</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1785167416165</updated>
+    </task>
+    <task id="LOCAL-00016" summary="mistake on approveModel">
+      <option name="closed" value="true" />
+      <created>1785179226462</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1785179226462</updated>
+    </task>
+    <task id="LOCAL-00017" summary="rejected requests">
+      <option name="closed" value="true" />
+      <created>1785230044604</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1785230044604</updated>
+    </task>
+    <task id="LOCAL-00018" summary="add emails to requests">
+      <option name="closed" value="true" />
+      <created>1785245588173</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1785245588173</updated>
+    </task>
+    <task id="LOCAL-00019" summary="validate bad words in advert">
+      <option name="closed" value="true" />
+      <created>1785329403096</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1785329403096</updated>
+    </task>
+    <task id="LOCAL-00020" summary="work at statistic service">
+      <option name="closed" value="true" />
+      <created>1785347866057</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1785347866057</updated>
+    </task>
+    <task id="LOCAL-00021" summary="add count averagePrice methods">
+      <option name="closed" value="true" />
+      <created>1785418349437</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1785418349437</updated>
+    </task>
+    <task id="LOCAL-00022" summary="connect docker">
+      <option name="closed" value="true" />
+      <created>1785432839186</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1785432839186</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="create userModel" />
+    <MESSAGE value="authorization" />
+    <MESSAGE value="start with advertisement" />
+    <MESSAGE value="work with brands and models" />
+    <MESSAGE value="update models module" />
+    <MESSAGE value="added crud operations" />
+    <MESSAGE value="work at currencyService.ts" />
+    <MESSAGE value="correct create advert" />
+    <MESSAGE value="add authorization for advertisement" />
+    <MESSAGE value="fixed error with userId" />
+    <MESSAGE value="add currency cron" />
+    <MESSAGE value="work ar roles and requests" />
+    <MESSAGE value="mistake on approveModel" />
+    <MESSAGE value="rejected requests" />
+    <MESSAGE value="add emails to requests" />
+    <MESSAGE value="validate bad words in advert" />
+    <MESSAGE value="work at statistic service" />
+    <MESSAGE value="add count averagePrice methods" />
+    <MESSAGE value="connect docker" />
+    <option name="LAST_COMMIT_MESSAGE" value="connect docker" />
+  </component>
+</project>
