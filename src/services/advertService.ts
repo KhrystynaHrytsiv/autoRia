@@ -107,7 +107,9 @@ class AdvertService {
         if (counts >= 1){
             throw new apiError("Basic account can crete only one advertisement", StatusCodes.FORBIDDEN)
         }
-
+    }
+    public getByIdWithoutViews(id:string){
+        return advertRepository.getById(id);
     }
 }
 export const advertService = new AdvertService();

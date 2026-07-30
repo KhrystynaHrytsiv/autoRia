@@ -12,6 +12,10 @@ export class AdvertValidator{
             value: joi.number().min(1000).max(10000000).required(),
             currency: joi.string().valid(CurrencyEnum.UAH, CurrencyEnum.USD, CurrencyEnum.EUR).required()})
     });
+    private static location = joi.object({
+        region: joi.string().min(2).max(30),
+        country: joi.string().min(2).max(30)
+    })
 
     public static createAdvert = joi.object({
         title: this.title.required(),
@@ -19,6 +23,7 @@ export class AdvertValidator{
         brand: this.brand.required(),
         model: this.model.required(),
         year: this.year.required(),
-        price: this.price.required()
+        price: this.price.required(),
+        location: this.location.required()
     })
 }

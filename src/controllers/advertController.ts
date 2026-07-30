@@ -55,9 +55,10 @@ class AdvertController {
     }
     public async getStatistics (req:Request, res:Response, next:NextFunction){
         try {
-            const id = req.params.id as string;
-            const views = await statisticService.getStatistics(id);
-            res.status(StatusCodes.OK).json(views)
+            const {userId} = res.locals.tokenPayload as ITokenPayload;
+            const advertId = req.params.id as string;
+            const statistics = await statisticService.getStatistics(advertId, userId);
+            res.status(StatusCodes.OK).json(statistics);
         }catch (e) {
             next(e)
         }
