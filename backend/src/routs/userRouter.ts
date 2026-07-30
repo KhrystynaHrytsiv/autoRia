@@ -8,6 +8,6 @@ export const userRouter = Router();
 userRouter.get('', userController.getAll)
 userRouter.get('/:id', userController.getById)
 userRouter.post('/create-manager', authMiddleware.checkAccess, authMiddleware.isAdmin, validateMiddleware.validateBody(UserValidator.create), userController.createManager)
-userRouter.patch('/block/:id', authMiddleware.checkAccess, authMiddleware.hasPermission, userController.blockUser)
-userRouter.patch('/unblock/:id', authMiddleware.checkAccess, authMiddleware.hasPermission, userController.unBlockUser)
+userRouter.patch('/:id/block', authMiddleware.checkAccess, authMiddleware.hasPermission, userController.blockUser)
+userRouter.patch('/:id/activate', authMiddleware.checkAccess, authMiddleware.hasPermission, userController.unBlockUser)
 userRouter.patch('/premium', authMiddleware.checkAccess, userController.changeToPremiumAccount)

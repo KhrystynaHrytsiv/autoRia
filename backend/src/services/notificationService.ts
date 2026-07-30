@@ -30,5 +30,11 @@ class NotificationService {
     public async premiumAccount (user:IUser){
         await emailService.sendEmail(user.email, emailConstants[EmailEnum.premium], {name: user.name})
     }
+    public async blockedAccount(user:IUser){
+        await emailService.sendEmail(user.email, emailConstants[EmailEnum.blockedAccount], {name:user.name})
+    }
+    public async activateAccount(user:IUser){
+        await emailService.sendEmail(user.email, emailConstants[EmailEnum.unblockedAccount], {name:user.name})
+    }
 }
 export const notificationService = new NotificationService();

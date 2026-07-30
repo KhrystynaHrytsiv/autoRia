@@ -1,7 +1,5 @@
 import dotenv from "dotenv";
-
 dotenv.config()
-
 interface IConfig{
     port: string
     mongo_uri : string,

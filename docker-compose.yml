@@ -1,0 +1,24 @@
+services:
+  backend:
+    build:
+      context: .
+    ports:
+      - "6000:6000"
+    env_file:
+      - .env
+    volumes:
+      - ./backend:/backend
+      - /backend/node_modules
+    restart: on-failure
+    command: npm start
+
+  db:
+    image: mongo
+    ports:
+      - "27017:27017"
+    env_file:
+      - .env.db
+    volumes:
+      - ./mongo-db:/data/db
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+    restart: on-failure

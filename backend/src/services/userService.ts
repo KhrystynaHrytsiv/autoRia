@@ -38,6 +38,7 @@ class UserService{
         if(!user){
             throw new apiError("User not found", StatusCodes.NOT_FOUND)
         }
+        await notificationService.blockedAccount(user);
         return user
 
     }
@@ -46,6 +47,7 @@ class UserService{
         if(!user){
             throw new apiError("User not found", StatusCodes.NOT_FOUND)
         }
+        await notificationService.activateAccount(user)
         return user
 
     }
