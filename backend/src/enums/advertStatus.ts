@@ -1,6 +1,6 @@
 export enum AdvertStatus{
-    pending="pending",
+    pending_edit="pending_edit",
     active = "active",
     inactive = "inactive",
-    needsEdit="needsEdit"
+
 }

@@ -33,7 +33,7 @@ const advertSchema = new Schema({
         region: {type:String, required:true},
         country: {type:String, default: "Ukraine"},
     },
-    status: {type: String, enum:AdvertStatus , required: true, default:AdvertStatus.pending},
+    status: {type: String, enum:AdvertStatus , required: true, default:AdvertStatus.pending_edit},
     attempts:{type:Number, default: 0},
     views:{type:Number, default:0}
 },

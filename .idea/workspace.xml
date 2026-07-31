@@ -5,63 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="56ed94be-a6fb-4f2c-8957-89235fae4bbc" name="Changes" comment="connect docker">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/6a6b8080d88a300f0d0f8f1d_log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/6a6b80818fa5fe1140108cf0_log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/6a6b80825e36328cff969e8b_log" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/config" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/.mongodb/mongosh/mongosh_repl_history" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTiger" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTiger.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTiger.turtle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTiger.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/WiredTigerHS.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/_mdb_catalog.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTiger" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTiger.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTiger.turtle" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTiger.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/_tmp/spilldb/WiredTigerHS.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-1999cde0-c1ba-4f55-a0d3-a39363971e31.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-34368551-73ad-42d2-8993-32840bcb762b.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-4239558c-02a8-46a2-ae40-4974030b9ed3.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-4ff948d7-1f53-4560-b3a9-d82895b82141.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-5f9ca8dc-4406-4c7b-a1dc-e155093dba1e.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-6406e0ac-257c-40b9-84bf-c0397a7c985a.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-6cb8d5c3-c763-4f5a-9172-28df305b344a.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-74e2ac7c-d31f-425e-a718-6757ffb0f03d.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-79938e14-980d-4a21-9e59-80ef79db858b.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-8d04ffce-9b89-4c8a-a0bb-af3f640f86b1.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-91427b7b-d607-4f7a-9309-f8a318f533d0.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-a6085ab9-04f1-4d37-8430-0879610b1923.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/collection-efb70984-29bf-4868-84f6-33471dff69fb.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T16-49-04Z-00000" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T16-49-28Z-00000" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T16-52-03Z-00000" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T17-08-43Z-00000" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.2026-07-30T17-29-30Z-00000" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/diagnostic.data/metrics.interim" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-19398f93-b04d-4a7e-8419-4cbc9c8e2ba5.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-20400bba-e074-4da1-946b-79699da34606.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-685623bb-a113-4a4f-b9fb-78ea659151b9.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-7a209193-047f-415a-aa77-7e5fd8cf95ef.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-8853e4c1-40a6-46e0-8c8b-88c9c3d9de5a.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-8fade90b-8ed8-4987-9a62-329feca40e9c.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-8faf6144-28d0-4a85-8d53-03fcd8e3006c.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-a3f5341d-75cd-4a25-9929-afcd8d9e2fd6.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-db93a27b-d4a3-4bc4-9a6d-e63b7b7c3ad7.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-df6fecae-2fdb-4993-9817-15d064e5470e.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-e1528cdc-28f7-4b0b-86c7-0f26d7947043.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-f42ba1ac-fa55-4970-87e3-af0b6db89524.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-fa8d5638-79c5-4da1-a8bf-eafcca7ecc5c.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-fbefb12d-6fe9-4f0a-93d6-7d6d4a98a235.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/index-fd97c102-a1bf-4241-a7e9-a20dfabbb7a2.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/journal/WiredTigerLog.0000000005" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/journal/WiredTigerPreplog.0000000001" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/mongod.lock" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/sizeStorer.wt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/mongo-db/storage.bson" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mongo-db/WiredTiger.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-db/WiredTiger.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -79,6 +24,7 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RESET_MODE" value="MIXED" />
   </component>
   <component name="GitHubPullRequestSearchHistory">{
   &quot;lastFilter&quot;: {
@@ -106,31 +52,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Node.js.tokenService.ts.executor&quot;: &quot;Debug&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
-    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.15.0&quot;,
-    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.13.3&quot;,
-    &quot;js.last.introduce.type&quot;: &quot;CONST&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/Христина&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;D:\\Projects\\autoRia\\backend\\node_modules\\typescript\\lib&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Node.js.tokenService.ts.executor": "Debug",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "master",
+    "javascript.nodejs.core.library.configured.version": "24.15.0",
+    "javascript.nodejs.core.library.typings.version": "24.13.3",
+    "js.last.introduce.type": "CONST",
+    "last_opened_file_path": "D:/Projects/autoRia",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "settings.nodejs",
+    "ts.external.directory.path": "D:\\Projects\\autoRia\\backend\\node_modules\\typescript\\lib",
+    "vue.rearranger.settings.migration": "true"
   },
-  &quot;keyToStringList&quot;: {
-    &quot;DatabaseDriversLRU&quot;: [
-      &quot;mongo&quot;
+  "keyToStringList": {
+    "DatabaseDriversLRU": [
+      "mongo"
     ]
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Projects\autoRia\backend" />
@@ -191,6 +137,7 @@
       <workItem from="1785409691676" duration="12989000" />
       <workItem from="1785426037980" duration="3797000" />
       <workItem from="1785430033958" duration="2887000" />
+      <workItem from="1785499437051" duration="259000" />
     </task>
     <task id="LOCAL-00001" summary="create userModel">
       <option name="closed" value="true" />
@@ -368,7 +315,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785432839186</updated>
     </task>
-    <option name="localTasksCounter" value="23" />
+    <task id="LOCAL-00023" summary="connect docker">
+      <option name="closed" value="true" />
+      <created>1785494339234</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1785494339234</updated>
+    </task>
+    <option name="localTasksCounter" value="24" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -379,7 +334,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="master" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>

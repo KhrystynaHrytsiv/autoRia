@@ -34,7 +34,7 @@ class AdvertService {
         const advertData = await this.prepareAdvert(dto);
         advertData.userId = userId;
         const status = textModerationService.check(`${dto.title} ${dto.description}`)
-            ? advertData.status = AdvertStatus.pending
+            ? advertData.status = AdvertStatus.pending_edit
             : advertData.status = AdvertStatus.active;
 
         return advertRepository.create(userId, {...advertData, status});
@@ -82,7 +82,7 @@ class AdvertService {
                 }
                 throw new apiError("Advertisement blocked after 3 attempts", StatusCodes.BAD_REQUEST);
             }
-            return advertRepository.update(id, {...advertData, status:AdvertStatus.needsEdit, attempts: newAttempt});
+            return advertRepository.update(id, {...advertData, status:AdvertStatus.pending_edit, attempts: newAttempt});
         }
         return advertRepository.update(id, {...advertData,  status:AdvertStatus.active,  attempts: advert.attempts});
     }
