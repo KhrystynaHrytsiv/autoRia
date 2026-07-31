@@ -1,0 +1,20 @@
+import mongoose from "mongoose";
+import {config} from "../../configs/config";
+import {brands} from "./brands";
+import {Brand} from "../../modules/car/brandModel";
+import {Model} from "../../modules/car/modelModel";
+
+const seed = async () =>{
+    await mongoose.connect(config.mongo_uri);
+    console.log('Connected');
+    await Brand.deleteMany({});
+    await Model.deleteMany({});
+    for (const brand of brands){
+        const createdBrand = await Brand.create({name: brand.name});
+        for (const model of brand.models){
+            await Model.create({name: model, brandId: createdBrand.id})
+        }
+    }
+    process.exit(0)
+}
+seed()

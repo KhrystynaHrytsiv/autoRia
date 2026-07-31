@@ -1,0 +1,115 @@
+import {createAdvertDto, IAdvert, updateAdvertDto} from "./IAdvert";
+import {advertRepository} from "./advertRepository";
+import {apiError} from "../../common/error/apiError";
+import {StatusCodes} from "../../common/enums/statusCodes";
+import {currencyService} from "../../services/currencyService";
+import {RolesEnum} from "../../common/enums/rolesEnum";
+import {brandService} from "../car/brandService";
+import {modelService} from "../car/modelService";
+import {userService} from "../user/userService";
+import {AccountTypeEnum} from "../../common/enums/accountTypeEnum";
+import {textModerationService} from "../../services/textModerationService";
+import {AdvertStatus} from "../../common/enums/advertStatus";
+import {notificationService} from "../../services/notificationService";
+import {advertViewRepository} from "../../repositories/advertViewRepository";
+
+
+class AdvertService {
+    public async prepareAdvert (dto: createAdvertDto| updateAdvertDto) {
+        const data: any = {...dto};
+        if(dto.brand){
+            data.brand = await brandService.getIdByName(dto.brand);
+        }
+        if(dto.model){
+            data.model = await modelService.getIdByName(dto.model);
+        }
+        if (dto.price) {
+            data.price = await currencyService.convertCurrency(dto.price)
+        }
+        return data
+    }
+
+    public async create(userId:string, dto:createAdvertDto):Promise<IAdvert>{
+        await this.checkAdvertLimit(userId)
+        const advertData = await this.prepareAdvert(dto);
+        advertData.userId = userId;
+        const status = textModerationService.check(`${dto.title} ${dto.description}`)
+            ? advertData.status = AdvertStatus.pending
+            : advertData.status = AdvertStatus.active;
+
+        return advertRepository.create(userId, {...advertData, status});
+    }
+
+    public getAll():Promise<IAdvert[]>{
+        return advertRepository.getAll()
+    }
+    public async getById(id:string):Promise<IAdvert | null>{
+        const advert = await advertRepository.getById(id);
+        if(!advert){
+            throw new apiError("Advertisement not found", StatusCodes.NOT_FOUND)
+        }
+        await advertRepository.incrementViews(id);
+        await advertViewRepository.create(id);
+        return advert
+    }
+    public async isOwner (advertId: string, userId: string){
+        const advert = await advertRepository.getById(advertId);
+        if (!advert){
+            throw new apiError("Advertisement not found", StatusCodes.NOT_FOUND)
+        }
+        const isOwner = advert.userId.toString() === userId;
+        if (!isOwner){
+            throw new apiError('No have permission as is owner', StatusCodes.FORBIDDEN)
+        }
+    }
+    public async update(id:string, userId:string, dto:Partial<IAdvert>, role:RolesEnum):Promise<IAdvert | null>{
+        if (role !== RolesEnum.ADMIN) {
+            await this.isOwner(id, userId);
+        }
+        const advert = await advertRepository.getById(id);
+        if(!advert){
+            throw new apiError("Advertisement not found", StatusCodes.NOT_FOUND);
+        }
+        const advertData = await this.prepareAdvert(dto);
+        const hasBadWords = textModerationService.check(`${dto.title} ${dto.description}`);
+        if(hasBadWords){
+            const attempts = advert.attempts ?? 0;
+            const newAttempt = attempts + 1;
+            if(newAttempt >= 3){
+                const updatedAdvert = await advertRepository.update(id, {...advertData, status: AdvertStatus.inactive, attempts: newAttempt});
+                if (updatedAdvert){
+                    await notificationService.sendToManager(updatedAdvert);
+                }
+                throw new apiError("Advertisement blocked after 3 attempts", StatusCodes.BAD_REQUEST);
+            }
+            return advertRepository.update(id, {...advertData, status:AdvertStatus.needsEdit, attempts: newAttempt});
+        }
+        return advertRepository.update(id, {...advertData,  status:AdvertStatus.active,  attempts: advert.attempts});
+    }
+
+    public async delete (id:string, userId:string, role:RolesEnum):Promise<void>{
+        const hasPermission = role === RolesEnum.MANAGER || role === RolesEnum.ADMIN;
+        if(!hasPermission){
+            await this.isOwner(id, userId);
+        }
+        await advertRepository.delete(id);
+    }
+
+    public async checkAdvertLimit(userId:string){
+        const user = await userService.getById(userId);
+        if(!user){
+            throw new apiError("User not found", StatusCodes.NOT_FOUND)
+        }
+        if (user.accountType === AccountTypeEnum.PREMIUM){
+            return
+        }
+        const counts = await advertRepository.countAdverts(userId);
+        if (counts >= 1){
+            throw new apiError("Basic account can crete only one advertisement", StatusCodes.FORBIDDEN)
+        }
+    }
+    public getByIdWithoutViews(id:string){
+        return advertRepository.getById(id);
+    }
+}
+export const advertService = new AdvertService();

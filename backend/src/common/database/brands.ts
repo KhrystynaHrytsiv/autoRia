@@ -1,0 +1,395 @@
+export const brands = [
+    {
+        name: "BMW",
+        models: [
+            "1 Series",
+            "2 Series",
+            "3 Series",
+            "4 Series",
+            "5 Series",
+            "6 Series",
+            "7 Series",
+            "X1",
+            "X3",
+            "X5",
+            "X6",
+            "X7",
+            "M3",
+            "M5"
+        ]
+    },
+    {
+        name: "Audi",
+        models: [
+            "A1",
+            "A3",
+            "A4",
+            "A5",
+            "A6",
+            "A7",
+            "A8",
+            "Q2",
+            "Q3",
+            "Q5",
+            "Q7",
+            "Q8",
+            "TT",
+            "R8"
+        ]
+    },
+    {
+        name: "Mercedes-Benz",
+        models: [
+            "A-Class",
+            "B-Class",
+            "C-Class",
+            "E-Class",
+            "S-Class",
+            "CLA",
+            "CLS",
+            "GLA",
+            "GLB",
+            "GLC",
+            "GLE",
+            "GLS",
+            "G-Class"
+        ]
+    },
+    {
+        name: "Volkswagen",
+        models: [
+            "Golf",
+            "Passat",
+            "Polo",
+            "Jetta",
+            "Arteon",
+            "Tiguan",
+            "Touareg",
+            "T-Roc",
+            "Touran",
+            "Caddy",
+            "Transporter"
+        ]
+    },
+    {
+        name: "Toyota",
+        models: [
+            "Corolla",
+            "Camry",
+            "RAV4",
+            "Land Cruiser",
+            "Highlander",
+            "Yaris",
+            "Prius",
+            "Avalon",
+            "Hilux",
+            "C-HR"
+        ]
+    },
+    {
+        name: "Honda",
+        models: [
+            "Civic",
+            "Accord",
+            "CR-V",
+            "HR-V",
+            "Pilot",
+            "Jazz",
+            "City",
+            "Insight",
+            "Odyssey"
+        ]
+    },
+    {
+        name: "Ford",
+        models: [
+            "Focus",
+            "Fiesta",
+            "Mondeo",
+            "Mustang",
+            "Puma",
+            "Kuga",
+            "Explorer",
+            "Edge",
+            "Ranger",
+            "Transit"
+        ]
+    },
+    {
+        name: "Nissan",
+        models: [
+            "Qashqai",
+            "X-Trail",
+            "Juke",
+            "Leaf",
+            "Navara",
+            "Pathfinder",
+            "Micra",
+            "Altima",
+            "Maxima"
+        ]
+    },
+    {
+        name: "Hyundai",
+        models: [
+            "i10",
+            "i20",
+            "i30",
+            "Elantra",
+            "Sonata",
+            "Tucson",
+            "Santa Fe",
+            "Kona",
+            "Palisade"
+        ]
+    },
+    {
+        name: "Kia",
+        models: [
+            "Rio",
+            "Ceed",
+            "Optima",
+            "K5",
+            "Sportage",
+            "Sorento",
+            "Picanto",
+            "Stinger",
+            "Carnival"
+        ]
+    },
+    {
+        name: "Skoda",
+        models: [
+            "Fabia",
+            "Octavia",
+            "Superb",
+            "Scala",
+            "Kamiq",
+            "Karoq",
+            "Kodiaq",
+            "Rapid"
+        ]
+    },
+    {
+        name: "Renault",
+        models: [
+            "Clio",
+            "Megane",
+            "Laguna",
+            "Talisman",
+            "Captur",
+            "Kadjar",
+            "Koleos",
+            "Duster",
+            "Logan"
+        ]
+    },
+    {
+        name: "Peugeot",
+        models: [
+            "108",
+            "208",
+            "308",
+            "508",
+            "2008",
+            "3008",
+            "5008",
+            "Partner"
+        ]
+    },
+    {
+        name: "Volvo",
+        models: [
+            "S60",
+            "S90",
+            "V40",
+            "V60",
+            "V90",
+            "XC40",
+            "XC60",
+            "XC90"
+        ]
+    },
+    {
+        name: "Tesla",
+        models: [
+            "Model S",
+            "Model 3",
+            "Model X",
+            "Model Y",
+            "Cybertruck",
+            "Roadster"
+        ]
+    },
+    {
+        name: "Mazda",
+        models: [
+            "Mazda2",
+            "Mazda3",
+            "Mazda6",
+            "CX-3",
+            "CX-5",
+            "CX-30",
+            "CX-50",
+            "CX-60",
+            "MX-5"
+        ]
+    },
+    {
+        name: "Subaru",
+        models: [
+            "Impreza",
+            "Legacy",
+            "Outback",
+            "Forester",
+            "XV",
+            "BRZ",
+            "WRX"
+        ]
+    },
+    {
+        name: "Mitsubishi",
+        models: [
+            "Lancer",
+            "Outlander",
+            "Pajero",
+            "ASX",
+            "Eclipse Cross",
+            "Colt"
+        ]
+    },
+    {
+        name: "Jeep",
+        models: [
+            "Wrangler",
+            "Grand Cherokee",
+            "Cherokee",
+            "Compass",
+            "Renegade",
+            "Gladiator"
+        ]
+    },
+    {
+        name: "Land Rover",
+        models: [
+            "Range Rover",
+            "Range Rover Sport",
+            "Discovery",
+            "Discovery Sport",
+            "Defender",
+            "Evoque"
+        ]
+    },
+    {
+        name: "Porsche",
+        models: [
+            "911",
+            "718 Cayman",
+            "718 Boxster",
+            "Panamera",
+            "Macan",
+            "Cayenne",
+            "Taycan"
+        ]
+    },
+    {
+        name: "Lexus",
+        models: [
+            "IS",
+            "ES",
+            "LS",
+            "NX",
+            "RX",
+            "GX",
+            "LX",
+            "UX"
+        ]
+    },
+    {
+        name: "Alfa Romeo",
+        models: [
+            "Giulia",
+            "Giulietta",
+            "Stelvio",
+            "Tonale",
+            "4C"
+        ]
+    },
+    {
+        name: "Fiat",
+        models: [
+            "500",
+            "Panda",
+            "Tipo",
+            "Punto",
+            "Doblo",
+            "Fiorino"
+        ]
+    },
+    {
+        name: "Citroen",
+        models: [
+            "C1",
+            "C3",
+            "C4",
+            "C5",
+            "Berlingo",
+            "C3 Aircross",
+            "C5 Aircross"
+        ]
+    },
+    {
+        name: "Chevrolet",
+        models: [
+            "Cruze",
+            "Malibu",
+            "Aveo",
+            "Camaro",
+            "Corvette",
+            "Captiva",
+            "Tahoe"
+        ]
+    },
+    {
+        name: "Daewoo",
+        models: [
+            "Lanos",
+            "Nexia",
+            "Matiz",
+            "Sens",
+            "Leganza"
+        ]
+    },
+    {
+        name: "Opel",
+        models: [
+            "Astra",
+            "Corsa",
+            "Insignia",
+            "Mokka",
+            "Grandland",
+            "Zafira"
+        ]
+    },
+    {
+        name: "Dacia",
+        models: [
+            "Logan",
+            "Sandero",
+            "Duster",
+            "Spring",
+            "Jogger"
+        ]
+    },
+    {
+        name: "BYD",
+        models: [
+            "Atto 3",
+            "Dolphin",
+            "Seal",
+            "Han",
+            "Tang",
+            "Song Plus"
+        ]
+    }
+];
