@@ -13,6 +13,6 @@
     apiRouter.use('/auth', authRouter)
     apiRouter.use('/users', userRouter)
     apiRouter.use('/adverts', advertRouter)
-    apiRouter.use('/brands/:brandId/models',validateMiddleware.isValidId("brandId"), modelRouter)
     apiRouter.use('/brands', brandRouter)
+    apiRouter.use('/brands/:brandId/models',validateMiddleware.isValidId("brandId"), modelRouter)
     apiRouter.use('/requests', authMiddleware.checkAccess, requestRouter)
