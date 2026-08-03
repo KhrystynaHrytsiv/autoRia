@@ -4,20 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56ed94be-a6fb-4f2c-8957-89235fae4bbc" name="Changes" comment="add README.md">
-      <change afterPath="$PROJECT_DIR$/backend/src/validators/authValidator.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/configs/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/configs/config.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/controllers/authController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/authController.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/interfaces/IToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/interfaces/IToken.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/middlewares/authMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middlewares/authMiddleware.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routs/authRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routs/authRouter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/routs/userRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routs/userRouter.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/advertService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/advertService.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/backend/src/services/authService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/authService.ts" afterDir="false" />
-    </list>
+    <list default="true" id="56ed94be-a6fb-4f2c-8957-89235fae4bbc" name="Changes" comment="some updates with permissions" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -149,7 +136,7 @@
       <workItem from="1785430033958" duration="2887000" />
       <workItem from="1785499437051" duration="259000" />
       <workItem from="1785499763692" duration="8921000" />
-      <workItem from="1785747598279" duration="12774000" />
+      <workItem from="1785747598279" duration="13125000" />
     </task>
     <task id="LOCAL-00001" summary="create userModel">
       <option name="closed" value="true" />
@@ -359,7 +346,15 @@
       <option name="project" value="LOCAL" />
       <updated>1785509624323</updated>
     </task>
-    <option name="localTasksCounter" value="27" />
+    <task id="LOCAL-00027" summary="some updates with permissions">
+      <option name="closed" value="true" />
+      <created>1785762101920</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1785762101920</updated>
+    </task>
+    <option name="localTasksCounter" value="28" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -410,6 +405,7 @@
     <MESSAGE value="connect docker" />
     <MESSAGE value="final updating" />
     <MESSAGE value="add README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="add README.md" />
+    <MESSAGE value="some updates with permissions" />
+    <option name="LAST_COMMIT_MESSAGE" value="some updates with permissions" />
   </component>
 </project>
