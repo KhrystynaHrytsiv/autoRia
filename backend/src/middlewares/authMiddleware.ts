@@ -3,7 +3,7 @@ import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
 import {tokenService} from "../services/tokenService";
 import {TokenEnum} from "../enums/tokenEnum";
-import {ITokenPayload} from "../interfaces/IToken";
+import {IRefresh, ITokenPayload} from "../interfaces/IToken";
 import {RolesEnum} from "../enums/rolesEnum";
 
 class AuthMiddleware{
@@ -25,7 +25,23 @@ class AuthMiddleware{
             next(e)
         }
     }
-
+    public async checkRefresh (req: Request, res: Response, next: NextFunction){
+        try{
+            const {refreshToken} = req.body as IRefresh;
+            if(!refreshToken){
+                throw new apiError("No refresh token provided", StatusCodes.FORBIDDEN)
+            }
+            const tokenPayload = tokenService.verifyTokens(refreshToken, TokenEnum.REFRESH);
+            const isTokenExist = await tokenService.isTokenExist(refreshToken, TokenEnum.REFRESH);
+            if(!isTokenExist){
+                throw new apiError("Invalid token", StatusCodes.FORBIDDEN)
+            }
+            res.locals.tokenPayload = tokenPayload;
+            next()
+        }catch (e){
+            next(e)
+        }
+    }
     public isAdmin (req: Request, res: Response, next: NextFunction){
         try {
             const {role} = res.locals.tokenPayload as ITokenPayload;

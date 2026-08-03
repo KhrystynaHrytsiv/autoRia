@@ -36,18 +36,25 @@ Express.js · TypeScript · MongoDb  · JWT · Docker
 # 🚀 Запуск
 Потрібен лише Docker. У корені проєкту:
 ```bash
-git clone <repo>
-cd backend
-npm install
-docker compose up --build
+
+ git clone <repo>
+ cd backend
+ npm install
+ docker compose up --build
 ```
 ---
 
 Локальний запуск без Docker
+```bash
+
 cd backend
 npm install
+```
 Використовувати для підключення MongoDB (.env)
-MONGO_URI=mongodb://admin:admin@db:27017/autoRia
+MONGO_URI=mongodb://admin:admin@localhost:27017/autoRia
+```bash
+  npm run start
+```
 
 ---
 

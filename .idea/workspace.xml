@@ -4,9 +4,19 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="56ed94be-a6fb-4f2c-8957-89235fae4bbc" name="Changes" comment="connect docker">
+    <list default="true" id="56ed94be-a6fb-4f2c-8957-89235fae4bbc" name="Changes" comment="add README.md">
+      <change afterPath="$PROJECT_DIR$/backend/src/validators/authValidator.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env" beforeDir="false" afterPath="$PROJECT_DIR$/.env" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mongo-db/WiredTiger.lock" beforeDir="false" afterPath="$PROJECT_DIR$/mongo-db/WiredTiger.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/configs/config.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/configs/config.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/controllers/authController.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/controllers/authController.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/interfaces/IToken.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/interfaces/IToken.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/middlewares/authMiddleware.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/middlewares/authMiddleware.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routs/authRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routs/authRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/routs/userRouter.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/routs/userRouter.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/services/advertService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/advertService.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/backend/src/services/authService.ts" beforeDir="false" afterPath="$PROJECT_DIR$/backend/src/services/authService.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +27,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="TypeScript JSX File" />
-        <option value="TypeScript File" />
         <option value="JavaScript File" />
+        <option value="TypeScript File" />
       </list>
     </option>
   </component>
@@ -52,31 +62,31 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Node.js.tokenService.ts.executor": "Debug",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "RunOnceActivity.git.unshallow": "true",
-    "git-widget-placeholder": "master",
-    "javascript.nodejs.core.library.configured.version": "24.15.0",
-    "javascript.nodejs.core.library.typings.version": "24.13.3",
-    "js.last.introduce.type": "CONST",
-    "last_opened_file_path": "D:/Projects/autoRia",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "settings.nodejs",
-    "ts.external.directory.path": "D:\\Projects\\autoRia\\backend\\node_modules\\typescript\\lib",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Node.js.tokenService.ts.executor&quot;: &quot;Debug&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;javascript.nodejs.core.library.configured.version&quot;: &quot;24.15.0&quot;,
+    &quot;javascript.nodejs.core.library.typings.version&quot;: &quot;24.13.3&quot;,
+    &quot;js.last.introduce.type&quot;: &quot;CONST&quot;,
+    &quot;last_opened_file_path&quot;: &quot;D:/Projects/autoRia&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;settings.nodejs&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;D:\\Projects\\autoRia\\backend\\node_modules\\typescript\\lib&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   },
-  "keyToStringList": {
-    "DatabaseDriversLRU": [
-      "mongo"
+  &quot;keyToStringList&quot;: {
+    &quot;DatabaseDriversLRU&quot;: [
+      &quot;mongo&quot;
     ]
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="D:\Projects\autoRia\backend" />
@@ -138,6 +148,8 @@
       <workItem from="1785426037980" duration="3797000" />
       <workItem from="1785430033958" duration="2887000" />
       <workItem from="1785499437051" duration="259000" />
+      <workItem from="1785499763692" duration="8921000" />
+      <workItem from="1785747598279" duration="12774000" />
     </task>
     <task id="LOCAL-00001" summary="create userModel">
       <option name="closed" value="true" />
@@ -323,7 +335,31 @@
       <option name="project" value="LOCAL" />
       <updated>1785494339234</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="final updating">
+      <option name="closed" value="true" />
+      <created>1785500117832</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1785500117832</updated>
+    </task>
+    <task id="LOCAL-00025" summary="add README.md">
+      <option name="closed" value="true" />
+      <created>1785507884956</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1785507884956</updated>
+    </task>
+    <task id="LOCAL-00026" summary="add README.md">
+      <option name="closed" value="true" />
+      <created>1785509624323</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1785509624323</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -372,6 +408,8 @@
     <MESSAGE value="work at statistic service" />
     <MESSAGE value="add count averagePrice methods" />
     <MESSAGE value="connect docker" />
-    <option name="LAST_COMMIT_MESSAGE" value="connect docker" />
+    <MESSAGE value="final updating" />
+    <MESSAGE value="add README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="add README.md" />
   </component>
 </project>

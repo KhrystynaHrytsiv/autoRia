@@ -31,5 +31,7 @@ class AuthService{
         await tokenRepository.create({...tokenPair, userId: user.id});
         return {user, tokens:tokenPair}
     }
+
+
 }
 export const authService = new AuthService();

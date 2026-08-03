@@ -11,3 +11,4 @@ export interface ITokenPayload {
     userId:string,
     role:RolesEnum
 }
+export type IRefresh = Pick <IToken, "refreshToken">
