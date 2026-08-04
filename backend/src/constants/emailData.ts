@@ -1,4 +1,4 @@
-import {EmailEnum} from "../enums/emailEnum";
+import { EmailEnum } from "../enums/emailEnum";
 
 type EmailDataType = {
     subject: string;
@@ -8,30 +8,30 @@ type IEmailConstants<T extends Record<string, string>> = {
     [K in keyof T]: EmailDataType;
 };
 
-export const emailConstants: IEmailConstants <typeof EmailEnum> = {
-    [EmailEnum.request]:{
+export const emailConstants: IEmailConstants<typeof EmailEnum> = {
+    [EmailEnum.request]: {
         subject: "Created request",
-        template: 'request'
+        template: "request",
     },
-    [EmailEnum.premium]:{
-        subject: 'Premium Account',
-        template: "premium"
+    [EmailEnum.premium]: {
+        subject: "Premium Account",
+        template: "premium",
     },
-    [EmailEnum.statusRequest]:{
-        subject: 'Status Request',
-        template: 'statusRequest'
+    [EmailEnum.statusRequest]: {
+        subject: "Status Request",
+        template: "statusRequest",
     },
-    [EmailEnum.blockedAccount]:{
+    [EmailEnum.blockedAccount]: {
         subject: "Blocked Account",
-        template: 'blocked'
+        template: "blocked",
     },
-    [EmailEnum.unblockedAccount]:{
+    [EmailEnum.unblockedAccount]: {
         subject: "Unblocked Account",
-        template: 'activate'
+        template: "activate",
     },
-    [EmailEnum.invalidAdvert]:{
-        subject: 'Invalid Advertisement',
-        template: 'invalidAdvert'
+    [EmailEnum.invalidAdvert]: {
+        subject: "Invalid Advertisement",
+        template: "invalidAdvert",
     },
-}
+};
 export type { EmailDataType, IEmailConstants };

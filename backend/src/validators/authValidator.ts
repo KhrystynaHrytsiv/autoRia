@@ -1,9 +1,9 @@
 import joi from "joi";
 
-export class AuthValidator{
+export class AuthValidator {
     private static refresh = joi.string().trim();
 
     public static refreshToken = joi.object({
-        refreshToken: this.refresh.required()
-    })
+        refreshToken: this.refresh.required(),
+    });
 }

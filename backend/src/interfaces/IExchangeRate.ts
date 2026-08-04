@@ -1,5 +1,5 @@
-export interface IExchangeRate{
-    usd: number,
-    eur:number,
-    date:Date
+export interface IExchangeRate {
+    usd: number;
+    eur: number;
+    date: Date;
 }

@@ -1,6 +1,6 @@
-import {currencyCron} from "./currencyCron";
+import { currencyCron } from "./currencyCron";
 
-export const cronRunner = async() =>{
+export const cronRunner = async () => {
     await currencyCron.fireOnTick();
-    currencyCron.start()
-}
+    currencyCron.start();
+};

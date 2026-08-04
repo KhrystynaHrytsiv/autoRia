@@ -1,39 +1,50 @@
-import {brandRepository} from "../repositories/brandRepository";
-import {apiError} from "../error/apiError";
-import {StatusCodes} from "../enums/statusCodes";
-import {requestRepository} from "../repositories/requestRepository";
-import {modelRepository} from "../repositories/modelRepository";
-import {createBrandReq, createModelReq, IBrandRequest, IModelRequest} from "../interfaces/ICarRequest";
-import {RequestStatus} from "../enums/requestStatus";
-import {IModel} from "../interfaces/ICar";
-import {notificationService} from "./notificationService";
+import { RequestStatus } from "../enums/requestStatus";
+import { StatusCodes } from "../enums/statusCodes";
+import { apiError } from "../error/apiError";
+import { IModel } from "../interfaces/ICar";
+import {
+    createBrandReq,
+    createModelReq,
+    IBrandRequest,
+    IModelRequest,
+} from "../interfaces/ICarRequest";
+import { brandRepository } from "../repositories/brandRepository";
+import { modelRepository } from "../repositories/modelRepository";
+import { requestRepository } from "../repositories/requestRepository";
+import { notificationService } from "./notificationService";
 
 class RequestService {
-    public async createBrandRequest(userId: string, dto:createBrandReq) {
+    public async createBrandRequest(userId: string, dto: createBrandReq) {
         const isExist = await brandRepository.getByName(dto.name);
         if (isExist) {
-            throw new apiError("Brand already exists", StatusCodes.BAD_REQUEST)
+            throw new apiError("Brand already exists", StatusCodes.BAD_REQUEST);
         }
         const request = await requestRepository.createBrandRequest(userId, dto);
-        await notificationService.sendCreateRequest(userId, request)
+        await notificationService.sendCreateRequest(userId, request);
         return request;
     }
 
-    public async createModelRequest(userId: string, dto:createModelReq): Promise<IModelRequest> {
+    public async createModelRequest(
+        userId: string,
+        dto: createModelReq,
+    ): Promise<IModelRequest> {
         const isExist = await modelRepository.getByName(dto.name);
         if (isExist) {
-            throw new apiError("Model already exists", StatusCodes.BAD_REQUEST)
+            throw new apiError("Model already exists", StatusCodes.BAD_REQUEST);
         }
-        const request = await requestRepository.createModelRequest(userId,  {brand: dto.brand, name: dto.name});
+        const request = await requestRepository.createModelRequest(userId, {
+            brand: dto.brand,
+            name: dto.name,
+        });
         await notificationService.sendCreateRequest(userId, request);
-        return request
+        return request;
     }
 
-    public async getAllBrandRequests ():Promise<IBrandRequest[]>{
-        return await requestRepository.getAllBrandRequest()
+    public async getAllBrandRequests(): Promise<IBrandRequest[]> {
+        return await requestRepository.getAllBrandRequest();
     }
-    public async getAllModelRequests ():Promise<IModelRequest[]>{
-        return await requestRepository.getModelRequest()
+    public async getAllModelRequests(): Promise<IModelRequest[]> {
+        return await requestRepository.getModelRequest();
     }
 
     private async getBrandRequest(id: string): Promise<IBrandRequest> {
@@ -42,7 +53,10 @@ class RequestService {
             throw new apiError("Request not found", StatusCodes.NOT_FOUND);
         }
         if (request.status !== RequestStatus.pending) {
-            throw new apiError("Request already processed", StatusCodes.BAD_REQUEST);
+            throw new apiError(
+                "Request already processed",
+                StatusCodes.BAD_REQUEST,
+            );
         }
         return request;
     }
@@ -53,56 +67,76 @@ class RequestService {
             throw new apiError("Request not found", StatusCodes.NOT_FOUND);
         }
         if (request.status !== RequestStatus.pending) {
-            throw new apiError("Request already processed", StatusCodes.BAD_REQUEST);
+            throw new apiError(
+                "Request already processed",
+                StatusCodes.BAD_REQUEST,
+            );
         }
         return request;
     }
 
-    private async updateBrandStatus(id: string, status: RequestStatus): Promise<IBrandRequest> {
-        const request = await requestRepository.updateBrandRequest(id, { status });
+    private async updateBrandStatus(
+        id: string,
+        status: RequestStatus,
+    ): Promise<IBrandRequest> {
+        const request = await requestRepository.updateBrandRequest(id, {
+            status,
+        });
         if (!request) {
-            throw new apiError("Brand request invalid", StatusCodes.BAD_REQUEST);
+            throw new apiError(
+                "Brand request invalid",
+                StatusCodes.BAD_REQUEST,
+            );
         }
         await notificationService.sendStatusRequest(request);
         return request;
     }
-    private async updateModelStatus(id:string, status: RequestStatus):Promise<IModelRequest>{
-        const request = await requestRepository.updateModelRequest(id, {status});
-        if(!request){
-            throw new apiError("Model request invalid", StatusCodes.BAD_REQUEST)
+    private async updateModelStatus(
+        id: string,
+        status: RequestStatus,
+    ): Promise<IModelRequest> {
+        const request = await requestRepository.updateModelRequest(id, {
+            status,
+        });
+        if (!request) {
+            throw new apiError(
+                "Model request invalid",
+                StatusCodes.BAD_REQUEST,
+            );
         }
-        await notificationService.sendStatusRequest(request)
+        await notificationService.sendStatusRequest(request);
         return request;
     }
 
-     public async approveBrandRequest (id:string){
+    public async approveBrandRequest(id: string) {
         const request = await this.getBrandRequest(id);
-        const brand = await brandRepository.create({name: request.name});
-        await this.updateBrandStatus(id, RequestStatus.approved)
-        return brand
-     }
+        const brand = await brandRepository.create({ name: request.name });
+        await this.updateBrandStatus(id, RequestStatus.approved);
+        return brand;
+    }
 
-     public async approveModelRequest (id:string):Promise<IModel>{
+    public async approveModelRequest(id: string): Promise<IModel> {
         const request = await this.getModelRequest(id);
-         const brand = await brandRepository.getByName(request.brand);
-         if(!brand) {
-             throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
-         }
-        const model = await modelRepository.create(brand.id, {name: request.name});
-        await this.updateModelStatus(id, RequestStatus.approved)
-        return model
-     }
+        const brand = await brandRepository.getByName(request.brand);
+        if (!brand) {
+            throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
+        }
+        const model = await modelRepository.create(brand.id, {
+            name: request.name,
+        });
+        await this.updateModelStatus(id, RequestStatus.approved);
+        return model;
+    }
 
-     public async rejectBrandRequest (id:string):Promise<IBrandRequest>{
+    public async rejectBrandRequest(id: string): Promise<IBrandRequest> {
         await this.getBrandRequest(id);
-        return this.updateBrandStatus(id, RequestStatus.rejected );
+        return await this.updateBrandStatus(id, RequestStatus.rejected);
+    }
 
-     }
-
-     public async rejectModelRequest (id:string):Promise<IModelRequest>{
+    public async rejectModelRequest(id: string): Promise<IModelRequest> {
         await this.getModelRequest(id);
-        return this.updateModelStatus(id, RequestStatus.rejected)
-     }
+        return await this.updateModelStatus(id, RequestStatus.rejected);
+    }
 }
 
 export const requestService = new RequestService();

@@ -1,4 +1,4 @@
-import {CurrencyEnum} from "../enums/currencyEnum";
+import { CurrencyEnum } from "../enums/currencyEnum";
 
 export interface IPrice {
     original: {
@@ -15,6 +15,5 @@ export interface IPrice {
         usd: number;
         eur: number;
     };
-
 }
-export type createPriceDto = Pick<IPrice, "original">
+export type createPriceDto = Pick<IPrice, "original">;

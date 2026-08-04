@@ -1,7 +1,8 @@
 import joi from "joi";
-import {CurrencyEnum} from "../enums/currencyEnum";
 
-export class AdvertValidator{
+import { CurrencyEnum } from "../enums/currencyEnum";
+
+export class AdvertValidator {
     private static title = joi.string().min(1).max(20);
     private static description = joi.string().min(3).max(200);
     private static brand = joi.string().min(3).max(24);
@@ -10,12 +11,16 @@ export class AdvertValidator{
     private static price = joi.object({
         original: joi.object({
             value: joi.number().min(1000).max(10000000).required(),
-            currency: joi.string().valid(CurrencyEnum.UAH, CurrencyEnum.USD, CurrencyEnum.EUR).required()})
+            currency: joi
+                .string()
+                .valid(CurrencyEnum.UAH, CurrencyEnum.USD, CurrencyEnum.EUR)
+                .required(),
+        }),
     });
     private static location = joi.object({
         region: joi.string().min(2).max(30),
-        country: joi.string().min(2).max(30)
-    })
+        country: joi.string().min(2).max(30),
+    });
 
     public static createAdvert = joi.object({
         title: this.title.required(),
@@ -24,6 +29,6 @@ export class AdvertValidator{
         model: this.model.required(),
         year: this.year.required(),
         price: this.price.required(),
-        location: this.location.required()
-    })
+        location: this.location.required(),
+    });
 }

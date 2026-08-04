@@ -1,5 +1,5 @@
 export interface IAdvertView {
-    id:string,
-    advertId:string,
-    viewedAt:Date
+    id: string;
+    advertId: string;
+    viewedAt: Date;
 }

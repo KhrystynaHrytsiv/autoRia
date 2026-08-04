@@ -1,9 +1,8 @@
 export enum EmailEnum {
-    request="request",
-    premium="premium",
-    statusRequest="statusRequest",
-    blockedAccount="blockedAccount",
-    unblockedAccount="unblockedAccount",
-    invalidAdvert="invalidAdvert"
-
+    request = "request",
+    premium = "premium",
+    statusRequest = "statusRequest",
+    blockedAccount = "blockedAccount",
+    unblockedAccount = "unblockedAccount",
+    invalidAdvert = "invalidAdvert",
 }

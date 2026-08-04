@@ -1,20 +1,22 @@
+/*eslint-disable no-console*/
 import mongoose from "mongoose";
-import {config} from "../configs/config";
-import {brands} from "./brands";
-import {Brand} from "../models/brandModel";
-import {Model} from "../models/modelModel";
 
-const seed = async () =>{
+import { config } from "../configs/config";
+import { Brand } from "../models/brandModel";
+import { Model } from "../models/modelModel";
+import { brands } from "./brands";
+
+const seed = async () => {
     await mongoose.connect(config.mongo_uri);
-    console.log('Connected');
+    console.log("Connected");
     await Brand.deleteMany({});
     await Model.deleteMany({});
-    for (const brand of brands){
-        const createdBrand = await Brand.create({name: brand.name});
-        for (const model of brand.models){
-            await Model.create({name: model, brandId: createdBrand.id})
+    for (const brand of brands) {
+        const createdBrand = await Brand.create({ name: brand.name });
+        for (const model of brand.models) {
+            await Model.create({ name: model, brandId: createdBrand.id });
         }
     }
-    process.exit(0)
-}
-seed()
+    process.exit(0);
+};
+seed();

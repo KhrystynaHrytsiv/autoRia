@@ -1,35 +1,35 @@
-import {CreateModelDto, IModel} from "../interfaces/ICar";
-import {modelRepository} from "../repositories/modelRepository";
-import {apiError} from "../error/apiError";
-import {StatusCodes} from "../enums/statusCodes";
-import {brandRepository} from "../repositories/brandRepository";
+import { StatusCodes } from "../enums/statusCodes";
+import { apiError } from "../error/apiError";
+import { CreateModelDto, IModel } from "../interfaces/ICar";
+import { brandRepository } from "../repositories/brandRepository";
+import { modelRepository } from "../repositories/modelRepository";
 
-class ModelService{
-    public getAll (brandId:string):Promise<IModel[]>{
-        return modelRepository.getAll(brandId)
+class ModelService {
+    public getAll(brandId: string): Promise<IModel[]> {
+        return modelRepository.getAll(brandId);
     }
-    public async create (brandId:string, dto:CreateModelDto):Promise<IModel>{
+    public async create(brandId: string, dto: CreateModelDto): Promise<IModel> {
         const brand = await brandRepository.getById(brandId);
-        if(!brand){
+        if (!brand) {
             throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
         }
         const isModelExist = await modelRepository.getByName(dto.name);
-        if(isModelExist){
-            throw new apiError("Model already exist", StatusCodes.BAD_REQUEST)
+        if (isModelExist) {
+            throw new apiError("Model already exist", StatusCodes.BAD_REQUEST);
         }
-        return modelRepository.create(brandId, {name:dto.name});
+        return await modelRepository.create(brandId, { name: dto.name });
     }
-    public async getIdByName(name:string):Promise<string>{
+    public async getIdByName(name: string): Promise<string> {
         const model = await modelRepository.getByName(name);
-        if(!model){
-            throw new apiError("Model not found", StatusCodes.NOT_FOUND)
+        if (!model) {
+            throw new apiError("Model not found", StatusCodes.NOT_FOUND);
         }
-        return model.id.toString()
+        return model.id.toString();
     }
-    public async delete(id:string):Promise<void>{
+    public async delete(id: string): Promise<void> {
         const model = await modelRepository.getById(id);
-        if(!model){
-            throw new apiError("Model not found", StatusCodes.NOT_FOUND)
+        if (!model) {
+            throw new apiError("Model not found", StatusCodes.NOT_FOUND);
         }
         await modelRepository.delete(id);
     }

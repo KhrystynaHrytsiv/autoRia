@@ -1,12 +1,15 @@
-import {IExchangeRate} from "../interfaces/IExchangeRate";
-import {ExchangeRate} from "../models/exchangeRateModel";
+import { IExchangeRate } from "../interfaces/IExchangeRate";
+import { ExchangeRate } from "../models/exchangeRateModel";
 
-class ExchangeRateRepository{
-    public update (dto:IExchangeRate):Promise<IExchangeRate>{
-        return ExchangeRate.findOneAndUpdate({}, dto, {upsert:true, returnDocument: 'after'})
+class ExchangeRateRepository {
+    public update(dto: IExchangeRate): Promise<IExchangeRate> {
+        return ExchangeRate.findOneAndUpdate({}, dto, {
+            upsert: true,
+            returnDocument: "after",
+        });
     }
 
-    public getLatest (){
+    public getLatest() {
         return ExchangeRate.findOne();
     }
 }

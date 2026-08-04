@@ -23,7 +23,8 @@ export default [
                 module: "readonly",
                 console: "readonly",
                 setTimeout: "readonly",
-                Express: "readonly"
+                Express: "readonly",
+                fetch: "readonly"
             },
         },
         plugins: {

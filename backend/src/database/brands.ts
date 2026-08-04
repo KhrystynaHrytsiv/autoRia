@@ -15,8 +15,8 @@ export const brands = [
             "X6",
             "X7",
             "M3",
-            "M5"
-        ]
+            "M5",
+        ],
     },
     {
         name: "Audi",
@@ -34,8 +34,8 @@ export const brands = [
             "Q7",
             "Q8",
             "TT",
-            "R8"
-        ]
+            "R8",
+        ],
     },
     {
         name: "Mercedes-Benz",
@@ -52,8 +52,8 @@ export const brands = [
             "GLC",
             "GLE",
             "GLS",
-            "G-Class"
-        ]
+            "G-Class",
+        ],
     },
     {
         name: "Volkswagen",
@@ -68,8 +68,8 @@ export const brands = [
             "T-Roc",
             "Touran",
             "Caddy",
-            "Transporter"
-        ]
+            "Transporter",
+        ],
     },
     {
         name: "Toyota",
@@ -83,8 +83,8 @@ export const brands = [
             "Prius",
             "Avalon",
             "Hilux",
-            "C-HR"
-        ]
+            "C-HR",
+        ],
     },
     {
         name: "Honda",
@@ -97,8 +97,8 @@ export const brands = [
             "Jazz",
             "City",
             "Insight",
-            "Odyssey"
-        ]
+            "Odyssey",
+        ],
     },
     {
         name: "Ford",
@@ -112,8 +112,8 @@ export const brands = [
             "Explorer",
             "Edge",
             "Ranger",
-            "Transit"
-        ]
+            "Transit",
+        ],
     },
     {
         name: "Nissan",
@@ -126,8 +126,8 @@ export const brands = [
             "Pathfinder",
             "Micra",
             "Altima",
-            "Maxima"
-        ]
+            "Maxima",
+        ],
     },
     {
         name: "Hyundai",
@@ -140,8 +140,8 @@ export const brands = [
             "Tucson",
             "Santa Fe",
             "Kona",
-            "Palisade"
-        ]
+            "Palisade",
+        ],
     },
     {
         name: "Kia",
@@ -154,8 +154,8 @@ export const brands = [
             "Sorento",
             "Picanto",
             "Stinger",
-            "Carnival"
-        ]
+            "Carnival",
+        ],
     },
     {
         name: "Skoda",
@@ -167,8 +167,8 @@ export const brands = [
             "Kamiq",
             "Karoq",
             "Kodiaq",
-            "Rapid"
-        ]
+            "Rapid",
+        ],
     },
     {
         name: "Renault",
@@ -181,34 +181,16 @@ export const brands = [
             "Kadjar",
             "Koleos",
             "Duster",
-            "Logan"
-        ]
+            "Logan",
+        ],
     },
     {
         name: "Peugeot",
-        models: [
-            "108",
-            "208",
-            "308",
-            "508",
-            "2008",
-            "3008",
-            "5008",
-            "Partner"
-        ]
+        models: ["108", "208", "308", "508", "2008", "3008", "5008", "Partner"],
     },
     {
         name: "Volvo",
-        models: [
-            "S60",
-            "S90",
-            "V40",
-            "V60",
-            "V90",
-            "XC40",
-            "XC60",
-            "XC90"
-        ]
+        models: ["S60", "S90", "V40", "V60", "V90", "XC40", "XC60", "XC90"],
     },
     {
         name: "Tesla",
@@ -218,8 +200,8 @@ export const brands = [
             "Model X",
             "Model Y",
             "Cybertruck",
-            "Roadster"
-        ]
+            "Roadster",
+        ],
     },
     {
         name: "Mazda",
@@ -232,8 +214,8 @@ export const brands = [
             "CX-30",
             "CX-50",
             "CX-60",
-            "MX-5"
-        ]
+            "MX-5",
+        ],
     },
     {
         name: "Subaru",
@@ -244,8 +226,8 @@ export const brands = [
             "Forester",
             "XV",
             "BRZ",
-            "WRX"
-        ]
+            "WRX",
+        ],
     },
     {
         name: "Mitsubishi",
@@ -255,8 +237,8 @@ export const brands = [
             "Pajero",
             "ASX",
             "Eclipse Cross",
-            "Colt"
-        ]
+            "Colt",
+        ],
     },
     {
         name: "Jeep",
@@ -266,8 +248,8 @@ export const brands = [
             "Cherokee",
             "Compass",
             "Renegade",
-            "Gladiator"
-        ]
+            "Gladiator",
+        ],
     },
     {
         name: "Land Rover",
@@ -277,8 +259,8 @@ export const brands = [
             "Discovery",
             "Discovery Sport",
             "Defender",
-            "Evoque"
-        ]
+            "Evoque",
+        ],
     },
     {
         name: "Porsche",
@@ -289,42 +271,20 @@ export const brands = [
             "Panamera",
             "Macan",
             "Cayenne",
-            "Taycan"
-        ]
+            "Taycan",
+        ],
     },
     {
         name: "Lexus",
-        models: [
-            "IS",
-            "ES",
-            "LS",
-            "NX",
-            "RX",
-            "GX",
-            "LX",
-            "UX"
-        ]
+        models: ["IS", "ES", "LS", "NX", "RX", "GX", "LX", "UX"],
     },
     {
         name: "Alfa Romeo",
-        models: [
-            "Giulia",
-            "Giulietta",
-            "Stelvio",
-            "Tonale",
-            "4C"
-        ]
+        models: ["Giulia", "Giulietta", "Stelvio", "Tonale", "4C"],
     },
     {
         name: "Fiat",
-        models: [
-            "500",
-            "Panda",
-            "Tipo",
-            "Punto",
-            "Doblo",
-            "Fiorino"
-        ]
+        models: ["500", "Panda", "Tipo", "Punto", "Doblo", "Fiorino"],
     },
     {
         name: "Citroen",
@@ -335,8 +295,8 @@ export const brands = [
             "C5",
             "Berlingo",
             "C3 Aircross",
-            "C5 Aircross"
-        ]
+            "C5 Aircross",
+        ],
     },
     {
         name: "Chevrolet",
@@ -347,49 +307,23 @@ export const brands = [
             "Camaro",
             "Corvette",
             "Captiva",
-            "Tahoe"
-        ]
+            "Tahoe",
+        ],
     },
     {
         name: "Daewoo",
-        models: [
-            "Lanos",
-            "Nexia",
-            "Matiz",
-            "Sens",
-            "Leganza"
-        ]
+        models: ["Lanos", "Nexia", "Matiz", "Sens", "Leganza"],
     },
     {
         name: "Opel",
-        models: [
-            "Astra",
-            "Corsa",
-            "Insignia",
-            "Mokka",
-            "Grandland",
-            "Zafira"
-        ]
+        models: ["Astra", "Corsa", "Insignia", "Mokka", "Grandland", "Zafira"],
     },
     {
         name: "Dacia",
-        models: [
-            "Logan",
-            "Sandero",
-            "Duster",
-            "Spring",
-            "Jogger"
-        ]
+        models: ["Logan", "Sandero", "Duster", "Spring", "Jogger"],
     },
     {
         name: "BYD",
-        models: [
-            "Atto 3",
-            "Dolphin",
-            "Seal",
-            "Han",
-            "Tang",
-            "Song Plus"
-        ]
-    }
+        models: ["Atto 3", "Dolphin", "Seal", "Han", "Tang", "Song Plus"],
+    },
 ];

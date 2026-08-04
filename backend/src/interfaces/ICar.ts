@@ -1,13 +1,13 @@
 interface IBrand {
-    id:string,
-    name: string
+    id: string;
+    name: string;
 }
 
-interface IModel{
-    id:string,
-    name:string,
-    brandId:string
+interface IModel {
+    id: string;
+    name: string;
+    brandId: string;
 }
 
-type CreateModelDto = Pick<IModel, "name">
-export type {IBrand, IModel, CreateModelDto}
+type CreateModelDto = Pick<IModel, "name">;
+export type { CreateModelDto, IBrand, IModel };
