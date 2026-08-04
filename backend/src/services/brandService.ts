@@ -1,4 +1,4 @@
-import {IBrand} from "../interfaces/IBrand";
+import {IBrand} from "../interfaces/ICar";
 import {brandRepository} from "../repositories/brandRepository";
 import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
@@ -8,9 +8,13 @@ class BrandService {
         return brandRepository.getAll()
     }
     public async create (dto:{name:string}):Promise<IBrand>{
+        const isBrandExist = await brandRepository.getByName(dto.name);
+        if(isBrandExist){
+            throw new apiError("Brand already exists", StatusCodes.BAD_REQUEST)
+        }
         const brand = await brandRepository.create(dto);
         if (!brand){
-            throw new apiError("Brand fot found ", StatusCodes.NOT_FOUND)
+            throw new apiError("Brand not found ", StatusCodes.NOT_FOUND)
         }
         return brand
     }

@@ -1,5 +1,5 @@
 import {BrandRequest} from "../models/brandRequestModel";
-import type {createBrandReq, createModelReq, IBrandRequest, IModelRequest} from "../interfaces/IBrandRequest";
+import type {createBrandReq, createModelReq, IBrandRequest, IModelRequest} from "../interfaces/ICarRequest";
 import {ModelRequest} from "../models/modelRequestModel";
 
 class RequestRepository {

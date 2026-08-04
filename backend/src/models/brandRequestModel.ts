@@ -1,7 +1,7 @@
 import {model, Schema} from "mongoose";
 import {User} from "./userModel";
 import {RequestStatus} from "../enums/requestStatus";
-import {IBrandRequest} from "../interfaces/IBrandRequest";
+import {IBrandRequest} from "../interfaces/ICarRequest";
 
 const brandRequestSchema = new Schema({
     userId: {type:Schema.Types.ObjectId, ref: User, required:true},

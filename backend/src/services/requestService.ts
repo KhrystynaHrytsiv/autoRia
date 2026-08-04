@@ -3,9 +3,9 @@ import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
 import {requestRepository} from "../repositories/requestRepository";
 import {modelRepository} from "../repositories/modelRepository";
-import {createBrandReq, createModelReq, IBrandRequest, IModelRequest} from "../interfaces/IBrandRequest";
+import {createBrandReq, createModelReq, IBrandRequest, IModelRequest} from "../interfaces/ICarRequest";
 import {RequestStatus} from "../enums/requestStatus";
-import {IModel} from "../interfaces/IBrand";
+import {IModel} from "../interfaces/ICar";
 import {notificationService} from "./notificationService";
 
 class RequestService {
@@ -88,7 +88,7 @@ class RequestService {
          if(!brand) {
              throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
          }
-        const model = await modelRepository.create({name: request.name,   brandId:brand.id.toString()});
+        const model = await modelRepository.create(brand.id, {name: request.name});
         await this.updateModelStatus(id, RequestStatus.approved)
         return model
      }

@@ -1,12 +1,12 @@
-import {CreateModelDbDto, IModel} from "../interfaces/IBrand";
+import {CreateModelDto, IModel} from "../interfaces/ICar";
 import {Model} from "../models/modelModel";
 
 class ModelRepository{
-    getAll (brandId:string):Promise<IModel[]>{
+    public getAll (brandId:string):Promise<IModel[]>{
         return Model.find({brandId})
     }
-    public create (dto:CreateModelDbDto):Promise<IModel>{
-        return Model.create(dto)
+    public create (brandId:string, dto:CreateModelDto):Promise<IModel>{
+        return Model.create({name: dto.name, brandId:brandId})
     }
     public getById(id:string):Promise<IModel | null>{
         return Model.findById(id).populate("brandId");

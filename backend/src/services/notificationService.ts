@@ -2,7 +2,7 @@ import {emailService} from "./emailService";
 import {emailConstants} from "../constants/emailData";
 import {EmailEnum} from "../enums/emailEnum";
 import {userService} from "./userService";
-import {IBrandRequest, IModelRequest} from "../interfaces/IBrandRequest";
+import {IBrandRequest, IModelRequest} from "../interfaces/ICarRequest";
 import {IAdvert} from "../interfaces/IAdvert";
 import {config} from "../configs/config";
 import {userRepository} from "../repositories/userRepository";

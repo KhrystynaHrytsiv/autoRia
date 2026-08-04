@@ -1,5 +1,5 @@
 import {model, Schema} from "mongoose";
-import {IBrand} from "../interfaces/IBrand";
+import {IBrand} from "../interfaces/ICar";
 
 const brandSchema = new Schema({
     name:{type:String, required: true}

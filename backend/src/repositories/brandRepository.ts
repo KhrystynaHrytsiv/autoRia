@@ -1,4 +1,4 @@
-import {IBrand} from "../interfaces/IBrand";
+import {IBrand} from "../interfaces/ICar";
 import {Brand} from "../models/brandModel";
 
 class BrandRepository{

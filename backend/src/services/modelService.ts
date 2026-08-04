@@ -1,4 +1,4 @@
-import {CreateModelDto, IModel} from "../interfaces/IBrand";
+import {CreateModelDto, IModel} from "../interfaces/ICar";
 import {modelRepository} from "../repositories/modelRepository";
 import {apiError} from "../error/apiError";
 import {StatusCodes} from "../enums/statusCodes";
@@ -8,12 +8,16 @@ class ModelService{
     public getAll (brandId:string):Promise<IModel[]>{
         return modelRepository.getAll(brandId)
     }
-    public async create (dto:CreateModelDto):Promise<IModel>{
-        const brand = await brandRepository.getByName(dto.brand);
+    public async create (brandId:string, dto:CreateModelDto):Promise<IModel>{
+        const brand = await brandRepository.getById(brandId);
         if(!brand){
             throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
         }
-        return modelRepository.create({name:dto.name, brandId:brand.id.toString()});
+        const isModelExist = await modelRepository.getByName(dto.name);
+        if(isModelExist){
+            throw new apiError("Model already exist", StatusCodes.BAD_REQUEST)
+        }
+        return modelRepository.create(brandId, {name:dto.name});
     }
     public async getIdByName(name:string):Promise<string>{
         const model = await modelRepository.getByName(name);

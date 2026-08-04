@@ -1,5 +1,5 @@
 import {model, Schema} from "mongoose";
-import {IModel} from "../interfaces/IBrand";
+import {IModel} from "../interfaces/ICar";
 import {Brand} from "./brandModel";
 
 const modelSchema = new Schema({

@@ -16,7 +16,7 @@ class ModelController {
         try{
             const data = req.body;
             const brandId = req.params.brandId as string;
-            const model = await modelService.create({...data, brandId});
+            const model = await modelService.create(brandId, data);
             res.status(StatusCodes.CREATED).json(model)
         }catch (e) {
             next(e)
