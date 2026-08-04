@@ -1,0 +1,1592 @@
+{
+  "info": {
+    "_postman_id": "8d95c121-3de9-486a-96dc-8bbe34883e26",
+    "name": "autoria",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "47958339",
+    "_collection_link": "https://go.postman.co/collection/47958339-8d95c121-3de9-486a-96dc-8bbe34883e26?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "auth",
+      "item": [
+        {
+          "name": "register",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();\r",
+                  "pm.environment.set(\"accessToken\", res.tokens.accessToken);\r",
+                  "pm.environment.set(\"refreshToken\", res.tokens.refreshToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Userr\",\r\n    \"email\": \"user@gmail.com\",\r\n    \"password\": \"P@ssword1\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/auth/register",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "auth",
+                "register"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const res = pm.response.json();\r",
+                  "pm.environment.set(\"accessToken\", res.tokens.accessToken);\r",
+                  "pm.environment.set(\"refreshToken\", res.tokens.refreshToken);"
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            },
+            {
+              "listen": "prerequest",
+              "script": {
+                "exec": [
+                  ""
+                ],
+                "type": "text/javascript",
+                "packages": {},
+                "requests": {}
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "email",
+                  "value": "khrystyna.hrytsiv@gmail.com",
+                  "type": "text",
+                  "uuid": "cd7b682c-501c-4092-886f-ef3cd3d4028f"
+                },
+                {
+                  "key": "password",
+                  "value": "P@ssword1",
+                  "type": "text",
+                  "uuid": "33c8591a-d58c-4412-9152-ab8444f97b7f"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/auth/login",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "auth",
+                "login"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "me",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "userId",
+                  "value": "6a57ce722e12e823063cbdd3",
+                  "type": "text",
+                  "uuid": "4fde5e86-1693-4b65-a2ed-7c5b18a8fcd8"
+                },
+                {
+                  "key": "title",
+                  "value": "sold car",
+                  "type": "text",
+                  "uuid": "f67a7c40-6db1-4b0c-a6b4-2c4992520ca2"
+                },
+                {
+                  "key": "brand",
+                  "value": "Audi",
+                  "type": "text",
+                  "uuid": "3651d635-b98a-4815-9fda-8cf897519a1b"
+                },
+                {
+                  "key": "model",
+                  "value": "q7",
+                  "type": "text",
+                  "uuid": "bd8d3e78-8011-4a77-bd4e-c7174ac5688f"
+                },
+                {
+                  "key": "price",
+                  "value": "36000",
+                  "type": "text",
+                  "uuid": "2764095a-f826-4630-bce3-436fec6a4330"
+                },
+                {
+                  "key": "year",
+                  "value": "2020",
+                  "type": "text",
+                  "uuid": "97a193b2-2299-4bbf-befe-b1671f7d7206"
+                },
+                {
+                  "key": "description",
+                  "value": "want to sell car",
+                  "type": "text",
+                  "uuid": "489873bd-e6c8-43a9-8fbb-1192445166f3"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/auth/me",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "auth",
+                "me"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "refresh",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "refreshToken",
+                  "value": "{{refreshToken}}",
+                  "type": "text",
+                  "uuid": "61beaf59-03bd-4127-a556-060644aa94cf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/auth/refresh",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "auth",
+                "refresh"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "advert",
+      "item": [
+        {
+          "name": "create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"title\": \"Sell car \",\r\n    \"description\": \"njdv ndjvn sdc\",\r\n    \"year\": 2023,\r\n    \"brand\": \"Audi\",\r\n    \"model\": \"Q5\",\r\n    \"price\": {\r\n        \"original\": {\r\n            \"value\": 35000,\r\n            \"currency\": \"EUR\"\r\n        }\r\n    },\r\n    \"location\":{\r\n        \"region\": \"Lviv\",\r\n        \"country\": \"Ukraine\"\r\n    }\r\n    \r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/adverts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "adverts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllAdvert",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "userId",
+                  "value": "6a57ce722e12e823063cbdd3",
+                  "type": "text",
+                  "uuid": "4fde5e86-1693-4b65-a2ed-7c5b18a8fcd8"
+                },
+                {
+                  "key": "title",
+                  "value": "sold car",
+                  "type": "text",
+                  "uuid": "f67a7c40-6db1-4b0c-a6b4-2c4992520ca2"
+                },
+                {
+                  "key": "brand",
+                  "value": "Audi",
+                  "type": "text",
+                  "uuid": "3651d635-b98a-4815-9fda-8cf897519a1b"
+                },
+                {
+                  "key": "model",
+                  "value": "q7",
+                  "type": "text",
+                  "uuid": "bd8d3e78-8011-4a77-bd4e-c7174ac5688f"
+                },
+                {
+                  "key": "price",
+                  "value": "36000",
+                  "type": "text",
+                  "uuid": "2764095a-f826-4630-bce3-436fec6a4330"
+                },
+                {
+                  "key": "year",
+                  "value": "2020",
+                  "type": "text",
+                  "uuid": "97a193b2-2299-4bbf-befe-b1671f7d7206"
+                },
+                {
+                  "key": "description",
+                  "value": "want to sell car",
+                  "type": "text",
+                  "uuid": "489873bd-e6c8-43a9-8fbb-1192445166f3"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/adverts",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "adverts"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "delete",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "userId",
+                  "value": "6a57ce722e12e823063cbdd3",
+                  "type": "text",
+                  "uuid": "4fde5e86-1693-4b65-a2ed-7c5b18a8fcd8"
+                },
+                {
+                  "key": "title",
+                  "value": "sold car",
+                  "type": "text",
+                  "uuid": "f67a7c40-6db1-4b0c-a6b4-2c4992520ca2"
+                },
+                {
+                  "key": "brand",
+                  "value": "Audi",
+                  "type": "text",
+                  "uuid": "3651d635-b98a-4815-9fda-8cf897519a1b"
+                },
+                {
+                  "key": "model",
+                  "value": "q7",
+                  "type": "text",
+                  "uuid": "bd8d3e78-8011-4a77-bd4e-c7174ac5688f"
+                },
+                {
+                  "key": "price",
+                  "value": "36000",
+                  "type": "text",
+                  "uuid": "2764095a-f826-4630-bce3-436fec6a4330"
+                },
+                {
+                  "key": "year",
+                  "value": "2020",
+                  "type": "text",
+                  "uuid": "97a193b2-2299-4bbf-befe-b1671f7d7206"
+                },
+                {
+                  "key": "description",
+                  "value": "want to sell car",
+                  "type": "text",
+                  "uuid": "489873bd-e6c8-43a9-8fbb-1192445166f3"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/adverts/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "adverts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a672d38362a2e1d432ef34e"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "update",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PUT",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"price\":{\r\n        \"original\": {\r\n            \"value\": 28500,\r\n            \"currency\": \"USD\"\r\n        }\r\n    },\r\n    \"brand\": \"Audi\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/adverts/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "adverts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a674164b1f77258da1ed810"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getStatistic",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "userId",
+                  "value": "6a57ce722e12e823063cbdd3",
+                  "type": "text",
+                  "uuid": "4fde5e86-1693-4b65-a2ed-7c5b18a8fcd8"
+                },
+                {
+                  "key": "title",
+                  "value": "sold car",
+                  "type": "text",
+                  "uuid": "f67a7c40-6db1-4b0c-a6b4-2c4992520ca2"
+                },
+                {
+                  "key": "brand",
+                  "value": "Audi",
+                  "type": "text",
+                  "uuid": "3651d635-b98a-4815-9fda-8cf897519a1b"
+                },
+                {
+                  "key": "model",
+                  "value": "q7",
+                  "type": "text",
+                  "uuid": "bd8d3e78-8011-4a77-bd4e-c7174ac5688f"
+                },
+                {
+                  "key": "price",
+                  "value": "36000",
+                  "type": "text",
+                  "uuid": "2764095a-f826-4630-bce3-436fec6a4330"
+                },
+                {
+                  "key": "year",
+                  "value": "2020",
+                  "type": "text",
+                  "uuid": "97a193b2-2299-4bbf-befe-b1671f7d7206"
+                },
+                {
+                  "key": "description",
+                  "value": "want to sell car",
+                  "type": "text",
+                  "uuid": "489873bd-e6c8-43a9-8fbb-1192445166f3"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/adverts/:id/statistics",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "adverts",
+                ":id",
+                "statistics"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a6b4c0679cb599f9fb8cd3a"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getById",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "userId",
+                  "value": "6a57ce722e12e823063cbdd3",
+                  "type": "text",
+                  "uuid": "4fde5e86-1693-4b65-a2ed-7c5b18a8fcd8"
+                },
+                {
+                  "key": "title",
+                  "value": "sold car",
+                  "type": "text",
+                  "uuid": "f67a7c40-6db1-4b0c-a6b4-2c4992520ca2"
+                },
+                {
+                  "key": "brand",
+                  "value": "Audi",
+                  "type": "text",
+                  "uuid": "3651d635-b98a-4815-9fda-8cf897519a1b"
+                },
+                {
+                  "key": "model",
+                  "value": "q7",
+                  "type": "text",
+                  "uuid": "bd8d3e78-8011-4a77-bd4e-c7174ac5688f"
+                },
+                {
+                  "key": "price",
+                  "value": "36000",
+                  "type": "text",
+                  "uuid": "2764095a-f826-4630-bce3-436fec6a4330"
+                },
+                {
+                  "key": "year",
+                  "value": "2020",
+                  "type": "text",
+                  "uuid": "97a193b2-2299-4bbf-befe-b1671f7d7206"
+                },
+                {
+                  "key": "description",
+                  "value": "want to sell car",
+                  "type": "text",
+                  "uuid": "489873bd-e6c8-43a9-8fbb-1192445166f3"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/adverts/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "adverts",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a69f5ab026ed0fdc6f18631"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "brands",
+      "item": [
+        {
+          "name": "getBrands",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": []
+            },
+            "url": {
+              "raw": "http://localhost:6000/brands",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "brands"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "Toyota",
+                  "type": "text",
+                  "uuid": "ea32b486-f9f1-4ab2-bce2-1df7dae73367"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/brands",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "brands"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteBrand",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "Lamborgini",
+                  "type": "text",
+                  "uuid": "ea32b486-f9f1-4ab2-bce2-1df7dae73367"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/brands/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "brands",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a71c0f983880861fc08ccc5"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "models",
+      "item": [
+        {
+          "name": "getModels",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "Lamborgini",
+                  "type": "text",
+                  "uuid": "ea32b486-f9f1-4ab2-bce2-1df7dae73367",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/brands/:brandId/models",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "brands",
+                ":brandId",
+                "models"
+              ],
+              "variable": [
+                {
+                  "key": "brandId",
+                  "value": "6a68a4a330c96c9ed1a1054a"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "deleteModel",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "DELETE",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "Lamborgini",
+                  "type": "text",
+                  "uuid": "ea32b486-f9f1-4ab2-bce2-1df7dae73367",
+                  "disabled": true
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/brands/:brandId/models/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "brands",
+                ":brandId",
+                "models",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "brandId",
+                  "value": "6a5f2803bbb18142de71d0b6"
+                },
+                {
+                  "key": "id",
+                  "value": "6a5f79f9d6d70ee834e9af9f"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createModel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "name",
+                  "value": "Revuelto",
+                  "type": "text",
+                  "uuid": "99ee43fd-b350-4b6c-b770-a7bd8effb9d1"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/brands/:brandId/models",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "brands",
+                ":brandId",
+                "models"
+              ],
+              "variable": [
+                {
+                  "key": "brandId",
+                  "value": "6a68a4a330c96c9ed1a1054a"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "users",
+      "item": [
+        {
+          "name": "getAllUsers",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6000/users",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "users"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getUserById",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"price\":{\r\n        \"original\": {\r\n            \"value\": 28500,\r\n            \"currency\": \"USD\"\r\n        }\r\n    },\r\n    \"brand\": \"Audi\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/users/:id",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "users",
+                ":id"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a689cb7727de8326e1a14b0"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "createManager",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "email",
+                  "value": "admin1@gmail.com",
+                  "type": "text",
+                  "uuid": "be74b479-5846-4004-92fe-d5bf0c533ec7"
+                },
+                {
+                  "key": "name",
+                  "value": "Admin",
+                  "type": "text",
+                  "uuid": "43b13767-7b60-4f41-b8be-edaa6508ac8d"
+                },
+                {
+                  "key": "password",
+                  "value": "P@ssword1",
+                  "type": "text",
+                  "uuid": "00586c56-940d-4bd4-8576-4b6f519c4c42"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/users/create-manager",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "users",
+                "create-manager"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "blockUser",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Userr\",\r\n    \"email\": \"userr@gmail.com\",\r\n    \"password\": \"P@ssword1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/users/:userId/block",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "users",
+                ":userId",
+                "block"
+              ],
+              "variable": [
+                {
+                  "key": "userId",
+                  "value": "6a689cdc727de8326e1a14b2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "activateUser",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\": \"Userr\",\r\n    \"email\": \"userr@gmail.com\",\r\n    \"password\": \"P@ssword1\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/users/:id/activate",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "users",
+                ":id",
+                "activate"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a689cdc727de8326e1a14b2"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "premium",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [],
+            "body": {
+              "mode": "urlencoded",
+              "urlencoded": [
+                {
+                  "key": "userId",
+                  "value": "6a57ce722e12e823063cbdd3",
+                  "type": "text",
+                  "uuid": "4fde5e86-1693-4b65-a2ed-7c5b18a8fcd8"
+                },
+                {
+                  "key": "title",
+                  "value": "sold car",
+                  "type": "text",
+                  "uuid": "f67a7c40-6db1-4b0c-a6b4-2c4992520ca2"
+                },
+                {
+                  "key": "brand",
+                  "value": "Audi",
+                  "type": "text",
+                  "uuid": "3651d635-b98a-4815-9fda-8cf897519a1b"
+                },
+                {
+                  "key": "model",
+                  "value": "q7",
+                  "type": "text",
+                  "uuid": "bd8d3e78-8011-4a77-bd4e-c7174ac5688f"
+                },
+                {
+                  "key": "price",
+                  "value": "36000",
+                  "type": "text",
+                  "uuid": "2764095a-f826-4630-bce3-436fec6a4330"
+                },
+                {
+                  "key": "year",
+                  "value": "2020",
+                  "type": "text",
+                  "uuid": "97a193b2-2299-4bbf-befe-b1671f7d7206"
+                },
+                {
+                  "key": "description",
+                  "value": "want to sell car",
+                  "type": "text",
+                  "uuid": "489873bd-e6c8-43a9-8fbb-1192445166f3"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:6000/users/premium",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "users",
+                "premium"
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "requests",
+      "item": [
+        {
+          "name": "create brand-request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"tesla\"\r\n\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/requests/brand-request",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "requests",
+                "brand-request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "create model-request",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"aaa\",\r\n    \"brand\": \"BMW\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/requests/model-request",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "requests",
+                "model-request"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllBrandRequests",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"cayenne\",\r\n    \"brand\": \"Porsche\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/requests/brands",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "requests",
+                "brands"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "approveBrand",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"cayenne\",\r\n    \"brand\": \"Porsche\"\r\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/requests/brand/:id/approve",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "requests",
+                "brand",
+                ":id",
+                "approve"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a679de466a0bc8ba80cdc0e"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getAllModelRequests",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "GET",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"cayenne\",\r\n    \"brand\": \"Porsche\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/requests/models",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "requests",
+                "models"
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "approveModel",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:6000/requests/model/:id/approve",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "requests",
+                "model",
+                ":id",
+                "approve"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a6788c3e703c86a32c9d504"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "rejectBrandRequest",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"cayenne\",\r\n    \"brandId\": \"6a672c6b7ed981a5d558bdcf\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/requests/brand/:id/reject",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "requests",
+                "brand",
+                ":id",
+                "reject"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a6876bf16c7039063bc63f6"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "rejectModelRequest",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\r\n    \"name\":\"cayenne\",\r\n    \"brandId\": \"6a672c6b7ed981a5d558bdcf\"\r\n}"
+            },
+            "url": {
+              "raw": "http://localhost:6000/requests/model/:id/reject",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "requests",
+                "model",
+                ":id",
+                "reject"
+              ],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "6a687e164471b1950a5594e0"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "supabase_service_role_api_key_0vxx",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_11uq",
+      "secret": true
+    },
+    {
+      "key": "json_web_token_00bx",
+      "secret": true
+    }
+  ]
+}
