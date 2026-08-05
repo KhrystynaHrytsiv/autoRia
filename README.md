@@ -14,7 +14,7 @@ REST API платформи з продажу авто: ролі з систем
 - [Змінні .env](#-змінні-env)
 - [API](#-api)
 - [Swagger](#-swagger)
-- -[Postman](#-postman)
+- [Postman](#-postman)
 
 
 # ✨ Можливості
