@@ -13,6 +13,8 @@ REST API платформи з продажу авто: ролі з систем
 - [Бізнес-правила](#-бізнес-правила)
 - [Змінні .env](#-змінні-env)
 - [API](#-api)
+- [Swagger](#-swagger)
+- -[Postman](#-postman)
 
 
 # ✨ Можливості
@@ -153,8 +155,24 @@ EMAIL_PASSWORD=zwwmopngfhjluhpm
 
 # 📸 Swagger
 
-```
-http://localhost:6000/
-```
+Swagger UI: http://localhost:6000/docs
+
 
 ---
+# 📮 Postman
+Колекція: postman/autoRia.postman_collection.json
+
+1. Імпортуйте файл у Postman (Import → File).
+2. Запустіть API (docker compose up --build).
+3. Виконайте будь-який Login із папки 1. Auth — токен автоматично збережеться у змінну {{accessToken}} і підставлятиметься в усі запити.
+4. Перемикання "користувача" = виконання іншого Login-запиту.
+
+Рекомендований сценарій перевірки:
+
+1. Login (seller basic) → Create adverts (clean) → друге створення поверне 403 (ліміт базового акаунта).
+2. Buy Premium → ліміт знято; Adverts statistics працює.
+3. Create adverts (bad wards) → статус pending_edit; 3 рази Edit adverts з лайкою → inactive; Mail → лист менеджеру.
+4. Login (manager/admin) → Update adverts → активація вручну.
+5. Get adverts by id кілька разів (без токена) → Adverts statistics покаже перегляди та середні ціни.
+
+❗️ Щоб створити Admin → Register → вручну у базі даних змінити роль на Admin 
