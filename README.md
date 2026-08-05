@@ -71,6 +71,7 @@ MONGO_URI=mongodb://localhost:27017/autoRia
 | Seller  | створює/редагує/видаляє свої оголошення, повідомляє про відсутні марки, купує Premium                              | 
 | Manager | банить користувачів, модерує/видаляє будь-які оголошення, керує довідником марок. Створюється лише адміністратором | 
 | Admin   | суперюзер — усі дозволи (лише замовник та партнери)                                                                |    
+---
 
 ## 💎 Типи акаунтів
 
@@ -82,6 +83,7 @@ MONGO_URI=mongodb://localhost:27017/autoRia
 ## 💳 Покупка Premium 
 GET /users/premium
 
+---
 
 ## 💰 Оголошення та валюти
 Ціна вказується в одній валюті: USD, EUR або UAH.
@@ -89,6 +91,7 @@ GET /users/premium
 В оголошенні зберігаються: оригінальна ціна й валюта продавця, всі три перераховані ціни та знімок курсу (rateInfo), за яким рахували.
 Курси оновлюються раз на день (cron o 8:00 за Києвом).
 
+---
 
 ## 🚫 Перевірка нецензурної лексики
 1. Кожне оголошення при створенні/редагуванні перевіряється автоматично.
@@ -97,11 +100,13 @@ GET /users/premium
 4. У продавця 3 спроби редагування. Після 3-ї невдалої — статус inactive і лист менеджеру, котрий зазначений у .env як EMAIL_USER.
 5. Менеджер вручну активує/деактивує: .
 
+---
+
 ## 🚘 Марки та моделі
 Випадайки: GET /brands, GET /brands/:id/models.
 Немає марки/моделі? Продавець повідомляє адміністрацію: POST /requests/brand-request  / POST /requests/model-request → менеджерам іде лист.
 
-
+---
 # 🔐 Змінні .env
 
 MONGO_URI=mongodb://admin:admin@db:27017/autoRia
@@ -117,6 +122,8 @@ PRIVAT_API_URL=https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=5
 EMAIL_USER=khrystyna.hrytsiv@gmail.com
 EMAIL_PASSWORD=zwwmopngfhjluhpm
 
+
+---
 
 # 📦 API
 
@@ -148,7 +155,6 @@ EMAIL_PASSWORD=zwwmopngfhjluhpm
 | PATCH  | `/requests/model/:id/approve` | Admin/manager                  | Підтвердити додавання моделі             |
 | PATCH  | `/requests/brand/:id/reject`  | Admin/manager                  | Відмовити у додавані бренду              |
 | PATCH  | `/requests/model/:id/reject`  | Admin/manager                  | Відмовити у додавані моделі              |
-
 
 
 ---
