@@ -138,8 +138,8 @@ EMAIL_PASSWORD=zwwmopngfhjluhpm
 | GET    | `/adverts/:id/statistics`     | Premium-власник, manager/admin | Отримати статистику                      |
 | GET    | `/brands `                    | Публічний                      | Випадаючий список брендів                |
 | GET    | `/brands/:brandId/models`     | Публічний                      | Випадаючий список моделей                |
-| POST   | `/requests/brand-request`     | Авторизований                  | Створити запит на новий бренд авто       |
-| POST   | `/requests/model-request`     | Авторизований                  | Створити запит на нову модель авто       |
+| POST   | `/requests/brands`            | Авторизований                  | Створити запит на новий бренд авто       |
+| POST   | `/requests/models`            | Авторизований                  | Створити запит на нову модель авто       |
 | GET    | `/requests/brands`            | Admin/manager                  | Отримати всі запити на додавання брендів |
 | GET    | `/requests/models`            | Admin/manager                  | Отримати всі запити на додавання моделей |
 | PATCH  | `/requests/brand/:id/approve` | Admin/manager                  | Підтвердити додавання бренду             |

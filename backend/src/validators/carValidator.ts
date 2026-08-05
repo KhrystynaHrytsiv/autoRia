@@ -22,4 +22,8 @@ export class CarValidator {
     public static createModel = joi.object({
         name: this.model.required(),
     });
+    public static createModelRequest = joi.object({
+        name: this.model.required(),
+        brand: this.brand.required(),
+    });
 }

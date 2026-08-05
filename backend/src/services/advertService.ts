@@ -18,6 +18,9 @@ import { textModerationService } from "./textModerationService";
 import { userService } from "./userService";
 
 class AdvertService {
+    public getAll(): Promise<IAdvert[]> {
+        return advertRepository.getAll();
+    }
     public async prepareAdvert(dto: createAdvertDto | updateAdvertDto) {
         const data: any = { ...dto };
         if (dto.brand) {
@@ -48,9 +51,6 @@ class AdvertService {
         return await advertRepository.create(userId, { ...advertData, status });
     }
 
-    public getAll(): Promise<IAdvert[]> {
-        return advertRepository.getAll();
-    }
     public async getById(id: string): Promise<IAdvert | null> {
         const advert = await advertRepository.getById(id);
         if (!advert) {

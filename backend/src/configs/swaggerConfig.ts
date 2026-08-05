@@ -21,9 +21,8 @@ const swaggerDocument: OpenAPIV3.Document = {
         { name: "Brands", description: "Car brands" },
         { name: "Models", description: "Car models" },
         {
-            name: "Requests",
-            description:
-                "Users can submit requests to add advertisements, brands, or models.",
+            name: "Request",
+            description: "Users can submit requests to add brands, or models.",
         },
     ],
     components: {
@@ -130,7 +129,44 @@ const swaggerDocument: OpenAPIV3.Document = {
                     year: { type: "number" },
                     status: { type: "string" },
                     attempts: { type: "number" },
-                    views: { type: "number" },
+                    createdAt: { type: "string", format: "date-time" },
+                    updatedAt: { type: "string", format: "date-time" },
+                },
+            },
+            Brand: {
+                type: "object",
+                properties: {
+                    _id: { type: "string" },
+                    name: { type: "string" },
+                },
+            },
+            Model: {
+                type: "object",
+                properties: {
+                    _id: { type: "string" },
+                    name: { type: "string" },
+                    brandId: { type: "string" },
+                },
+            },
+            BrandRequest: {
+                type: "object",
+                properties: {
+                    _id: { type: "string" },
+                    userId: { type: "string" },
+                    name: { type: "string" },
+                    status: { type: "string" },
+                    createdAt: { type: "string", format: "date-time" },
+                    updatedAt: { type: "string", format: "date-time" },
+                },
+            },
+            ModelRequest: {
+                type: "object",
+                properties: {
+                    _id: { type: "string" },
+                    userId: { type: "string" },
+                    brand: { type: "string" },
+                    name: { type: "string" },
+                    status: { type: "string" },
                     createdAt: { type: "string", format: "date-time" },
                     updatedAt: { type: "string", format: "date-time" },
                 },
@@ -445,7 +481,8 @@ const swaggerDocument: OpenAPIV3.Document = {
                 security: [{ bearerAuth: [] }],
                 responses: {
                     "200": {
-                        description: "Creating manager",
+                        description:
+                            "Create manager. Permission has only Admin",
                         content: {
                             "application/json": {
                                 schema: {
@@ -779,6 +816,7 @@ const swaggerDocument: OpenAPIV3.Document = {
                         schema: { type: "string" },
                     },
                 ],
+                security: [{ bearerAuth: [] }],
                 requestBody: {
                     required: true,
                     content: {
@@ -864,6 +902,7 @@ const swaggerDocument: OpenAPIV3.Document = {
             delete: {
                 tags: ["Advertisement"],
                 summary: "Successfully remove advertisement",
+                security: [{ bearerAuth: [] }],
                 parameters: [
                     {
                         name: "id",
@@ -876,6 +915,694 @@ const swaggerDocument: OpenAPIV3.Document = {
                 responses: {
                     "204": {
                         description: "No content",
+                    },
+                    "400": {
+                        description: "Bad Request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 400,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/adverts/{id}/statistics": {
+            get: {
+                tags: ["Advertisement"],
+                summary:
+                    "Get info about views and average price by region or country",
+                security: [{ bearerAuth: [] }],
+                parameters: [
+                    {
+                        name: "id",
+                        in: "path",
+                        description: "Advertisement id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                responses: {
+                    "200": {
+                        description: "Successfully get statistics data",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        views: {
+                                            type: "object",
+                                            properties: {
+                                                total: { type: "number" },
+                                                today: { type: "number" },
+                                                week: { type: "number" },
+                                                month: { type: "number" },
+                                                averagePriceByCountry: {
+                                                    type: "number",
+                                                },
+                                                averagePriceByRegion: {
+                                                    type: "number",
+                                                },
+                                            },
+                                        },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    "403": {
+                        description: "Forbidden",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 403,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/brands": {
+            get: {
+                tags: ["Brands"],
+                summary: "Get list of brands",
+                responses: {
+                    "200": {
+                        description: "Successfully get list of brands",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "array",
+                                    items: {
+                                        $ref: "#/components/schemas/Brand",
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    "400": {
+                        description: "Bad Request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 400,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            post: {
+                tags: ["Brands"],
+                summary: "Create brand",
+                security: [{ bearerAuth: [] }],
+                requestBody: {
+                    required: true,
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    name: { type: "string" },
+                                },
+                                required: ["name"],
+                            },
+                        },
+                    },
+                },
+                responses: {
+                    "201": {
+                        description:
+                            "Successfully create brand. Permission has only Manager and Admin ",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/Brand",
+                                },
+                            },
+                        },
+                    },
+                    "403": {
+                        description: "Forbidden",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 403,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/brands:{id}": {
+            delete: {
+                tags: ["Brands"],
+                summary: "Remove brand allows only Manager or Admin",
+                security: [{ bearerAuth: [] }],
+                parameters: [
+                    {
+                        name: "id",
+                        in: "path",
+                        description: "Brand id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                responses: {
+                    "204": {
+                        description: "No content",
+                    },
+                    "400": {
+                        description: "Bad Request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 400,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/brands/{brandId}/models": {
+            get: {
+                tags: ["Models"],
+                summary: "Get a list of models by brand",
+                parameters: [
+                    {
+                        name: "brandId",
+                        in: "path",
+                        description: "Brand id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                responses: {
+                    "200": {
+                        description: "Successfully get a list of models",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "array",
+                                    items: {
+                                        $ref: "#/components/schemas/Model",
+                                    },
+                                },
+                            },
+                        },
+                    },
+                    "400": {
+                        description: "Bad Request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 400,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            post: {
+                tags: ["Models"],
+                summary: "Create model",
+                security: [{ bearerAuth: [] }],
+                parameters: [
+                    {
+                        name: "brandId",
+                        in: "path",
+                        description: "Brand id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                requestBody: {
+                    required: true,
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    name: { type: "string" },
+                                },
+                                required: ["name"],
+                            },
+                        },
+                    },
+                },
+                responses: {
+                    "201": {
+                        description:
+                            "Successfully create model. Permission has only Manager and Admin ",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/Model",
+                                },
+                            },
+                        },
+                    },
+                    "403": {
+                        description: "Forbidden",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 403,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/brands/{brandId}/models/{id}": {
+            delete: {
+                tags: ["Models"],
+                security: [{ bearerAuth: [] }],
+                parameters: [
+                    {
+                        name: "brandId",
+                        in: "path",
+                        description: "Brand id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                    {
+                        name: "id",
+                        in: "path",
+                        description: "Model id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                responses: {
+                    "204": {
+                        description: "No content",
+                    },
+                    "400": {
+                        description: "Bad Request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 400,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/requests/brands": {
+            get: {
+                tags: ["Request"],
+                summary: "Get all requests for adding brand",
+                security: [{ bearerAuth: [] }],
+                responses: {
+                    "200": {
+                        description:
+                            "Successfully get all brand requests. Allow only Manager and Admin ",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/BrandRequest",
+                                },
+                            },
+                        },
+                    },
+                    "403": {
+                        description: "Forbidden",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 403,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            post: {
+                tags: ["Request"],
+                summary: "Create brand request.",
+                security: [{ bearerAuth: [] }],
+                requestBody: {
+                    required: true,
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    name: { type: "string" },
+                                },
+                                required: ["name"],
+                            },
+                        },
+                    },
+                },
+                responses: {
+                    "201": {
+                        description: "Successfully create brand request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/BrandRequest",
+                                },
+                            },
+                        },
+                    },
+                    "403": {
+                        description: "Forbidden",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 403,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/requests/brand/{id}/approve": {
+            patch: {
+                tags: ["Request"],
+                description: "Approve brand request by admin or manager",
+                security: [{ bearerAuth: [] }],
+                parameters: [
+                    {
+                        name: "id",
+                        in: "path",
+                        description: "Request id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                responses: {
+                    "200": {
+                        description: "Successfully approved request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/Brand",
+                                },
+                            },
+                        },
+                    },
+                    "400": {
+                        description: "Bad Request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 400,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/requests/brand/{id}/reject": {
+            patch: {
+                tags: ["Request"],
+                description: "Reject brand request by admin or manager",
+                security: [{ bearerAuth: [] }],
+                parameters: [
+                    {
+                        name: "id",
+                        in: "path",
+                        description: "Request id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                responses: {
+                    "200": {
+                        description: "Rejected request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/BrandRequest",
+                                },
+                            },
+                        },
+                    },
+                    "400": {
+                        description: "Bad Request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 400,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/requests/models": {
+            get: {
+                tags: ["Request"],
+                summary: "Get all requests for adding model",
+                security: [{ bearerAuth: [] }],
+                responses: {
+                    "200": {
+                        description:
+                            "Successfully get all model requests. Allow only Manager and Admin ",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/ModelRequest",
+                                },
+                            },
+                        },
+                    },
+                    "403": {
+                        description: "Forbidden",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 403,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+            post: {
+                tags: ["Request"],
+                summary: "Create model request.",
+                security: [{ bearerAuth: [] }],
+                requestBody: {
+                    required: true,
+                    content: {
+                        "application/json": {
+                            schema: {
+                                type: "object",
+                                properties: {
+                                    name: { type: "string" },
+                                    brand: { type: "string" },
+                                },
+                                required: ["name", "brand"],
+                            },
+                        },
+                    },
+                },
+                responses: {
+                    "201": {
+                        description: "Successfully create model request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/ModelRequest",
+                                },
+                            },
+                        },
+                    },
+                    "403": {
+                        description: "Forbidden",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 403,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/requests/model/{id}/approve": {
+            patch: {
+                tags: ["Request"],
+                description: "Approve model request by admin or manager",
+                security: [{ bearerAuth: [] }],
+                parameters: [
+                    {
+                        name: "id",
+                        in: "path",
+                        description: "Request id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                responses: {
+                    "200": {
+                        description: "Successfully approved request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/Model",
+                                },
+                            },
+                        },
+                    },
+                    "400": {
+                        description: "Bad Request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    type: "object",
+                                    properties: {
+                                        status: {
+                                            type: "integer",
+                                            default: 400,
+                                        },
+                                        message: { type: "string" },
+                                    },
+                                },
+                            },
+                        },
+                    },
+                },
+            },
+        },
+        "/requests/model/{id}/reject": {
+            patch: {
+                tags: ["Request"],
+                description: "Reject model request by admin or manager",
+                security: [{ bearerAuth: [] }],
+                parameters: [
+                    {
+                        name: "id",
+                        in: "path",
+                        description: "Request id",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                responses: {
+                    "200": {
+                        description: "Rejected request",
+                        content: {
+                            "application/json": {
+                                schema: {
+                                    $ref: "#/components/schemas/ModelRequest",
+                                },
+                            },
+                        },
                     },
                     "400": {
                         description: "Bad Request",

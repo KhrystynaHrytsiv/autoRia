@@ -70,8 +70,10 @@ class StatisticService {
     }
     public async getStatistics(advertId: string, userId: string) {
         const advert = await this.checkStatisticAccess(advertId, userId);
-        const views = await this.getViews(advertId);
-        const averagePrice = await this.calcAvgPrice(advert);
+        const [views, averagePrice] = await Promise.all([
+            this.getViews(advertId),
+            this.calcAvgPrice(advert),
+        ]);
         return { views, ...averagePrice };
     }
 }

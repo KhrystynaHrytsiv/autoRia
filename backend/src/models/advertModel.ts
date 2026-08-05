@@ -42,7 +42,6 @@ const advertSchema = new Schema(
             default: AdvertStatus.pending_edit,
         },
         attempts: { type: Number, default: 0 },
-        views: { type: Number, default: 0 },
     },
     { timestamps: true, versionKey: false },
 );

@@ -16,7 +16,6 @@ interface IAdvert {
     };
     status: AdvertStatus;
     attempts: number;
-    views: number;
 }
 
 type createAdvertDto = Pick<

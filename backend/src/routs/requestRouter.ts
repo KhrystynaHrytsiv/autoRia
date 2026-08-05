@@ -7,19 +7,19 @@ import { CarValidator } from "../validators/carValidator";
 
 export const requestRouter = Router();
 requestRouter.post(
-    "/brand-request",
+    "/brands",
     validateMiddleware.validateBody(CarValidator.createBrand),
     requestController.createBrandRequest,
-);
-requestRouter.post(
-    "/model-request",
-    validateMiddleware.validateBody(CarValidator.createModel),
-    requestController.createModelRequest,
 );
 requestRouter.get(
     "/brands",
     authMiddleware.hasPermission,
     requestController.getAllBrandRequests,
+);
+requestRouter.post(
+    "/models",
+    validateMiddleware.validateBody(CarValidator.createModelRequest),
+    requestController.createModelRequest,
 );
 requestRouter.get(
     "/models",
