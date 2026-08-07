@@ -1,5 +1,8 @@
+import { QueryFilter } from "mongoose";
+
 import { AdvertStatus } from "../enums/advertStatus";
 import { createAdvertDto, IAdvert } from "../interfaces/IAdvert";
+import { IAdvertQuery } from "../interfaces/IQuery";
 import { Advertisement } from "../models/advertModel";
 
 class AdvertRepository {
@@ -12,8 +15,30 @@ class AdvertRepository {
     public getById(id: string): Promise<IAdvert | null> {
         return Advertisement.findById(id);
     }
-    public getAll(): Promise<IAdvert[]> {
-        return Advertisement.find();
+    public getAll(query: IAdvertQuery): Promise<[IAdvert[], number]> {
+        const skip = query.pageSize * (query.page - 1);
+        const filterObject: QueryFilter<IAdvert> = {
+            status: AdvertStatus.active,
+        };
+        if (query.brand) {
+            filterObject.brand = query.brand;
+        }
+        if (query.model) {
+            filterObject.model = query.model;
+        }
+        if (query.year) {
+            filterObject.year = +query.year;
+        }
+        if (query.price) {
+            filterObject["price.original.value"] = query.price;
+        }
+        return Promise.all([
+            Advertisement.find(filterObject)
+                .limit(query.pageSize)
+                .skip(skip)
+                .sort(query.order),
+            Advertisement.find(filterObject).countDocuments(),
+        ]);
     }
     public update(id: string, dto: Partial<IAdvert>): Promise<IAdvert | null> {
         return Advertisement.findByIdAndUpdate(id, dto, {

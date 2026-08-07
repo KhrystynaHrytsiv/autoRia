@@ -38,5 +38,20 @@ class ValidateMiddleware {
             }
         };
     }
+    public validateQuery(validator: ObjectSchema) {
+        return async (req: Request, res: Response, next: NextFunction) => {
+            try {
+                (req as any).validateQuery = await validator.validateAsync(
+                    req.query,
+                );
+                next();
+            } catch (err) {
+                const e = err as ValidationError;
+                next(
+                    new apiError(e.details[0].message, StatusCodes.BAD_REQUEST),
+                );
+            }
+        };
+    }
 }
 export const validateMiddleware = new ValidateMiddleware();

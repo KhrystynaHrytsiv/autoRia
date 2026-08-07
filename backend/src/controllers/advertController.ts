@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { StatusCodes } from "../enums/statusCodes";
+import { IAdvertQuery } from "../interfaces/IQuery";
 import { ITokenPayload } from "../interfaces/IToken";
 import { advertService } from "../services/advertService";
 import { statisticService } from "../services/statisticService";
@@ -10,7 +11,13 @@ class AdvertController {
         try {
             const { userId } = res.locals.tokenPayload as ITokenPayload;
             const dto = req.body;
-            const advert = await advertService.create(userId, dto);
+            const images = (req.files as Express.Multer.File[]).map(
+                (file) => file.filename,
+            );
+            const advert = await advertService.create(userId, {
+                ...dto,
+                images,
+            });
             res.status(StatusCodes.CREATED).json(advert);
         } catch (e) {
             next(e);
@@ -18,7 +25,8 @@ class AdvertController {
     }
     public async getAll(req: Request, res: Response, next: NextFunction) {
         try {
-            const adverts = await advertService.getAll();
+            const query = req.query as any as IAdvertQuery;
+            const adverts = await advertService.getAll(query);
             res.status(StatusCodes.CREATED).json(adverts);
         } catch (e) {
             next(e);
@@ -38,7 +46,16 @@ class AdvertController {
             const { userId, role } = res.locals.tokenPayload as ITokenPayload;
             const id = req.params.id as string;
             const dto = req.body;
-            const advert = await advertService.update(id, userId, dto, role);
+            const images = (req.files as Express.Multer.File[]).map(
+                (file) => file.filename,
+            );
+            const removeImages = req.body.removeImages ?? [];
+            const advert = await advertService.update(
+                id,
+                userId,
+                { ...dto, images, removeImages },
+                role,
+            );
             res.status(StatusCodes.OK).json(advert);
         } catch (e) {
             next(e);

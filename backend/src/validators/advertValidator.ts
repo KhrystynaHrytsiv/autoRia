@@ -1,5 +1,6 @@
 import joi from "joi";
 
+import { AdvertOrderEnum } from "../enums/AdvertOrderEnum";
 import { CurrencyEnum } from "../enums/currencyEnum";
 
 export class AdvertValidator {
@@ -30,5 +31,17 @@ export class AdvertValidator {
         year: this.year.required(),
         price: this.price.required(),
         location: this.location.required(),
+    });
+
+    public static query = joi.object({
+        pageSize: joi.number().min(1).max(100).default(10),
+        page: joi.number().min(1).default(1),
+        search: joi.string().trim(),
+        order: joi
+            .string()
+            .valid(
+                ...Object.values(AdvertOrderEnum),
+                ...Object.values(AdvertOrderEnum).map((item) => `-${item}`),
+            ),
     });
 }

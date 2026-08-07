@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+import { upload } from "../configs/multerConfig";
 import { advertController } from "../controllers/advertController";
 import { authMiddleware } from "../middlewares/authMiddleware";
 import { validateMiddleware } from "../middlewares/validateMiddleware";
@@ -10,12 +11,22 @@ export const advertRouter = Router();
 advertRouter.post(
     "",
     authMiddleware.checkAccess,
+    upload.array("images", 10),
     validateMiddleware.validateBody(AdvertValidator.createAdvert),
     advertController.create,
 );
-advertRouter.get("", advertController.getAll);
+advertRouter.get(
+    "",
+    validateMiddleware.validateQuery(AdvertValidator.query),
+    advertController.getAll,
+);
 advertRouter.get("/:id", advertController.getById);
-advertRouter.put("/:id", authMiddleware.checkAccess, advertController.update);
+advertRouter.put(
+    "/:id",
+    authMiddleware.checkAccess,
+    upload.array("images", 10),
+    advertController.update,
+);
 advertRouter.delete(
     "/:id",
     authMiddleware.checkAccess,

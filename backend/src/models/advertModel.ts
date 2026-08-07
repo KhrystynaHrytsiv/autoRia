@@ -1,4 +1,5 @@
 import { model, Schema } from "mongoose";
+import path from "path";
 
 import { AdvertStatus } from "../enums/advertStatus";
 import { CurrencyEnum } from "../enums/currencyEnum";
@@ -31,6 +32,7 @@ const advertSchema = new Schema(
             },
         },
         year: { type: Number, required: true },
+        images: { type: [String], default: [] },
         location: {
             region: { type: String, required: true },
             country: { type: String, default: "Ukraine" },
@@ -43,7 +45,20 @@ const advertSchema = new Schema(
         },
         attempts: { type: Number, default: 0 },
     },
-    { timestamps: true, versionKey: false },
+    {
+        timestamps: true,
+        versionKey: false,
+        toJSON: {
+            transform: (doc: any, ret: any) => {
+                if (ret.images) {
+                    ret.images = ret.images.map(
+                        (img: string) => `/images/${path.basename(img)}`,
+                    );
+                }
+                return ret;
+            },
+        },
+    },
 );
 
 export const Advertisement = model<IAdvert>("advert", advertSchema);

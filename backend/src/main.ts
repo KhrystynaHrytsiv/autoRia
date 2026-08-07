@@ -1,4 +1,6 @@
 /*eslint-disable no-console*/
+import path from "node:path";
+
 import express, { NextFunction, Request, Response } from "express";
 import mongoose from "mongoose";
 
@@ -14,6 +16,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/docs", swaggerUI.serve, swaggerUI.setup(swaggerDocument));
 app.use("/", apiRouter);
+app.use("/images", express.static(path.join(process.cwd(), "uploads")));
 app.use((err: apiError, req: Request, res: Response, next: NextFunction) => {
     const status = err.status || 500;
     const message = err.message ?? "Something went wrong";
@@ -31,8 +34,8 @@ const connection = async () => {
             await mongoose.connect(config.mongo_uri);
             dbCon = true;
             console.log("Connection available");
+            // eslint-disable-next-line @typescript-eslint/no-unused-vars
         } catch (e) {
-            console.log(e);
             await new Promise((resolve) => setTimeout(resolve, 3000));
         }
     }

@@ -44,6 +44,7 @@ Express.js · TypeScript · MongoDb  · JWT · Docker
  cd backend
  npm install
  docker compose up --build
+ npm run seed - створиться база даних з брендами і моделями
 ```
 ---
 
@@ -57,6 +58,7 @@ npm install
 MONGO_URI=mongodb://localhost:27017/autoRia
 ```bash
   npm run start
+  npm run seed - створиться база даних з брендами і моделями
 ```
 
 ---
@@ -104,7 +106,7 @@ GET /users/premium
 
 ## 🚘 Марки та моделі
 Випадайки: GET /brands, GET /brands/:id/models.
-Немає марки/моделі? Продавець повідомляє адміністрацію: POST /requests/brand-request  / POST /requests/model-request → менеджерам іде лист.
+Немає марки/моделі? Продавець повідомляє адміністрацію: POST /requests/brands  / POST /requests/models → менеджерам іде лист.
 
 ---
 # 🔐 Змінні .env

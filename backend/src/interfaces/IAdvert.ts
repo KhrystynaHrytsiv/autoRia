@@ -10,6 +10,7 @@ interface IAdvert {
     price: IPrice;
     year: number;
     description: string;
+    images: string[];
     location: {
         region: string;
         country: string;
@@ -20,8 +21,17 @@ interface IAdvert {
 
 type createAdvertDto = Pick<
     IAdvert,
-    "title" | "description" | "brand" | "model" | "year" | "price" | "location"
+    | "title"
+    | "description"
+    | "brand"
+    | "model"
+    | "year"
+    | "price"
+    | "location"
+    | "images"
 >;
 
-type updateAdvertDto = Partial<createAdvertDto>;
+interface updateAdvertDto extends Partial<IAdvert> {
+    removeImages?: string[];
+}
 export type { createAdvertDto, IAdvert, updateAdvertDto };
