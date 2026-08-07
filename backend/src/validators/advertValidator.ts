@@ -36,7 +36,10 @@ export class AdvertValidator {
     public static query = joi.object({
         pageSize: joi.number().min(1).max(100).default(10),
         page: joi.number().min(1).default(1),
-        search: joi.string().trim(),
+        brand: joi.string(),
+        model: joi.string(),
+        year: joi.number(),
+        price: joi.number(),
         order: joi
             .string()
             .valid(

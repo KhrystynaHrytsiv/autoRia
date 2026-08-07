@@ -1,7 +1,6 @@
 export interface IQuery {
     page: number;
     pageSize: number;
-    search?: string;
     order?: string;
 }
 

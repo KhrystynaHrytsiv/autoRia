@@ -11,8 +11,8 @@ class ModelRepository {
     public getById(id: string): Promise<IModel | null> {
         return Model.findById(id).populate("brandId");
     }
-    public async getByName(name: string): Promise<IModel | null> {
-        return await Model.findOne({ name });
+    public getByName(name: string): Promise<IModel | null> {
+        return Model.findOne({ name: { $regex: `^${name}$`, $options: "i" } });
     }
     public delete(id: string): Promise<IModel | null> {
         return Model.findByIdAndDelete(id);

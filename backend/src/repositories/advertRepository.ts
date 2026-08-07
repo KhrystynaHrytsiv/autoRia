@@ -4,6 +4,8 @@ import { AdvertStatus } from "../enums/advertStatus";
 import { createAdvertDto, IAdvert } from "../interfaces/IAdvert";
 import { IAdvertQuery } from "../interfaces/IQuery";
 import { Advertisement } from "../models/advertModel";
+import { brandService } from "../services/brandService";
+import { modelService } from "../services/modelService";
 
 class AdvertRepository {
     public async create(
@@ -15,16 +17,16 @@ class AdvertRepository {
     public getById(id: string): Promise<IAdvert | null> {
         return Advertisement.findById(id);
     }
-    public getAll(query: IAdvertQuery): Promise<[IAdvert[], number]> {
+    public async getAll(query: IAdvertQuery): Promise<[IAdvert[], number]> {
         const skip = query.pageSize * (query.page - 1);
         const filterObject: QueryFilter<IAdvert> = {
             status: AdvertStatus.active,
         };
         if (query.brand) {
-            filterObject.brand = query.brand;
+            filterObject.brand = await brandService.getIdByName(query.brand);
         }
         if (query.model) {
-            filterObject.model = query.model;
+            filterObject.model = await modelService.getIdByName(query.model);
         }
         if (query.year) {
             filterObject.year = +query.year;
@@ -32,7 +34,7 @@ class AdvertRepository {
         if (query.price) {
             filterObject["price.original.value"] = query.price;
         }
-        return Promise.all([
+        return await Promise.all([
             Advertisement.find(filterObject)
                 .limit(query.pageSize)
                 .skip(skip)
