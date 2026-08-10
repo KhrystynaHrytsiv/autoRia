@@ -49,11 +49,12 @@ class AdvertController {
             const images = (req.files as Express.Multer.File[]).map(
                 (file) => file.filename,
             );
+            const uniqImage = new Set(images);
             const removeImages = req.body.removeImages ?? [];
             const advert = await advertService.update(
                 id,
                 userId,
-                { ...dto, images, removeImages },
+                { ...dto, uniqImage, removeImages },
                 role,
             );
             res.status(StatusCodes.OK).json(advert);

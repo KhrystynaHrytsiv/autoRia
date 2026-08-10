@@ -1,10 +1,10 @@
 {
   "info": {
-    "_postman_id": "8d95c121-3de9-486a-96dc-8bbe34883e26",
-    "name": "autoria",
+    "_postman_id": "5a696006-3fdb-43b3-9985-c515fe7c370c",
+    "name": "autoria Copy",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
     "_exporter_id": "47958339",
-    "_collection_link": "https://go.postman.co/collection/47958339-8d95c121-3de9-486a-96dc-8bbe34883e26?source=collection_link"
+    "_collection_link": "https://go.postman.co/collection/47958339-5a696006-3fdb-43b3-9985-c515fe7c370c?source=collection_link"
   },
   "item": [
     {
@@ -920,15 +920,7 @@
             "header": [],
             "body": {
               "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "name",
-                  "value": "Lamborgini",
-                  "type": "text",
-                  "uuid": "ea32b486-f9f1-4ab2-bce2-1df7dae73367",
-                  "disabled": true
-                }
-              ]
+              "urlencoded": []
             },
             "url": {
               "raw": "http://localhost:6000/brands/:brandId/models",
@@ -945,7 +937,7 @@
               "variable": [
                 {
                   "key": "brandId",
-                  "value": "6a68a4a330c96c9ed1a1054a"
+                  "value": "6a79ccb57d9ffd3b9938db37"
                 }
               ]
             }
@@ -1133,6 +1125,16 @@
         {
           "name": "createManager",
           "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{accessToken}}",
+                  "type": "string"
+                }
+              ]
+            },
             "method": "POST",
             "header": [],
             "body": {
@@ -1140,7 +1142,7 @@
               "urlencoded": [
                 {
                   "key": "email",
-                  "value": "admin1@gmail.com",
+                  "value": "admin@gmail.com",
                   "type": "text",
                   "uuid": "be74b479-5846-4004-92fe-d5bf0c533ec7"
                 },
@@ -1231,7 +1233,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Userr\",\r\n    \"email\": \"userr@gmail.com\",\r\n    \"password\": \"P@ssword1\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:6000/users/:id/activate",
@@ -1248,7 +1250,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "6a689cdc727de8326e1a14b2"
+                  "value": "6a79dffec5c679ffa12c7176"
                 }
               ]
             }
@@ -1311,7 +1313,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"Vaa\"\r\n\r\n}",
+              "raw": "{\r\n    \"name\":\"Hundai\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1356,7 +1358,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"Rs8\",\r\n    \"brand\": \"Audi\"\r\n}"
+              "raw": "{\r\n    \"name\":\"E5\",\r\n    \"brand\": \"Hundai\"\r\n}"
             },
             "url": {
               "raw": "http://localhost:6000/requests/models",
@@ -1636,7 +1638,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"cayenne\",\r\n    \"brandId\": \"6a672c6b7ed981a5d558bdcf\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:6000/requests/model/:id/reject",
@@ -1654,7 +1656,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "6a7323ffad552e683c03d7c7"
+                  "value": "6a79e214c5c679ffa12c717e"
                 }
               ]
             }
@@ -1666,16 +1668,13 @@
   ],
   "variable": [
     {
-      "key": "supabase_service_role_api_key_0vxx",
-      "secret": true
+      "key": "supabase_service_role_api_key_0vxx"
     },
     {
-      "key": "json_web_token_11uq",
-      "secret": true
+      "key": "json_web_token_11uq"
     },
     {
-      "key": "json_web_token_00bx",
-      "secret": true
+      "key": "json_web_token_00bx"
     }
   ]
 }
