@@ -55,7 +55,10 @@ cd backend
 npm install
 ```
 Використовувати для підключення MongoDB (.env)
-MONGO_URI=mongodb://localhost:27017/autoRia
+```
+ MONGO_URI=mongodb://admin:admin@localhost:1500/autoRia
+```
+
 ```bash
   npm run start
   npm run seed - створиться база даних з брендами і моделями
@@ -112,16 +115,21 @@ GET /users/premium
 # 🔐 Змінні .env
 
 MONGO_URI=mongodb://admin:admin@db:27017/autoRia
+
 PORT=6000
+
 JWT_ACCESS_SECRET=25f799f45bfe9565f69be22676c5900899c3e97bdf4284f590c016ae0ca1a6f510ea0e5fc7d83317
 
 JWT_REFRESH_SECRET=356db7ca0e1895cfaae92f5cd8033bf37b27fc3a52635eafec41d935ff170ce42da3bdf3760ec4a9
+
 JWT_ACCESS_LIFETIME=10m
+
 JWT_REFRESH_LIFETIME=20m
 
 PRIVAT_API_URL=https://api.privatbank.ua/p24api/pubinfo?exchange&coursid=5
 
 EMAIL_USER=khrystyna.hrytsiv@gmail.com
+
 EMAIL_PASSWORD=zwwmopngfhjluhpm
 
 
