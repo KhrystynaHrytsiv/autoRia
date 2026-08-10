@@ -1048,7 +1048,7 @@ const swaggerDocument: OpenAPIV3.Document = {
                 },
             },
         },
-        "/adverts/images/{filename}": {
+        "/images/{filename}": {
             get: {
                 tags: ["Advertisement"],
                 summary: "Get advertisement image",

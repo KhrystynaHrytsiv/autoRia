@@ -147,7 +147,7 @@ EMAIL_PASSWORD=zwwmopngfhjluhpm
 | PUT    | `/adverts/:id`                | Власник/admin                  | Редагувати оголошення                            |
 | DELETE | `/adverts/:id`                | Власник/manager/admin          | Видалити оголошення                              |
 | GET    | `/adverts/:id/statistics`     | Premium-власник, manager/admin | Отримати статистику                              |
-| GET    | `/adverts/images/:filename`   | Публічний                      | Отримати фотографію оголошення                   |
+| GET    | `/images/:filename`           | Публічний                      | Отримати фотографію оголошення                   |
 | GET    | `/brands `                    | Публічний                      | Випадаючий список брендів                        |
 | GET    | `/brands/:brandId/models`     | Публічний                      | Випадаючий список моделей                        |
 | POST   | `/requests/brands`            | Авторизований                  | Створити запит на новий бренд авто               |
