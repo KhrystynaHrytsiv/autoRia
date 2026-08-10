@@ -129,34 +129,35 @@ EMAIL_PASSWORD=zwwmopngfhjluhpm
 
 # 📦 API
 
-| Метод  | Endpoint                      | Доступ                         | Опис                                     |
-|--------|-------------------------------|--------------------------------|------------------------------------------|
-| POST   | `/auth/register`              | Публічний                      | Реєстрація buyer/seller                  |
-| POST   | `/auth/login`                 | Публічний                      | Вхід в систему (access + refresh)        |
-| POST   | `/auth/refresh`               | Авторизований                  | Оновлення токенів                        |
-| GET    | `/auth/me`                    | Авторизований                  | Мій профіль                              |
-| POST   | `/users/create-manager`       | Admin                          | Створити менеджера                       |
-| GET    | `/users  `                    | Admin/manager                  | Отримати всіх користувачів               |
-| GET    | `/users/:id`                  | Admin/manager                  | Отримати поточного користувача           |
-| PATCH  | `/users/:id/block`            | Admin/manager                  | Заблокувати користувача                  |
-| PATCH  | `/users/:id/activate`         | Admin/manager                  | Активувати користувача                   |
-| PATCH  | `/users/premium`              | Seller                         | Купити premium акаунт                    |
-| GET    | `/adverts `                   | Публічний                      | Отримати всі оголошення                  |
-| POST   | `/adverts`                    | Авторизований                  | Створити нове оголошення                 |
-| GET    | `/adverts/:id`                | Публічний                      | Отримати поточне оголошення              |
-| PUT    | `/adverts/:id`                | Власник/admin                  | Редагувати оголошення                    |
-| DELETE | `/adverts/:id`                | Власник/manager/admin          | Видалити оголошення                      |
-| GET    | `/adverts/:id/statistics`     | Premium-власник, manager/admin | Отримати статистику                      |
-| GET    | `/brands `                    | Публічний                      | Випадаючий список брендів                |
-| GET    | `/brands/:brandId/models`     | Публічний                      | Випадаючий список моделей                |
-| POST   | `/requests/brands`            | Авторизований                  | Створити запит на новий бренд авто       |
-| POST   | `/requests/models`            | Авторизований                  | Створити запит на нову модель авто       |
-| GET    | `/requests/brands`            | Admin/manager                  | Отримати всі запити на додавання брендів |
-| GET    | `/requests/models`            | Admin/manager                  | Отримати всі запити на додавання моделей |
-| PATCH  | `/requests/brand/:id/approve` | Admin/manager                  | Підтвердити додавання бренду             |
-| PATCH  | `/requests/model/:id/approve` | Admin/manager                  | Підтвердити додавання моделі             |
-| PATCH  | `/requests/brand/:id/reject`  | Admin/manager                  | Відмовити у додавані бренду              |
-| PATCH  | `/requests/model/:id/reject`  | Admin/manager                  | Відмовити у додавані моделі              |
+| Метод  | Endpoint                      | Доступ                         | Опис                                             |
+|--------|-------------------------------|--------------------------------|--------------------------------------------------|
+| POST   | `/auth/register`              | Публічний                      | Реєстрація buyer/seller                          |
+| POST   | `/auth/login`                 | Публічний                      | Вхід в систему (access + refresh)                |
+| POST   | `/auth/refresh`               | Авторизований                  | Оновлення токенів                                |
+| GET    | `/auth/me`                    | Авторизований                  | Мій профіль                                      |
+| POST   | `/users/create-manager`       | Admin                          | Створити менеджера                               |
+| GET    | `/users  `                    | Admin/manager                  | Отримати всіх користувачів                       |
+| GET    | `/users/:id`                  | Admin/manager                  | Отримати поточного користувача                   |
+| PATCH  | `/users/:id/block`            | Admin/manager                  | Заблокувати користувача                          |
+| PATCH  | `/users/:id/activate`         | Admin/manager                  | Активувати користувача                           |
+| PATCH  | `/users/premium`              | Seller                         | Купити premium акаунт                            |
+| GET    | `/adverts `                   | Публічний                      | Отримати всі оголошення з пагінацією і фільтрами |
+| POST   | `/adverts`                    | Авторизований                  | Створити нове оголошення                         |
+| GET    | `/adverts/:id`                | Публічний                      | Отримати поточне оголошення                      |
+| PUT    | `/adverts/:id`                | Власник/admin                  | Редагувати оголошення                            |
+| DELETE | `/adverts/:id`                | Власник/manager/admin          | Видалити оголошення                              |
+| GET    | `/adverts/:id/statistics`     | Premium-власник, manager/admin | Отримати статистику                              |
+| GET    | `/adverts/images/:filename`   | Публічний                      | Отримати фотографію оголошення                   |
+| GET    | `/brands `                    | Публічний                      | Випадаючий список брендів                        |
+| GET    | `/brands/:brandId/models`     | Публічний                      | Випадаючий список моделей                        |
+| POST   | `/requests/brands`            | Авторизований                  | Створити запит на новий бренд авто               |
+| POST   | `/requests/models`            | Авторизований                  | Створити запит на нову модель авто               |
+| GET    | `/requests/brands`            | Admin/manager                  | Отримати всі запити на додавання брендів         |
+| GET    | `/requests/models`            | Admin/manager                  | Отримати всі запити на додавання моделей         |
+| PATCH  | `/requests/brand/:id/approve` | Admin/manager                  | Підтвердити додавання бренду                     |
+| PATCH  | `/requests/model/:id/approve` | Admin/manager                  | Підтвердити додавання моделі                     |
+| PATCH  | `/requests/brand/:id/reject`  | Admin/manager                  | Відмовити у додавані бренду                      |
+| PATCH  | `/requests/model/:id/reject`  | Admin/manager                  | Відмовити у додавані моделі                      |
 
 
 ---

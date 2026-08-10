@@ -32,7 +32,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Userr\",\r\n    \"email\": \"user@gmail.com\",\r\n    \"password\": \"P@ssword1\"\r\n}",
+              "raw": "{\r\n    \"name\": \"Khrystyna\",\r\n    \"email\": \"khrystyna.hrytsiv@gmail.com\",\r\n    \"password\": \"P@ssword1\"\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -265,8 +265,64 @@
               }
             ],
             "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"title\": \"Sell car \",\r\n    \"description\": \"njdv ndjvn sdc\",\r\n    \"year\": 2023,\r\n    \"brand\": \"Audi\",\r\n    \"model\": \"Q5\",\r\n    \"price\": {\r\n        \"original\": {\r\n            \"value\": 35000,\r\n            \"currency\": \"EUR\"\r\n        }\r\n    },\r\n    \"location\":{\r\n        \"region\": \"Lviv\",\r\n        \"country\": \"Ukraine\"\r\n    }\r\n    \r\n}"
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "title",
+                  "value": "Sell car",
+                  "type": "text",
+                  "uuid": "105caf0f-f89b-423c-993c-b7787d0e2540"
+                },
+                {
+                  "key": "description",
+                  "value": "Black car in excellent condition.",
+                  "type": "text",
+                  "uuid": "36542be8-44ff-427e-97c0-2d2d5d0ef59e"
+                },
+                {
+                  "key": "brand",
+                  "value": "Lamborghini",
+                  "type": "text",
+                  "uuid": "611e2307-5009-4345-ad60-43663e164bd5"
+                },
+                {
+                  "key": "model",
+                  "value": "Urus",
+                  "type": "text",
+                  "uuid": "f91e3b97-cea1-4123-a603-c5484c88093a"
+                },
+                {
+                  "key": "year",
+                  "value": "2023",
+                  "type": "text",
+                  "uuid": "4b349f1b-64a3-4850-84b6-39dc7aeb5f47"
+                },
+                {
+                  "key": "price[original][value]",
+                  "value": "55000",
+                  "type": "text",
+                  "uuid": "d32b09d3-119e-4df2-b8be-9e1ef37addae"
+                },
+                {
+                  "key": "price[original][currency]",
+                  "value": "EUR",
+                  "type": "text",
+                  "uuid": "f6719929-be58-459a-9601-6e4318a5c709"
+                },
+                {
+                  "key": "location[region]",
+                  "value": "Kyiv",
+                  "type": "text",
+                  "uuid": "9d04be1d-7d3e-40bb-b1a5-0cd1b8fbed9c"
+                },
+                {
+                  "key": "images",
+                  "type": "file",
+                  "uuid": "318ded0b-cbb9-440c-b33f-ffe92d34fa06",
+                  "src": "/C:/Users/Христина/Desktop/audi_q5__651151416fx.jpg",
+                  "disabled": true
+                }
+              ]
             },
             "url": {
               "raw": "http://localhost:6000/adverts",
@@ -341,7 +397,7 @@
               ]
             },
             "url": {
-              "raw": "http://localhost:6000/adverts",
+              "raw": "http://localhost:6000/adverts?order=price&pageSize=10&brand=lamborghini",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -349,6 +405,33 @@
               "port": "6000",
               "path": [
                 "adverts"
+              ],
+              "query": [
+                {
+                  "key": "order",
+                  "value": "price"
+                },
+                {
+                  "key": "pageSize",
+                  "value": "10"
+                },
+                {
+                  "key": "brand",
+                  "value": "lamborghini",
+                  "type": "text"
+                },
+                {
+                  "key": "model",
+                  "value": "x5",
+                  "type": "text",
+                  "disabled": true
+                },
+                {
+                  "key": "price",
+                  "value": "30000",
+                  "type": "text",
+                  "disabled": true
+                }
               ]
             }
           },
@@ -459,8 +542,28 @@
               }
             ],
             "body": {
-              "mode": "raw",
-              "raw": "{\r\n    \"price\":{\r\n        \"original\": {\r\n            \"value\": 28500,\r\n            \"currency\": \"USD\"\r\n        }\r\n    },\r\n    \"brand\": \"Audi\"\r\n}"
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "removeImages",
+                  "type": "text",
+                  "uuid": "1f9202b1-b0e5-48fa-a963-688204519f48",
+                  "value": "/images/1f192551-158b-6e20-a87c-8cd71122ba14.jpg"
+                },
+                {
+                  "key": "year",
+                  "value": "2025",
+                  "type": "text",
+                  "uuid": "dc450ca5-8309-441d-b772-f952c7c75151",
+                  "disabled": true
+                },
+                {
+                  "key": "images",
+                  "type": "file",
+                  "uuid": "701eb76a-034f-4f38-830c-026a979f5b35",
+                  "src": "/C:/Users/Христина/Desktop/audi.jpg"
+                }
+              ]
             },
             "url": {
               "raw": "http://localhost:6000/adverts/:id",
@@ -476,7 +579,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "6a674164b1f77258da1ed810"
+                  "value": "6a7598f272cdce86408974c7"
                 }
               ]
             }
@@ -643,6 +746,35 @@
                 {
                   "key": "id",
                   "value": "6a69f5ab026ed0fdc6f18631"
+                }
+              ]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "getImages",
+          "request": {
+            "auth": {
+              "type": "noauth"
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:6000/images/:filename",
+              "protocol": "http",
+              "host": [
+                "localhost"
+              ],
+              "port": "6000",
+              "path": [
+                "images",
+                ":filename"
+              ],
+              "variable": [
+                {
+                  "key": "filename",
+                  "value": "1f1923b0-5f51-66b0-b1d6-b3ba4c14b8e3.jpg"
                 }
               ]
             }
@@ -1058,7 +1190,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\": \"Userr\",\r\n    \"email\": \"userr@gmail.com\",\r\n    \"password\": \"P@ssword1\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:6000/users/:userId/block",
@@ -1075,7 +1207,7 @@
               "variable": [
                 {
                   "key": "userId",
-                  "value": "6a689cdc727de8326e1a14b2"
+                  "value": "6a720a70ee7e7d91fe91ce1f"
                 }
               ]
             }
@@ -1140,50 +1272,7 @@
             "header": [],
             "body": {
               "mode": "urlencoded",
-              "urlencoded": [
-                {
-                  "key": "userId",
-                  "value": "6a57ce722e12e823063cbdd3",
-                  "type": "text",
-                  "uuid": "4fde5e86-1693-4b65-a2ed-7c5b18a8fcd8"
-                },
-                {
-                  "key": "title",
-                  "value": "sold car",
-                  "type": "text",
-                  "uuid": "f67a7c40-6db1-4b0c-a6b4-2c4992520ca2"
-                },
-                {
-                  "key": "brand",
-                  "value": "Audi",
-                  "type": "text",
-                  "uuid": "3651d635-b98a-4815-9fda-8cf897519a1b"
-                },
-                {
-                  "key": "model",
-                  "value": "q7",
-                  "type": "text",
-                  "uuid": "bd8d3e78-8011-4a77-bd4e-c7174ac5688f"
-                },
-                {
-                  "key": "price",
-                  "value": "36000",
-                  "type": "text",
-                  "uuid": "2764095a-f826-4630-bce3-436fec6a4330"
-                },
-                {
-                  "key": "year",
-                  "value": "2020",
-                  "type": "text",
-                  "uuid": "97a193b2-2299-4bbf-befe-b1671f7d7206"
-                },
-                {
-                  "key": "description",
-                  "value": "want to sell car",
-                  "type": "text",
-                  "uuid": "489873bd-e6c8-43a9-8fbb-1192445166f3"
-                }
-              ]
+              "urlencoded": []
             },
             "url": {
               "raw": "http://localhost:6000/users/premium",
@@ -1222,7 +1311,7 @@
             "header": [],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"tesla\"\r\n\r\n}",
+              "raw": "{\r\n    \"name\":\"Vaa\"\r\n\r\n}",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1230,7 +1319,7 @@
               }
             },
             "url": {
-              "raw": "http://localhost:6000/requests/brand-request",
+              "raw": "http://localhost:6000/requests/brands",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1238,7 +1327,7 @@
               "port": "6000",
               "path": [
                 "requests",
-                "brand-request"
+                "brands"
               ]
             }
           },
@@ -1267,10 +1356,10 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"aaa\",\r\n    \"brand\": \"BMW\"\r\n}"
+              "raw": "{\r\n    \"name\":\"Rs8\",\r\n    \"brand\": \"Audi\"\r\n}"
             },
             "url": {
-              "raw": "http://localhost:6000/requests/model-request",
+              "raw": "http://localhost:6000/requests/models",
               "protocol": "http",
               "host": [
                 "localhost"
@@ -1278,7 +1367,7 @@
               "port": "6000",
               "path": [
                 "requests",
-                "model-request"
+                "models"
               ]
             }
           },
@@ -1310,7 +1399,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"cayenne\",\r\n    \"brand\": \"Porsche\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:6000/requests/brands",
@@ -1350,7 +1439,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"cayenne\",\r\n    \"brand\": \"Porsche\"\r\n}",
+              "raw": "",
               "options": {
                 "raw": {
                   "language": "json"
@@ -1373,7 +1462,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "6a679de466a0bc8ba80cdc0e"
+                  "value": "6a731c8d69df14f4a8c0c35f"
                 }
               ]
             }
@@ -1469,7 +1558,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "6a6788c3e703c86a32c9d504"
+                  "value": "6a7324a4ad552e683c03d7c8"
                 }
               ]
             }
@@ -1499,7 +1588,7 @@
             ],
             "body": {
               "mode": "raw",
-              "raw": "{\r\n    \"name\":\"cayenne\",\r\n    \"brandId\": \"6a672c6b7ed981a5d558bdcf\"\r\n}"
+              "raw": ""
             },
             "url": {
               "raw": "http://localhost:6000/requests/brand/:id/reject",
@@ -1517,7 +1606,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "6a6876bf16c7039063bc63f6"
+                  "value": "6a731dee69df14f4a8c0c362"
                 }
               ]
             }
@@ -1565,7 +1654,7 @@
               "variable": [
                 {
                   "key": "id",
-                  "value": "6a687e164471b1950a5594e0"
+                  "value": "6a7323ffad552e683c03d7c7"
                 }
               ]
             }

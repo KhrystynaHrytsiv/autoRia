@@ -66,6 +66,13 @@ const swaggerDocument: OpenAPIV3.Document = {
             Advertisement: {
                 type: "object",
                 properties: {
+                    _id: { type: "string" },
+                    userId: { type: "string" },
+                    title: { type: "string" },
+                    description: { type: "string" },
+                    brand: { type: "string" },
+                    model: { type: "string" },
+                    year: { type: "number" },
                     price: {
                         type: "object",
                         properties: {
@@ -120,13 +127,11 @@ const swaggerDocument: OpenAPIV3.Document = {
                             },
                         },
                     },
-                    _id: { type: "string" },
-                    userId: { type: "string" },
-                    title: { type: "string" },
-                    description: { type: "string" },
-                    brand: { type: "string" },
-                    model: { type: "string" },
-                    year: { type: "number" },
+                    images: {
+                        type: "array",
+                        items: { type: "string", format: "binary" },
+                        default: [],
+                    },
                     status: { type: "string" },
                     attempts: { type: "number" },
                     createdAt: { type: "string", format: "date-time" },
@@ -640,7 +645,51 @@ const swaggerDocument: OpenAPIV3.Document = {
         "/adverts": {
             get: {
                 tags: ["Advertisement"],
-                summary: "Get all advertisements",
+                summary: "Get all advertisements with pagination and filters",
+                parameters: [
+                    {
+                        name: "page",
+                        in: "query",
+                        description: "Page number",
+                        schema: { type: "integer", default: 1 },
+                    },
+                    {
+                        name: "pageSize",
+                        in: "query",
+                        description: "Number of items per page",
+                        schema: { type: "integer", default: 10 },
+                    },
+                    {
+                        name: "order",
+                        in: "query",
+                        description: "Parameter for sorting",
+                        schema: { type: "string" },
+                    },
+                    {
+                        name: "brand",
+                        in: "query",
+                        description: "Search by brand",
+                        schema: { type: "string" },
+                    },
+                    {
+                        name: "model",
+                        in: "query",
+                        description: "Search by model",
+                        schema: { type: "string" },
+                    },
+                    {
+                        name: "year",
+                        in: "query",
+                        description: "Search by year",
+                        schema: { type: "integer" },
+                    },
+                    {
+                        name: "price",
+                        in: "query",
+                        description: "Filter by price",
+                        schema: { type: "integer" },
+                    },
+                ],
                 responses: {
                     "200": {
                         description: "Get all advertisements",
@@ -995,6 +1044,55 @@ const swaggerDocument: OpenAPIV3.Document = {
                                 },
                             },
                         },
+                    },
+                },
+            },
+        },
+        "/adverts/images/{filename}": {
+            get: {
+                tags: ["Advertisement"],
+                summary: "Get advertisement image",
+                parameters: [
+                    {
+                        name: "filename",
+                        in: "path",
+                        description: "Image name",
+                        required: true,
+                        schema: { type: "string" },
+                    },
+                ],
+                responses: {
+                    "200": {
+                        description: "Successfully get advertisement image",
+                        content: {
+                            "image/jpeg": {
+                                schema: {
+                                    type: "string",
+                                    format: "binary",
+                                },
+                            },
+                            "image/jpg": {
+                                schema: {
+                                    type: "string",
+                                    format: "binary",
+                                },
+                            },
+                            "image/png": {
+                                schema: {
+                                    type: "string",
+                                    format: "binary",
+                                },
+                            },
+                            "image/gif": {
+                                schema: {
+                                    type: "string",
+                                    format: "binary",
+                                },
+                            },
+                        },
+                    },
+                    "404": {
+                        description: "Image not found",
                     },
                 },
             },
