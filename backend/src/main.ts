@@ -1,4 +1,5 @@
 /*eslint-disable no-console*/
+import dns from "node:dns";
 import path from "node:path";
 
 import express, { NextFunction, Request, Response } from "express";
@@ -10,6 +11,7 @@ import { cronRunner } from "./crons";
 import { apiError } from "./error/apiError";
 import { apiRouter } from "./routs/apiRouter";
 
+dns.setServers(["8.8.8.8", "8.8.4.4"]);
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));

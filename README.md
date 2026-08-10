@@ -32,7 +32,7 @@ REST API платформи з продажу авто: ролі з систем
 ---
 
 # 🛠 Технології
-Express.js · TypeScript · MongoDb  · JWT · Docker
+Express.js · TypeScript · MongoDb  · JWT · Docker · MongoAtlas
 
 ---
 
@@ -44,24 +44,15 @@ Express.js · TypeScript · MongoDb  · JWT · Docker
  cd backend
  npm install
  docker compose up --build
- npm run seed - створиться база даних з брендами і моделями
 ```
 ---
 
 Локальний запуск без Docker
 ```bash
 
-cd backend
-npm install
-```
-Використовувати для підключення MongoDB (.env)
-```
- MONGO_URI=mongodb://admin:admin@localhost:1500/autoRia
-```
-
-```bash
+  cd backend
+  npm install
   npm run start
-  npm run seed - створиться база даних з брендами і моделями
 ```
 
 ---
@@ -114,7 +105,7 @@ GET /users/premium
 ---
 # 🔐 Змінні .env
 
-MONGO_URI=mongodb://admin:admin@db:27017/autoRia
+MONGO_URI=mongodb+srv://admin:admin@cluster0.eoueila.mongodb.net/?appName=Cluster0
 
 PORT=6000
 
@@ -192,4 +183,9 @@ Swagger UI: http://localhost:6000/docs
 4. Login (manager/admin) → Update adverts → активація вручну.
 5. Get adverts by id кілька разів (без токена) → Adverts statistics покаже перегляди та середні ціни.
 
-❗️ Щоб створити Admin → Register → вручну у базі даних змінити роль на Admin 
+❗️ У базі даних уже створено користувача з роллю Admin, тому для перевірки доступу до відповідних методів можна скористатися наданими обліковими даними.
+
+| Параметр | Значення                     |
+|----------|------------------------------|
+| Email    | khrystyna.hrytsiv@gmail.com  |
+| Password | P@ssword1                    |
