@@ -19,13 +19,14 @@ class ModelService {
         }
         return await modelRepository.create(brandId, { name: dto.name });
     }
-    public async getIdByName(name: string): Promise<string> {
+    public async getByName(name: string) {
         const model = await modelRepository.getByName(name);
         if (!model) {
             throw new apiError("Model not found", StatusCodes.NOT_FOUND);
         }
-        return model.id.toString();
+        return model;
     }
+
     public async delete(id: string): Promise<void> {
         const model = await modelRepository.getById(id);
         if (!model) {

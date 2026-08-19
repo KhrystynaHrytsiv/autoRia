@@ -485,7 +485,7 @@ const swaggerDocument: OpenAPIV3.Document = {
                 summary: "Manager created successfully",
                 security: [{ bearerAuth: [] }],
                 responses: {
-                    "200": {
+                    "201": {
                         description:
                             "Create manager. Permission has only Admin",
                         content: {

@@ -26,7 +26,8 @@ class AdvertRepository {
             filterObject.brand = await brandService.getIdByName(query.brand);
         }
         if (query.model) {
-            filterObject.model = await modelService.getIdByName(query.model);
+            const { id } = await modelService.getByName(query.model);
+            filterObject.model = id;
         }
         if (query.year) {
             filterObject.year = +query.year;

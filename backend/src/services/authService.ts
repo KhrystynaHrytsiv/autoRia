@@ -37,6 +37,9 @@ class AuthService {
             data.password,
             user.password,
         );
+        if (!user.isActive) {
+            throw new apiError("Account is not active", StatusCodes.FORBIDDEN);
+        }
         if (!isPasswordExist) {
             throw new apiError(
                 "Invalid email or password",

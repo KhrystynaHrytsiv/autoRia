@@ -86,7 +86,6 @@ class AdvertService {
                 attempts: newAttempt,
             });
         }
-        console.log("advert.images after updateImages:", advert.images);
         return await advertRepository.update(id, {
             ...advertData,
             images: advert.images,

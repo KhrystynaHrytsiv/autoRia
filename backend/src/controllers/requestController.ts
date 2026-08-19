@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { StatusCodes } from "../enums/statusCodes";
+import { apiError } from "../error/apiError";
 import { ITokenPayload } from "../interfaces/IToken";
 import { requestService } from "../services/requestService";
 
@@ -64,53 +65,45 @@ class RequestController {
         }
     }
 
-    public async approveBrandRequest(
+    public async rejectRequest(
         req: Request,
         res: Response,
         next: NextFunction,
     ) {
         try {
-            const id = req.params.id as string;
-            const brand = await requestService.approveBrandRequest(id);
-            res.status(StatusCodes.OK).json(brand);
-        } catch (e) {
-            next(e);
-        }
-    }
-    public async approveModelRequest(
-        req: Request,
-        res: Response,
-        next: NextFunction,
-    ) {
-        try {
-            const id = req.params.id as string;
-            const model = await requestService.approveModelRequest(id);
-            res.status(StatusCodes.OK).json(model);
-        } catch (e) {
-            next(e);
-        }
-    }
-    public async rejectBrandRequest(
-        req: Request,
-        res: Response,
-        next: NextFunction,
-    ) {
-        try {
-            const id = req.params.id as string;
-            const request = await requestService.rejectBrandRequest(id);
+            const { id, type } = req.params as {
+                id: string;
+                type: "brand" | "model";
+            };
+            if (type !== "brand" && type !== "model") {
+                throw new apiError(
+                    "Invalid request type",
+                    StatusCodes.BAD_REQUEST,
+                );
+            }
+            const request = await requestService.rejectRequest(id, type);
             res.status(StatusCodes.OK).json(request);
         } catch (e) {
             next(e);
         }
     }
-    public async rejectModelRequest(
+    public async approveRequest(
         req: Request,
         res: Response,
         next: NextFunction,
     ) {
         try {
-            const id = req.params.id as string;
-            const request = await requestService.rejectModelRequest(id);
+            const { id, type } = req.params as {
+                id: string;
+                type: "brand" | "model";
+            };
+            if (type !== "brand" && type !== "model") {
+                throw new apiError(
+                    "Invalid request type",
+                    StatusCodes.BAD_REQUEST,
+                );
+            }
+            const request = await requestService.approveRequest(id, type);
             res.status(StatusCodes.OK).json(request);
         } catch (e) {
             next(e);

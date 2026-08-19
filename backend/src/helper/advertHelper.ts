@@ -21,11 +21,17 @@ import { userService } from "../services/userService";
 class AdvertHelper {
     public async prepareAdvert(dto: createAdvertDto | updateAdvertDto) {
         const data: any = { ...dto };
+
         if (dto.brand) {
             data.brand = await brandService.getIdByName(dto.brand);
         }
         if (dto.model) {
-            data.model = await modelService.getIdByName(dto.model);
+            const model = await modelService.getByName(dto.model);
+
+            if (dto.brand && model.brandId !== data.brand) {
+                throw new Error('Selected model does not belong to selected brand');
+            }
+            data.model = model.id;
         }
         if (dto.price) {
             data.price = await currencyService.convertCurrency(dto.price);

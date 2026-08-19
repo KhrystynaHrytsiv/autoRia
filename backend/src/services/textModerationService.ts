@@ -25,7 +25,14 @@ class TextModerationService {
     ];
     public check(text: string): boolean {
         const normalized = text.toLowerCase();
-        return this.badWords.some((word) => normalized.includes(word));
+
+        return this.badWords.some((word) => {
+            const regex = new RegExp(
+                `(?<![\\p{L}\\p{N}_])${word}(?![\\p{L}\\p{N}_])`,
+                "iu",
+            );
+            return regex.test(normalized);
+        });
     }
 }
 export const textModerationService = new TextModerationService();

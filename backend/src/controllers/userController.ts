@@ -36,27 +36,19 @@ class UserController {
             next(e);
         }
     }
-    public async blockUser(req: Request, res: Response, next: NextFunction) {
+    public async changeUserStatus(
+        req: Request,
+        res: Response,
+        next: NextFunction,
+    ) {
         try {
             const id = req.params.id as string;
             const { userId: myId } = res.locals.tokenPayload as ITokenPayload;
             if (id === myId) {
                 throw new apiError("Not permitted", StatusCodes.FORBIDDEN);
             }
-            const user = await userService.blockUser(id);
-            res.status(StatusCodes.OK).json(user);
-        } catch (e) {
-            next(e);
-        }
-    }
-    public async unBlockUser(req: Request, res: Response, next: NextFunction) {
-        try {
-            const id = req.params.id as string;
-            const { userId: myId } = res.locals.tokenPayload as ITokenPayload;
-            if (id === myId) {
-                throw new apiError("Not permitted", StatusCodes.FORBIDDEN);
-            }
-            const user = await userService.unBlockUser(id);
+            const isActive = req.path.endsWith("/activate");
+            const user = await userService.changeStatus(id, isActive);
             res.status(StatusCodes.OK).json(user);
         } catch (e) {
             next(e);

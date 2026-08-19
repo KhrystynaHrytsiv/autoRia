@@ -42,20 +42,16 @@ class UserService {
     public async createManager(dto: IUserCreateDto): Promise<IUser> {
         return await this.createWithRole(dto, RolesEnum.MANAGER);
     }
-    public async blockUser(id: string): Promise<IUser> {
-        const user = await userRepository.blockUser(id);
+    public async changeStatus(id: string, isActive: boolean): Promise<IUser> {
+        const user = await userRepository.changeStatus(id, isActive);
         if (!user) {
             throw new apiError("User not found", StatusCodes.NOT_FOUND);
         }
-        await notificationService.blockedAccount(user);
-        return user;
-    }
-    public async unBlockUser(id: string): Promise<IUser> {
-        const user = await userRepository.unBlockUser(id);
-        if (!user) {
-            throw new apiError("User not found", StatusCodes.NOT_FOUND);
+        if (isActive) {
+            await notificationService.activateAccount(user);
+        } else {
+            await notificationService.blockedAccount(user);
         }
-        await notificationService.activateAccount(user);
         return user;
     }
     public async changeToPremiumAccount(id: string): Promise<IUser | null> {

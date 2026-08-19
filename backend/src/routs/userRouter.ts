@@ -12,7 +12,12 @@ userRouter.get(
     authMiddleware.hasPermission,
     userController.getAll,
 );
-userRouter.get("/:id", userController.getById);
+userRouter.get(
+    "/:id",
+    authMiddleware.checkAccess,
+    authMiddleware.hasPermission,
+    userController.getById,
+);
 userRouter.post(
     "/create-manager",
     authMiddleware.checkAccess,
@@ -24,13 +29,13 @@ userRouter.patch(
     "/:id/block",
     authMiddleware.checkAccess,
     authMiddleware.hasPermission,
-    userController.blockUser,
+    userController.changeUserStatus,
 );
 userRouter.patch(
     "/:id/activate",
     authMiddleware.checkAccess,
     authMiddleware.hasPermission,
-    userController.unBlockUser,
+    userController.changeUserStatus,
 );
 userRouter.patch(
     "/premium",

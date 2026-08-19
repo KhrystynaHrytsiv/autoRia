@@ -27,7 +27,7 @@ class AdvertController {
         try {
             const query = req.query as any as IAdvertQuery;
             const adverts = await advertService.getAll(query);
-            res.status(StatusCodes.CREATED).json(adverts);
+            res.status(StatusCodes.OK).json(adverts);
         } catch (e) {
             next(e);
         }
@@ -36,7 +36,7 @@ class AdvertController {
         try {
             const id = req.params.id as string;
             const advert = await advertService.getById(id);
-            res.status(StatusCodes.CREATED).json(advert);
+            res.status(StatusCodes.OK).json(advert);
         } catch (e) {
             next(e);
         }

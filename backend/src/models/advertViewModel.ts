@@ -10,7 +10,7 @@ const advertViewSchema = new Schema(
             ref: Advertisement,
             required: true,
         },
-        viewedAt: { type: Date, default: Date.now() },
+        viewedAt: { type: Date, default: Date.now },
     },
     { versionKey: false },
 );

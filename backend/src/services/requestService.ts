@@ -1,7 +1,6 @@
 import { RequestStatus } from "../enums/requestStatus";
 import { StatusCodes } from "../enums/statusCodes";
 import { apiError } from "../error/apiError";
-import { IModel } from "../interfaces/ICar";
 import {
     createBrandReq,
     createModelReq,
@@ -46,7 +45,6 @@ class RequestService {
     public async getAllModelRequests(): Promise<IModelRequest[]> {
         return await requestRepository.getModelRequest();
     }
-
     private async getBrandRequest(id: string): Promise<IBrandRequest> {
         const request = await requestRepository.getBrandRequestById(id);
         if (!request) {
@@ -108,32 +106,32 @@ class RequestService {
         return request;
     }
 
-    public async approveBrandRequest(id: string) {
-        const request = await this.getBrandRequest(id);
-        const brand = await brandRepository.create({ name: request.name });
-        await this.updateBrandStatus(id, RequestStatus.approved);
-        return brand;
-    }
-
-    public async approveModelRequest(id: string): Promise<IModel> {
-        const request = await this.getModelRequest(id);
-        const brand = await brandRepository.getByName(request.brand);
-        if (!brand) {
-            throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
+    public async approveRequest(id: string, type: "brand" | "model") {
+        if (type === "brand") {
+            const brandRequest = await this.getBrandRequest(id);
+            const brand = await brandRepository.create({
+                name: brandRequest.name,
+            });
+            await this.updateBrandStatus(id, RequestStatus.approved);
+            return brand;
+        } else {
+            const modelRequest = await this.getModelRequest(id);
+            const brand = await brandRepository.getByName(modelRequest.brand);
+            if (!brand) {
+                throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
+            }
+            const model = await modelRepository.create(brand.id, {
+                name: modelRequest.name,
+            });
+            await this.updateModelStatus(id, RequestStatus.approved);
+            return model;
         }
-        const model = await modelRepository.create(brand.id, {
-            name: request.name,
-        });
-        await this.updateModelStatus(id, RequestStatus.approved);
-        return model;
     }
-
-    public async rejectBrandRequest(id: string): Promise<IBrandRequest> {
-        await this.getBrandRequest(id);
-        return await this.updateBrandStatus(id, RequestStatus.rejected);
-    }
-
-    public async rejectModelRequest(id: string): Promise<IModelRequest> {
+    public async rejectRequest(id: string, type: "brand" | "model") {
+        if (type === "brand") {
+            await this.getBrandRequest(id);
+            return await this.updateBrandStatus(id, RequestStatus.rejected);
+        }
         await this.getModelRequest(id);
         return await this.updateModelStatus(id, RequestStatus.rejected);
     }

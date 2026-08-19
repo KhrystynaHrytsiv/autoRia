@@ -1,4 +1,3 @@
-/*eslint-disable no-console*/
 import dns from "node:dns";
 import path from "node:path";
 
@@ -9,6 +8,7 @@ import { config } from "./configs/config";
 import { swaggerDocument, swaggerUI } from "./configs/swaggerConfig";
 import { cronRunner } from "./crons";
 import { apiError } from "./error/apiError";
+import { logger } from "./logger";
 import { apiRouter } from "./routs/apiRouter";
 
 dns.setServers(["8.8.8.8", "8.8.4.4"]);
@@ -25,7 +25,7 @@ app.use((err: apiError, req: Request, res: Response, next: NextFunction) => {
     res.status(status).json({ status, message });
 });
 process.on("uncaughtException", (err) => {
-    console.log("uncaughtException", err);
+    logger.error(err, "uncaughtException");
     process.exit(1);
 });
 
@@ -35,10 +35,10 @@ const connection = async () => {
         try {
             await mongoose.connect(config.mongo_uri);
             dbCon = true;
-            console.log("Connection available");
-            // eslint-disable-next-line @typescript-eslint/no-unused-vars
+            logger.info("Connection available");
         } catch (e) {
             await new Promise((resolve) => setTimeout(resolve, 3000));
+            logger.error(e);
         }
     }
 };
@@ -47,11 +47,11 @@ const start = async () => {
     try {
         await connection();
         app.listen(config.port, async () => {
-            console.log(`Database is listening on ${config.port} port`);
+            logger.info(`Database is listening on ${config.port} port`);
             await cronRunner();
         });
     } catch (e) {
-        console.log(e);
+        logger.error(e);
     }
 };
 
