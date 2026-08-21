@@ -1,5 +1,6 @@
 import { RolesEnum } from "../enums/rolesEnum";
 import { StatusCodes } from "../enums/statusCodes";
+import { UserStatus } from "../enums/userActionEnum";
 import { apiError } from "../error/apiError";
 import { IAuth } from "../interfaces/IAuth";
 import { TokenPair } from "../interfaces/IToken";
@@ -37,8 +38,8 @@ class AuthService {
             data.password,
             user.password,
         );
-        if (!user.isActive) {
-            throw new apiError("Account is not active", StatusCodes.FORBIDDEN);
+        if (user.status === UserStatus.blocked) {
+            throw new apiError("Account is blocked", StatusCodes.FORBIDDEN);
         }
         if (!isPasswordExist) {
             throw new apiError(

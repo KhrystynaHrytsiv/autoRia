@@ -1,4 +1,5 @@
 import { RolesEnum } from "../enums/rolesEnum";
+import { UserStatus } from "../enums/userActionEnum";
 import type { IUser, IUserCreateDto } from "../interfaces/IUser";
 import { User } from "../models/userModel";
 
@@ -22,10 +23,10 @@ class UserRepository {
             returnDocument: "after",
         });
     }
-    public changeStatus(id: string, isActive: boolean) {
+    public changeStatus(id: string, status: UserStatus) {
         return User.findByIdAndUpdate(
             id,
-            { isActive },
+            { status },
             { returnDocument: "after" },
         );
     }

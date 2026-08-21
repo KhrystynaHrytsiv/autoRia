@@ -27,12 +27,12 @@ requestRouter.get(
     requestController.getAllModelRequests,
 );
 requestRouter.patch(
-    "/:type/:id/approve",
+    "/brand/:id/:action",
     authMiddleware.hasPermission,
-    requestController.approveRequest,
+    requestController.changeBrandRequestStatus,
 );
 requestRouter.patch(
-    "/:type/:id/reject",
+    "/model/:id/:action",
     authMiddleware.hasPermission,
-    requestController.rejectRequest,
+    requestController.changeModelRequestStatus,
 );

@@ -25,6 +25,7 @@ advertRouter.put(
     "/:id",
     authMiddleware.checkAccess,
     upload.array("images", 10),
+    validateMiddleware.validateBody(AdvertValidator.update),
     advertController.update,
 );
 advertRouter.delete(

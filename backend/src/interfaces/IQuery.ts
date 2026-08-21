@@ -1,3 +1,5 @@
+import { AdvertStatus } from "../enums/advertStatus";
+
 export interface IAdvertQuery {
     page: number;
     pageSize: number;
@@ -6,4 +8,5 @@ export interface IAdvertQuery {
     model?: string;
     year?: string;
     price?: number;
+    status?: AdvertStatus;
 }

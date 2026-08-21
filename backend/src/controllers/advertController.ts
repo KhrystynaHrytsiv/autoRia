@@ -11,7 +11,7 @@ class AdvertController {
         try {
             const { userId } = res.locals.tokenPayload as ITokenPayload;
             const dto = req.body;
-            const images = (req.files as Express.Multer.File[]).map(
+            const images = (req.files as Express.Multer.File[])?.map(
                 (file) => file.filename,
             );
             const advert = await advertService.create(userId, {
@@ -46,9 +46,11 @@ class AdvertController {
             const { userId, role } = res.locals.tokenPayload as ITokenPayload;
             const id = req.params.id as string;
             const dto = req.body;
-            const images = (req.files as Express.Multer.File[]).map(
-                (file) => file.filename,
-            );
+            console.log(dto, "!!!!!!!!!!!!!!!!!");
+            const images =
+                (req.files as Express.Multer.File[] | undefined)?.map(
+                    (file) => file.filename,
+                ) ?? [];
             const uniqImage = new Set(images);
             const removeImages = req.body.removeImages ?? [];
             const advert = await advertService.update(

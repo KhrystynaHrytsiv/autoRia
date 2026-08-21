@@ -20,7 +20,7 @@ class AdvertRepository {
     public async getAll(query: IAdvertQuery): Promise<[IAdvert[], number]> {
         const skip = query.pageSize * (query.page - 1);
         const filterObject: QueryFilter<IAdvert> = {
-            status: AdvertStatus.active,
+            status: query.status || AdvertStatus.active,
         };
         if (query.brand) {
             filterObject.brand = await brandService.getIdByName(query.brand);

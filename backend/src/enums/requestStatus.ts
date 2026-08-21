@@ -3,3 +3,8 @@ export enum RequestStatus {
     approved = "approved",
     rejected = "rejected",
 }
+
+export enum RequestAction {
+    approve = "approve",
+    reject = "reject",
+}

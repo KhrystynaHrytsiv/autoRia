@@ -1,4 +1,4 @@
-import { RequestStatus } from "../enums/requestStatus";
+import { RequestAction, RequestStatus } from "../enums/requestStatus";
 import { StatusCodes } from "../enums/statusCodes";
 import { apiError } from "../error/apiError";
 import {
@@ -39,11 +39,11 @@ class RequestService {
         return request;
     }
 
-    public async getAllBrandRequests(): Promise<IBrandRequest[]> {
-        return await requestRepository.getAllBrandRequest();
+    public getAllBrandRequests(): Promise<IBrandRequest[]> {
+        return requestRepository.getAllBrandRequest();
     }
-    public async getAllModelRequests(): Promise<IModelRequest[]> {
-        return await requestRepository.getModelRequest();
+    public getAllModelRequests(): Promise<IModelRequest[]> {
+        return requestRepository.getModelRequest();
     }
     private async getBrandRequest(id: string): Promise<IBrandRequest> {
         const request = await requestRepository.getBrandRequestById(id);
@@ -105,35 +105,32 @@ class RequestService {
         await notificationService.sendStatusRequest(request);
         return request;
     }
-
-    public async approveRequest(id: string, type: "brand" | "model") {
-        if (type === "brand") {
-            const brandRequest = await this.getBrandRequest(id);
+    public async changeBrandRequestStatus(id: string, action: RequestAction) {
+        const brandRequest = await this.getBrandRequest(id);
+        if (action === RequestAction.reject) {
+            return await this.updateBrandStatus(id, RequestStatus.rejected);
+        } else {
             const brand = await brandRepository.create({
                 name: brandRequest.name,
             });
             await this.updateBrandStatus(id, RequestStatus.approved);
             return brand;
-        } else {
-            const modelRequest = await this.getModelRequest(id);
-            const brand = await brandRepository.getByName(modelRequest.brand);
-            if (!brand) {
-                throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
-            }
-            const model = await modelRepository.create(brand.id, {
-                name: modelRequest.name,
-            });
-            await this.updateModelStatus(id, RequestStatus.approved);
-            return model;
         }
     }
-    public async rejectRequest(id: string, type: "brand" | "model") {
-        if (type === "brand") {
-            await this.getBrandRequest(id);
-            return await this.updateBrandStatus(id, RequestStatus.rejected);
+    public async changeModelRequestStatus(id: string, action: RequestAction) {
+        const modelRequest = await this.getModelRequest(id);
+        if (action === RequestAction.reject) {
+            return await this.updateModelStatus(id, RequestStatus.rejected);
         }
-        await this.getModelRequest(id);
-        return await this.updateModelStatus(id, RequestStatus.rejected);
+        const brand = await brandRepository.getByName(modelRequest.brand);
+        if (!brand) {
+            throw new apiError("Brand not found", StatusCodes.NOT_FOUND);
+        }
+        const model = await modelRepository.create(brand.id, {
+            name: modelRequest.name,
+        });
+        await this.updateModelStatus(id, RequestStatus.approved);
+        return model;
     }
 }
 

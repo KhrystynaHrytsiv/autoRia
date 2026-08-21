@@ -21,15 +21,16 @@ import { userService } from "../services/userService";
 class AdvertHelper {
     public async prepareAdvert(dto: createAdvertDto | updateAdvertDto) {
         const data: any = { ...dto };
-
         if (dto.brand) {
             data.brand = await brandService.getIdByName(dto.brand);
         }
         if (dto.model) {
             const model = await modelService.getByName(dto.model);
-
-            if (dto.brand && model.brandId !== data.brand) {
-                throw new Error('Selected model does not belong to selected brand');
+            if (dto.brand && model.brandId.toString() !== data.brand) {
+                throw new apiError(
+                    "Selected model does not belong to selected brand",
+                    StatusCodes.BAD_REQUEST,
+                );
             }
             data.model = model.id;
         }

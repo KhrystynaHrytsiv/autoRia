@@ -25,14 +25,9 @@ userRouter.post(
     validateMiddleware.validateBody(UserValidator.create),
     userController.createManager,
 );
+
 userRouter.patch(
-    "/:id/block",
-    authMiddleware.checkAccess,
-    authMiddleware.hasPermission,
-    userController.changeUserStatus,
-);
-userRouter.patch(
-    "/:id/activate",
+    "/:id/:action",
     authMiddleware.checkAccess,
     authMiddleware.hasPermission,
     userController.changeUserStatus,

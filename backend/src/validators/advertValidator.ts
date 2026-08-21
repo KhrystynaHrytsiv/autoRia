@@ -1,6 +1,7 @@
 import joi from "joi";
 
 import { AdvertOrderEnum } from "../enums/AdvertOrderEnum";
+import { AdvertStatus } from "../enums/advertStatus";
 import { CurrencyEnum } from "../enums/currencyEnum";
 
 export class AdvertValidator {
@@ -9,6 +10,14 @@ export class AdvertValidator {
     private static brand = joi.string().min(3).max(24);
     private static model = joi.string().min(1).max(24);
     private static year = joi.number().min(1980).max(new Date().getFullYear());
+    private static images = joi.array().items(joi.string().uri());
+    private static status = joi
+        .string()
+        .valid(
+            AdvertStatus.pending_edit,
+            AdvertStatus.active,
+            AdvertStatus.inactive,
+        );
     private static price = joi.object({
         original: joi.object({
             value: joi.number().min(1000).max(10000000).required(),
@@ -31,15 +40,27 @@ export class AdvertValidator {
         year: this.year.required(),
         price: this.price.required(),
         location: this.location.required(),
+        images: this.images,
+    });
+    public static update = joi.object({
+        title: this.title,
+        description: this.description,
+        brand: this.brand,
+        model: this.model,
+        year: this.year,
+        price: this.price,
+        location: this.location,
+        images: this.images,
     });
 
     public static query = joi.object({
         pageSize: joi.number().min(1).max(100).default(10),
         page: joi.number().min(1).default(1),
-        brand: joi.string(),
-        model: joi.string(),
-        year: joi.number(),
-        price: joi.number(),
+        brand: this.brand,
+        model: this.model,
+        year: this.year,
+        price: this.price,
+        status: this.status,
         order: joi
             .string()
             .valid(

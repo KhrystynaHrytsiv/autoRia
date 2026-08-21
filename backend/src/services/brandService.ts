@@ -23,7 +23,7 @@ class BrandService {
         if (!brand) {
             throw new apiError("Brand not found ", StatusCodes.NOT_FOUND);
         }
-        return brand.id.toString();
+        return brand.id;
     }
 
     public async delete(id: string): Promise<void> {

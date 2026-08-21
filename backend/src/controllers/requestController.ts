@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
+import { RequestAction } from "../enums/requestStatus";
 import { StatusCodes } from "../enums/statusCodes";
-import { apiError } from "../error/apiError";
 import { ITokenPayload } from "../interfaces/IToken";
 import { requestService } from "../services/requestService";
 
@@ -65,45 +65,39 @@ class RequestController {
         }
     }
 
-    public async rejectRequest(
+    public async changeBrandRequestStatus(
         req: Request,
         res: Response,
         next: NextFunction,
     ) {
         try {
-            const { id, type } = req.params as {
+            const { id, action } = req.params as {
                 id: string;
-                type: "brand" | "model";
+                action: RequestAction;
             };
-            if (type !== "brand" && type !== "model") {
-                throw new apiError(
-                    "Invalid request type",
-                    StatusCodes.BAD_REQUEST,
-                );
-            }
-            const request = await requestService.rejectRequest(id, type);
+            const request = await requestService.changeBrandRequestStatus(
+                id,
+                action,
+            );
             res.status(StatusCodes.OK).json(request);
         } catch (e) {
             next(e);
         }
     }
-    public async approveRequest(
+    public async changeModelRequestStatus(
         req: Request,
         res: Response,
         next: NextFunction,
     ) {
         try {
-            const { id, type } = req.params as {
+            const { id, action } = req.params as {
                 id: string;
-                type: "brand" | "model";
+                action: RequestAction;
             };
-            if (type !== "brand" && type !== "model") {
-                throw new apiError(
-                    "Invalid request type",
-                    StatusCodes.BAD_REQUEST,
-                );
-            }
-            const request = await requestService.approveRequest(id, type);
+            const request = await requestService.changeModelRequestStatus(
+                id,
+                action,
+            );
             res.status(StatusCodes.OK).json(request);
         } catch (e) {
             next(e);

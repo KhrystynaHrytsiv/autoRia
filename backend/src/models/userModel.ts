@@ -2,6 +2,7 @@ import { model, Schema } from "mongoose";
 
 import { AccountTypeEnum } from "../enums/accountTypeEnum";
 import { RolesEnum } from "../enums/rolesEnum";
+import { UserStatus } from "../enums/userActionEnum";
 import { IUser } from "../interfaces/IUser";
 
 const userSchema = new Schema(
@@ -20,7 +21,7 @@ const userSchema = new Schema(
             enum: AccountTypeEnum,
             default: AccountTypeEnum.BASIC,
         },
-        isActive: { type: Boolean, default: true },
+        status: { type: String, enum: UserStatus, default: UserStatus.active },
     },
     {
         timestamps: true,

@@ -1,6 +1,7 @@
 import { AccountTypeEnum } from "../enums/accountTypeEnum";
 import { RolesEnum } from "../enums/rolesEnum";
 import { StatusCodes } from "../enums/statusCodes";
+import { UserAction, UserStatus } from "../enums/userActionEnum";
 import { apiError } from "../error/apiError";
 import { IUser, IUserCreateDto } from "../interfaces/IUser";
 import { userRepository } from "../repositories/userRepository";
@@ -42,12 +43,16 @@ class UserService {
     public async createManager(dto: IUserCreateDto): Promise<IUser> {
         return await this.createWithRole(dto, RolesEnum.MANAGER);
     }
-    public async changeStatus(id: string, isActive: boolean): Promise<IUser> {
-        const user = await userRepository.changeStatus(id, isActive);
+    public async changeStatus(id: string, action: UserAction): Promise<IUser> {
+        const statusMap = {
+            [UserAction.activate]: UserStatus.active,
+            [UserAction.block]: UserStatus.blocked,
+        };
+        const user = await userRepository.changeStatus(id, statusMap[action]);
         if (!user) {
             throw new apiError("User not found", StatusCodes.NOT_FOUND);
         }
-        if (isActive) {
+        if (action === UserAction.activate) {
             await notificationService.activateAccount(user);
         } else {
             await notificationService.blockedAccount(user);

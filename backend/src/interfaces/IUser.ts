@@ -1,5 +1,6 @@
 import { AccountTypeEnum } from "../enums/accountTypeEnum";
 import { RolesEnum } from "../enums/rolesEnum";
+import { UserStatus } from "../enums/userActionEnum";
 
 interface IUser {
     id: string;
@@ -8,7 +9,7 @@ interface IUser {
     password: string;
     role: RolesEnum;
     accountType: AccountTypeEnum;
-    isActive: boolean;
+    status: UserStatus;
 }
 
 type IUserCreateDto = Pick<IUser, "name" | "email" | "password">;

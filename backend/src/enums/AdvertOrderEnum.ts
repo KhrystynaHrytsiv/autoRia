@@ -3,4 +3,5 @@ export enum AdvertOrderEnum {
     model = "model",
     year = "year",
     price = "price",
+    status = "status",
 }

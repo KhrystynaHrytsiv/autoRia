@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 
 import { StatusCodes } from "../enums/statusCodes";
+import { UserAction } from "../enums/userActionEnum";
 import { apiError } from "../error/apiError";
 import { ITokenPayload } from "../interfaces/IToken";
 import { userService } from "../services/userService";
@@ -42,13 +43,15 @@ class UserController {
         next: NextFunction,
     ) {
         try {
-            const id = req.params.id as string;
+            const { id, action } = req.params as {
+                id: string;
+                action: UserAction;
+            };
             const { userId: myId } = res.locals.tokenPayload as ITokenPayload;
             if (id === myId) {
                 throw new apiError("Not permitted", StatusCodes.FORBIDDEN);
             }
-            const isActive = req.path.endsWith("/activate");
-            const user = await userService.changeStatus(id, isActive);
+            const user = await userService.changeStatus(id, action);
             res.status(StatusCodes.OK).json(user);
         } catch (e) {
             next(e);
